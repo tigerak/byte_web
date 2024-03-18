@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KG DB</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/kg_db.css') }}">
+    
+    <!-- Custom Box1 JS -->
+    <script src="{{ url_for('static', filename='scripts/kg_db.js') }}"></script>
+    
+</head>
+
+<body>
+    <div class="total">
+
+    <div class="box-top">
+        <h3>- Knowledge Graph Training Data -</h3>
+    </div>
+
+    <div class="box-wrap-upper">
+        <form action="/load_content/kg_db" method="post"  id="inputForm">
+            <div class="box1">
+                <p>
+                    기사 주소 (URL) :<br>
+                    <input type="text" name="api_url" size="99" placeholder="연합 뉴스 혹은 이투데이 기사 주소를 넣어주세요." value="{{url}}"><br>
+                    <input type="submit" class="sub_button" id="url_button" value="URL 기사 검색" accesskey="z">(단축키 : Alt + z)
+                </p>
+                <p>
+                    제목 : <br>
+                    <input type="text" id="title_text" name="api_title", size="99", placeholder="제목." value="{{title}}">
+                </p>
+                <p>기사 : (기사 송고 시간 : {{article_date}})<br/>
+                    <!-- <textarea type="text" id="article_text" name="api_article", cols="52" rows="15", placeholder="교정과 요약 모두 기사 입력이 필요합니다.">{{article}}</textarea> -->
+                    <div contenteditable="false" class="editable-div" id="editableDiv">{{article|safe}}</div>
+                    <input type="hidden" id="hiddenInput" name="articleHighLight">
+                </p>
+                <p>
+                    <input type="submit" class="sub_button" value="데이터 생성" accesskey="q"> (단축키 : Alt + q)
+                    <br>보통 90초 정도 걸림<br />
+                    &emsp;=> 예상 비용 : ${{total_cost}} / 처리 시간 : {{processing_time}}s
+                </p>
+            </div>
+        </form>
+            
+            <div class="box2">
+                <p>개체<br/>
+                    <textarea type="text" name="api_topic" cols="54" rows="15" style="width: -webkit-fill-available;" placeholder="Entities" readonly>{{topic}}</textarea>
+                </p>
+                <p>관계<br/>
+                    <textarea type="text" name="api_topic" cols="54" rows="19" style="width: -webkit-fill-available;" placeholder="Relationships" readonly>{{history}}</textarea>
+                </p>
+
+            </div>
+    </div>
+
+    <div class="box-wrap-under">
+        <div class="box3">
+            <p>요약문 제목 : <br/>
+                <input type="text" name="api_summary_title" size="75" placeholder="Summary Title." value="{{summary_title}}" readonly>
+                <!-- <textarea type="text", name="api_summary_title", cols="77" rows="2", placeholder="Summary Title" readonly>{{summary_title}}</textarea> -->
+            </p>
+            <p>요약문 (요약 방법 : {{summary_method}} / 글자 수 : {{count}}) <br>
+                <textarea type="text" name="api_summary" cols="77" rows="10" style="width: -webkit-fill-available;" placeholder="Summary." readonly>{{summary}}</textarea>
+            </p>
+        </div>
+
+        <div class="box4">
+            <p>수정 제목<br/>
+                <input type="text" name="api_summary_title" size="75" placeholder="Summary Title." value="{{summary_title}}">
+                <!-- <textarea type="text", name="human_summary_title", cols="77" rows="2", placeholder="여기서 제목을 수정하세요.">{{summary_title}}</textarea> -->
+            </p>
+            <p>수정 요약문 <br>
+                <textarea type="text" name="human_summary" cols="77" rows="10" style="width: -webkit-fill-available;" placeholder="여기서 요약문을 수정하세요.">{{summary}}</textarea>
+            </p>
+        </div>
+    </div>
+
+    <div class="box-bott">
+        <div width: 200px;>
+            {{message}}
+        </div>
+        
+        
+    </div>
+    
+    <div id="loading" style="display:none;">
+        <br/><br/>
+        <p>Autumn Loading...</p>
+    </div>
+
+    </div>
+
+</body>
+</html>

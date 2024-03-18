@@ -1,0 +1,856 @@
+[2023-11-16 02:09:10,179.179] INFO [139676445499392] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 02:09:10,179.179] INFO [139676445499392] - NumExpr defaulting to 8 threads.
+[2023-11-16 02:09:10,310.310] INFO [139676445499392] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 02:09:10,311.311] INFO [139676445499392] - NumExpr defaulting to 8 threads.
+[2023-11-16 04:08:43,807.807] INFO [139676445499392] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 04:08:43,807.807] INFO [139676445499392] - NumExpr defaulting to 8 threads.
+[2023-11-16 04:08:43,863.863] INFO [139676445499392] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 04:08:43,864.864] INFO [139676445499392] - NumExpr defaulting to 8 threads.
+[2023-11-16 04:31:04,434.434] DEBUG [139676445499392] - Starting new HTTPS connection (1): bit.ly:443
+[2023-11-16 04:31:04,650.650] DEBUG [139676445499392] - https://bit.ly:443 "GET /40norex HTTP/1.1" 301 0
+[2023-11-16 04:31:04,651.651] DEBUG [139676445499392] - Incremented Retry for (url='https://bit.ly/40norex'): Retry(total=2, connect=None, read=None, redirect=None, status=None)
+[2023-11-16 04:31:04,651.651] INFO [139676445499392] - Redirecting https://bit.ly/40norex -> https://www.yna.co.kr/view/AKR20231101005651072
+[2023-11-16 04:31:04,651.651] DEBUG [139676445499392] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:31:04,732.732] DEBUG [139676445499392] - https://www.yna.co.kr:443 "GET /view/AKR20231101005651072 HTTP/1.1" 200 0
+[2023-11-16 04:31:16,574.574] DEBUG [139676445499392] - message='Request to OpenAI API' method=post path=https://api.openai.com/v1/chat/completions
+[2023-11-16 04:31:16,575.575] DEBUG [139676445499392] - api_version=None data='{"messages": [{"role": "user", "content": "\\nI want you to act as a journalist specializing in economics who summarizes the article.\\nPlease summarize the article below, in Korean. \\nIf necessary, the summary may be modified to suit the causal relationship regardless of the order of the original article.\\nIf there is any overlap or similar content, please summarize it considering the overall context.\\n\\nPlease pick one of the most important topics from the article below and summarize it so that it does not exceed 250 characters, and make it three sentences.\\nAt this point, summarize only what is relevant to the first sentence.\\nIf there are duplicates or similar content, delete statements of less importance.\\nIf the subject predicate relationship of the created sentence is not correct, it is okay to make the fourth sentence.\\n\\nNow, please revise the summary compared to the original article.\\nBe particularly sensitive to correcting sentences so that the front and back relationships of the context fit well compared to the original article.\\nAt this time, you can increase the length of the sentence if necessary.\\n\\nLet\'s check again whether summary is well organized based on the original article and correct the wrong part.\\nPlease check if the appropriate connecting words that conform to Korean grammar have been used, and if they sound awkward, make the sentence more natural by replacing them with suitable connecting words.\\nAnd You should modify it as naturally as possible to match the Korean word order.\\n\\nThis is the original article:\\n\\"\\"\\"\\n\\uc2ec\\uac01\\ud55c \\uacbd\\uc601\\ub09c\\uc744 \\uacaa\\uace0 \\uc788\\ub294 \\uc0ac\\ubb34\\uc2e4 \\uacf5\\uc720\\uc5c5\\uccb4 \\uc704\\uc6cc\\ud06c\\uac00 \\ub2e4\\uc74c \\uc8fc \\ucd08 \\ud30c\\uc0b0 \\uc2e0\\uccad\\uc744 \\ud560 \\uacc4\\ud68d\\uc774\\ub77c\\uace0 \\ubbf8 \\uc77c\\uac04 \\uc6d4\\uc2a4\\ud2b8\\ub9ac\\ud2b8\\uc800\\ub110(WSJ)\\uc774 31\\uc77c(\\ud604\\uc9c0\\uc2dc\\uac04) \\ubcf4\\ub3c4\\ud588\\ub2e4. \\uc704\\uc6cc\\ud06c\\ub294 \\uc2a4\\ud0c0\\ud2b8\\uc5c5\\uc774 \\ubd90\\uc744 \\uc774\\ub8e8\\ub358 \\uc2dc\\uae30 \\uc131\\uacf5\\ud55c \\uae30\\uc5c5 \\uc911 \\ud558\\ub098\\ub85c \\uae30\\uc5c5\\uac00\\uce58\\uac00 470\\uc5b5 \\ub2ec\\ub7ec(\\uc57d 63\\uc8706\\ucc9c\\uc5b5 \\uc6d0)\\uc5d0 \\ub2ec\\ud588\\uc9c0\\ub9cc, \\uc2e0\\uc885 \\ucf54\\ub85c\\ub098\\ubc14\\uc774\\ub7ec\\uc2a4 \\uac10\\uc5fc\\uc99d(\\ucf54\\ub85c\\ub09819) \\uc0ac\\ud0dc\\ub97c \\uacc4\\uae30\\ub85c \\uc7ac\\ud0dd\\uadfc\\ubb34\\uac00 \\ud655\\uc0b0\\ud558\\uba74\\uc11c \\uc784\\ub300 \\uc0ac\\ubb34\\uacf5\\uac04\\uc5d0 \\ub300\\ud55c \\uc218\\uc694\\uac00 \\uac10\\uc18c\\ud574 \\uacbd\\uc601\\ub09c\\uc5d0 \\ube60\\uc84c\\ub2e4. \\uc704\\uc6cc\\ud06c\\ub294 \\uc774\\ub0a0 \\uacf5\\uac1c\\ud55c \\uc790\\ub8cc\\uc5d0\\uc11c \\ucc44\\uad8c\\uc790\\ub4e4\\uacfc \'\\uc7ac\\ubb34\\uad6c\\uc870 \\uac1c\\uc120\'\\uc5d0 \\ub300\\ud574 \\ub17c\\uc758\\ud574 \\uc654\\uc73c\\uba70 \'\\ubcf4\\uc720 \\ubd80\\ub3d9\\uc0b0\\uc744 \\ud569\\ub9ac\\uc801\\uc73c\\ub85c \\ucc98\\ub9ac\\ud558\\uae30 \\uc704\\ud55c\' \\uc870\\uce58\\ub97c \\ucde8\\ud558\\uace0 \\uc788\\ub2e4\\uace0 \\ubc1d\\ud614\\ub2e4. \\uc704\\uc6cc\\ud06c\\ub294 10\\uc6d4 \\ucd08 \\ucc44\\uad8c\\uc790\\ub4e4\\uacfc\\uc758 \\ud611\\uc758\\ub97c \\ud1b5\\ud574 30\\uc77c\\uac04\\uc758 \\uc774\\uc790 \\uc0c1\\ud658 \\uc720\\uc608 \\uc870\\uce58\\ub97c \\ub04c\\uc5b4\\ub0c8\\uc9c0\\ub9cc, \\uc774 \\uae30\\uac04\\uc5d0\\ub3c4 \\uc790\\uae08 \\uc0ac\\uc815\\uc774 \\uac1c\\uc120\\ub418\\uc9c0 \\uc54a\\uc544 \\ucd94\\uac00 7\\uc77c\\uc758 \\uc0c1\\ud658\\uc720\\uc608 \\uae30\\uac04\\uc744 \\ubc1b\\uc558\\ub2e4. \\uc704\\uc6cc\\ud06c \\ub300\\ubcc0\\uc778\\uc740 \\"\\ucd94\\uce21\\uc740 \\ud558\\uc9c0 \\uc54a\\uaca0\\ub2e4\\"\\uba74\\uc11c \\uc774\\ubc88 \\uc774\\uc790 \\uc0c1\\ud658 \\uc720\\uc608 \\ud569\\uc758\\uac00 \\"\\uc8fc\\uc694 \\uc7ac\\ubb34 \\uc774\\ud574\\uad00\\uacc4\\uc790\\ub4e4\\uacfc \\uae0d\\uc815\\uc801\\uc778 \\ub300\\ud654\\ub97c \\uacc4\\uc18d\\ud558\\uace0 \\uc790\\ubcf8 \\uad6c\\uc870 \\uac1c\\uc120\\uc744 \\uc704\\ud55c \\uc804\\ub7b5\\uc801 \\ub178\\ub825\\uc744 \\uc774\\ud589\\ud558\\uae30 \\uc704\\ud574 \\ud611\\ub825\\ud560 \\uc2dc\\uac04\\uc744 \\uc81c\\uacf5\\ud560 \\uac83\\"\\uc774\\ub77c\\uace0 \\ub9d0\\ud588\\ub2e4. \\uadf8\\ub294 \\uc774\\uc5b4 \\uc704\\uc6cc\\ud06c\\uac00 \\"\\ubbf8\\ub798\\uc5d0 \\ub300\\ud55c \\uba85\\ud655\\ud558\\uace0 \\uc7a5\\uae30\\uc801\\uc778 \\ube44\\uc804\\uc744 \\uac16\\uace0 \\uc788\\ub2e4\\"\\uace0 \\ub367\\ubd99\\uc600\\ub2e4. \\ub274\\uc695\\uc5d0 \\ubcf8\\uc0ac\\ub97c \\ub454 \\uc704\\uc6cc\\ud06c\\ub294 \\ubca4\\ucc98\\uce90\\ud53c\\ud138 \\uc2dc\\uc7a5\\uc774 10\\ub144 \\ud638\\ud669\\uc744 \\uc2dc\\uc791\\ud55c 2010\\ub144 \\ucc3d\\ub9bd\\ub410\\ub2e4. \\uacf5\\ub3d9\\uc124\\ub9bd\\uc790 \\uc544\\ub2f4 \\ub274\\ub9cc\\uc740 \\uce74\\ub9ac\\uc2a4\\ub9c8 \\ub118\\uce58\\ub294 \\ud64d\\ubcf4\\ub9e8\\uc73c\\ub85c, \\ud68c\\uc0ac\\ub294 \\uc218\\uc2ed\\uc5b5 \\ub2ec\\ub7ec\\uc758 \\uc790\\uae08\\uc744 \\uc870\\ub2ec\\ud558\\uace0 \\ub9e4\\ucd9c\\uc774 \\uc5f0\\uac04 \\ub450 \\ubc30\\uc529 \\uc131\\uc7a5\\ud574 \\uc804\\uc131\\uae30\\uc5d0\\ub294 \\ubbf8\\uad6d\\uc5d0\\uc11c \\uac00\\uc7a5 \\uac00\\uce58 \\uc788\\ub294 \\uc2a4\\ud0c0\\ud2b8\\uc5c5 \\uc911 \\ud558\\ub098\\uc600\\uace0 \\uc804 \\uc138\\uacc4\\uc5d0 \\uc624\\ud53c\\uc2a4\\ub97c \\uc6b4\\uc601\\ud588\\ub2e4. \\ub610 \\uc704 \\uadf8\\ub85c\\uc6b0(WeGrow)\\ub77c\\ub294 \\uc0ac\\ub9bd \\ucd08\\ub4f1\\ud559\\uad50, \\uc704\\ub77c\\uc774\\ube0c(WeLive)\\ub77c\\ub294 \\uc8fc\\uac70\\uc6a9 \\ube4c\\ub529 \\ub450 \\ucc44, \\ub77c\\uc774\\uc988 \\ubc14\\uc774 \\uc704(Rise By We)\\ub77c\\ub294 \\uccb4\\uc721\\uad00 \\ucf58\\uc149\\ud2b8 \\ud504\\ub85c\\uc81d\\ud2b8 \\ub4f1 \\ub2e4\\uc18c \\uc5c9\\ub6b1\\ud55c \\uc0ac\\uc5c5\\uc5d0 \\ub6f0\\uc5b4\\ub4e4\\uae30\\ub3c4 \\ud588\\ub2e4. \\uc704\\uc6cc\\ud06c\\ub294 \\uc0c1\\ud658 \\uc720\\uc608\\uae30\\uac04 \\ubaa8\\ub450 9\\ucc9c500\\ub9cc \\ub2ec\\ub7ec(\\uc57d 1\\ucc9c285\\uc5b5 \\uc6d0) \\uaddc\\ubaa8\\uc758 \\ucc44\\uad8c \\uc774\\uc790\\ub97c \\ub0b4\\uc9c0 \\uc54a\\uc740 \\uac83\\uc73c\\ub85c \\uc54c\\ub824\\uc84c\\ub2e4. \\uc804\\ub0a0 \\ub274\\uc695\\uc99d\\uad8c\\uac70\\ub798\\uc18c(NYSE)\\uc5d0\\uc11c \\uc774\\uc790 \\uc0c1\\ud658 \\ucd94\\uac00 \\uc720\\uc608 \\uc870\\uce58 \\uc0ac\\uc2e4\\uc774 \\uc54c\\ub824\\uc9c4 \\ub4a4 \\uc704\\uc6cc\\ud06c\\uc758 \\uc8fc\\uac00\\ub294 10%\\uac00\\ub7c9 \\uae09\\ub77d\\ud588\\ub2e4. \\uc704\\uc6cc\\ud06c\\ub294 \\uc0ac\\ubb34\\uc2e4 \\uacf5\\uac04\\uc744 \\uace0\\uc815\\uac00\\uaca9\\uc5d0 \\uc7a5\\uae30 \\uc784\\ucc28\\ud55c \\ub4a4 \\uc18c\\ube44\\uc790\\ub4e4\\uc5d0\\uac8c \\uc774\\ub97c \\ube4c\\ub824\\uc8fc\\uace0 \\uc218\\uc775\\uc744 \\uc62c\\ub9ac\\ub294 \\uc5c5\\uccb4\\ub2e4.\\n\\"\\"\\"\\n\\nLet\'s step by step.\\n\\nIf the summary consists of more than 250 characters, let\'s slowly repeat the whole process step by step.\\n\\nthe best one SUMMARY:\\n        "}], "model": "gpt-3.5-turbo-1106", "max_tokens": null, "stream": false, "n": 1, "temperature": 0.0}' message='Post details'
+[2023-11-16 04:31:16,576.576] DEBUG [139676445499392] - Converted retries value: 2 -> Retry(total=2, connect=None, read=None, redirect=None, status=None)
+[2023-11-16 04:31:16,578.578] DEBUG [139676445499392] - Starting new HTTPS connection (1): api.openai.com:443
+[2023-11-16 04:31:19,645.645] DEBUG [139676445499392] - https://api.openai.com:443 "POST /v1/chat/completions HTTP/1.1" 200 None
+[2023-11-16 04:31:19,646.646] DEBUG [139676445499392] - message='OpenAI API response' path=https://api.openai.com/v1/chat/completions processing_ms=2481 request_id=7b77b0bf4df28ff527195c174cb0925b response_code=200
+[2023-11-16 04:31:19,659.659] DEBUG [139676445499392] - Starting new HTTPS connection (1): openaipublic.blob.core.windows.net:443
+[2023-11-16 04:31:20,612.612] DEBUG [139676445499392] - https://openaipublic.blob.core.windows.net:443 "GET /encodings/cl100k_base.tiktoken HTTP/1.1" 200 1681126
+[2023-11-16 04:33:25,577.577] ERROR [139676445499392] - Invalid session Rh5RGbS8gb2v2wgrAAAA (further occurrences of this error will be logged with level INFO)
+[2023-11-16 04:33:26,966.966] ERROR [139676445499392] - Invalid session _qfHJlR0xxutgacAAAAA (further occurrences of this error will be logged with level INFO)
+[2023-11-16 04:46:06,230.230] DEBUG [139676445499392] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:46:06,404.404] DEBUG [139676445499392] - https://www.yna.co.kr:443 "GET /view/AKR20231101070100003?section=economy/all HTTP/1.1" 200 None
+[2023-11-16 04:48:04,243.243] DEBUG [139675434976832] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:04,280.280] DEBUG [139675468547648] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:04,289.289] DEBUG [139675485333056] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:04,292.292] DEBUG [139675443369536] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:04,297.297] DEBUG [139675476940352] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:04,337.337] DEBUG [139675434976832] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 04:48:04,402.402] DEBUG [139675468547648] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 04:48:04,419.419] DEBUG [139675485333056] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 04:48:04,527.527] DEBUG [139675443369536] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 04:48:04,929.929] DEBUG [139675476940352] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 04:48:05,537.537] DEBUG [139675434976832] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:05,626.626] DEBUG [139675434976832] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 04:48:06,039.039] DEBUG [139675485333056] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:06,123.123] DEBUG [139675485333056] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 04:48:06,151.151] DEBUG [139675443369536] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:06,203.203] DEBUG [139675468547648] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:06,234.234] DEBUG [139675476940352] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:06,265.265] DEBUG [139675443369536] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 04:48:06,365.365] DEBUG [139675468547648] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 04:48:06,376.376] DEBUG [139675476940352] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 04:48:06,736.736] DEBUG [139675434976832] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:06,824.824] DEBUG [139675434976832] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 04:48:07,245.245] DEBUG [139675485333056] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:07,322.322] DEBUG [139675485333056] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 04:48:07,403.403] DEBUG [139675443369536] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:07,507.507] DEBUG [139675443369536] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 04:48:07,903.903] DEBUG [139675468547648] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:07,914.914] DEBUG [139675476940352] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:07,930.930] DEBUG [139675434976832] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:07,986.986] DEBUG [139675468547648] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 04:48:08,003.003] DEBUG [139675476940352] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 04:48:08,083.083] DEBUG [139675434976832] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 04:48:08,436.436] DEBUG [139675485333056] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:08,527.527] DEBUG [139675485333056] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 04:48:08,917.917] DEBUG [139675443369536] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:08,994.994] DEBUG [139675443369536] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 04:48:09,279.279] DEBUG [139675476940352] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:09,303.303] DEBUG [139675468547648] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:09,325.325] DEBUG [139675434976832] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:09,352.352] DEBUG [139675476940352] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 04:48:09,455.455] DEBUG [139675468547648] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 04:48:09,461.461] DEBUG [139675434976832] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 04:48:09,667.667] DEBUG [139675485333056] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:09,766.766] DEBUG [139675485333056] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 04:48:10,103.103] DEBUG [139675443369536] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:10,177.177] DEBUG [139675443369536] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 04:48:10,567.567] DEBUG [139675476940352] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:10,668.668] DEBUG [139675476940352] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 04:48:10,700.700] DEBUG [139675468547648] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:10,832.832] DEBUG [139675468547648] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 04:48:10,874.874] DEBUG [139675485333056] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:10,992.992] DEBUG [139675485333056] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 04:48:11,596.596] DEBUG [139675443369536] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:11,685.685] DEBUG [139675443369536] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 04:48:11,834.834] DEBUG [139675476940352] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:11,915.915] DEBUG [139675476940352] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 04:48:11,957.957] DEBUG [139675468547648] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:48:12,068.068] DEBUG [139675468547648] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 04:49:44,392.392] DEBUG [139675468547648] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:49:44,486.486] DEBUG [139675468547648] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 04:49:45,597.597] DEBUG [139675468547648] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:49:45,685.685] DEBUG [139675468547648] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 04:49:46,798.798] DEBUG [139675468547648] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:49:46,877.877] DEBUG [139675468547648] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 04:49:47,994.994] DEBUG [139675468547648] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:49:48,068.068] DEBUG [139675468547648] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 04:49:49,184.184] DEBUG [139675468547648] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:49:49,265.265] DEBUG [139675468547648] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 04:49:50,818.818] DEBUG [139675468547648] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:49:50,897.897] DEBUG [139675468547648] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 04:52:23,722.722] DEBUG [139675476940352] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:52:23,814.814] DEBUG [139675476940352] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 04:52:24,928.928] DEBUG [139675476940352] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:52:25,013.013] DEBUG [139675476940352] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 04:52:26,116.116] DEBUG [139675476940352] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:52:26,214.214] DEBUG [139675476940352] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 04:52:27,371.371] DEBUG [139675476940352] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:52:27,463.463] DEBUG [139675476940352] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 04:52:28,569.569] DEBUG [139675476940352] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:52:28,671.671] DEBUG [139675476940352] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 04:52:29,777.777] DEBUG [139675476940352] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:52:29,887.887] DEBUG [139675476940352] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 04:57:24,315.315] DEBUG [139674483947072] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:57:24,326.326] DEBUG [139674918049344] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:57:24,404.404] DEBUG [139674918049344] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 04:57:24,432.432] DEBUG [139674483947072] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 04:57:25,888.888] DEBUG [139674918049344] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:57:25,909.909] DEBUG [139674483947072] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:57:25,979.979] DEBUG [139674918049344] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 04:57:25,996.996] DEBUG [139674483947072] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 04:57:27,185.185] DEBUG [139674918049344] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:57:27,201.201] DEBUG [139674483947072] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:57:27,285.285] DEBUG [139674918049344] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 04:57:27,310.310] DEBUG [139674483947072] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 04:57:28,488.488] DEBUG [139674918049344] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:57:28,500.500] DEBUG [139674483947072] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:57:28,573.573] DEBUG [139674918049344] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 04:57:28,616.616] DEBUG [139674483947072] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 04:57:29,753.753] DEBUG [139674918049344] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:57:29,793.793] DEBUG [139674483947072] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:57:29,833.833] DEBUG [139674918049344] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 04:57:29,947.947] DEBUG [139674483947072] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 04:57:30,951.951] DEBUG [139674918049344] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:57:31,035.035] DEBUG [139674918049344] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 04:57:31,081.081] DEBUG [139674483947072] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 04:57:31,175.175] DEBUG [139674483947072] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 05:06:09,552.552] INFO [140428168159232] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 05:06:09,553.553] INFO [140428168159232] - NumExpr defaulting to 8 threads.
+[2023-11-16 05:09:12,262.262] DEBUG [140427194779200] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:09:12,356.356] DEBUG [140427194779200] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 05:09:13,455.455] DEBUG [140427194779200] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:09:13,525.525] DEBUG [140427194779200] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 05:09:14,635.635] DEBUG [140427194779200] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:09:14,710.710] DEBUG [140427194779200] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 05:09:15,822.822] DEBUG [140427194779200] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:09:15,907.907] DEBUG [140427194779200] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 05:09:17,279.279] DEBUG [140427194779200] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:09:17,355.355] DEBUG [140427194779200] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 05:09:18,446.446] DEBUG [140427194779200] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:09:18,525.525] DEBUG [140427194779200] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 05:14:26,984.984] DEBUG [140427203171904] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:14:27,073.073] DEBUG [140427203171904] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 05:14:28,167.167] DEBUG [140427203171904] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:14:28,241.241] DEBUG [140427203171904] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 05:14:29,340.340] DEBUG [140427203171904] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:14:29,442.442] DEBUG [140427203171904] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 05:14:30,541.541] DEBUG [140427203171904] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:14:30,618.618] DEBUG [140427203171904] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 05:14:31,714.714] DEBUG [140427203171904] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:14:31,809.809] DEBUG [140427203171904] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 05:14:32,902.902] DEBUG [140427203171904] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:14:32,991.991] DEBUG [140427203171904] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 05:19:23,850.850] DEBUG [140426956760640] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:19:23,940.940] DEBUG [140426956760640] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 05:19:25,034.034] DEBUG [140426956760640] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:19:25,118.118] DEBUG [140426956760640] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 05:19:26,512.512] DEBUG [140426956760640] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:19:26,585.585] DEBUG [140426956760640] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 05:19:27,687.687] DEBUG [140426956760640] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:19:27,765.765] DEBUG [140426956760640] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 05:19:28,861.861] DEBUG [140426956760640] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:19:28,952.952] DEBUG [140426956760640] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 05:19:30,046.046] DEBUG [140426956760640] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:19:30,136.136] DEBUG [140426956760640] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 05:24:27,200.200] INFO [140428168159232] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 05:24:27,200.200] INFO [140428168159232] - NumExpr defaulting to 8 threads.
+[2023-11-16 05:26:51,243.243] DEBUG [140426841421376] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:26:51,349.349] DEBUG [140426841421376] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 05:26:52,448.448] DEBUG [140426841421376] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:26:52,531.531] DEBUG [140426841421376] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 05:26:53,636.636] DEBUG [140426841421376] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:26:53,738.738] DEBUG [140426841421376] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 05:26:54,840.840] DEBUG [140426841421376] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:26:54,910.910] DEBUG [140426841421376] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 05:26:56,293.293] DEBUG [140426841421376] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:26:56,398.398] DEBUG [140426841421376] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 05:26:57,517.517] DEBUG [140426841421376] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:26:57,601.601] DEBUG [140426841421376] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 05:32:32,476.476] DEBUG [140427194779200] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:32:32,568.568] DEBUG [140427194779200] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 05:32:33,665.665] DEBUG [140427194779200] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:32:33,755.755] DEBUG [140427194779200] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 05:32:34,854.854] DEBUG [140427194779200] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:32:34,946.946] DEBUG [140427194779200] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 05:32:36,046.046] DEBUG [140427194779200] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:32:36,136.136] DEBUG [140427194779200] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 05:32:37,235.235] DEBUG [140427194779200] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:32:37,315.315] DEBUG [140427194779200] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 05:32:38,417.417] DEBUG [140427194779200] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:32:38,511.511] DEBUG [140427194779200] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 05:34:04,948.948] DEBUG [140427203171904] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:34:05,052.052] DEBUG [140427203171904] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 05:34:06,176.176] DEBUG [140427203171904] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:34:06,254.254] DEBUG [140427203171904] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 05:34:07,672.672] DEBUG [140427203171904] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:34:07,754.754] DEBUG [140427203171904] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 05:34:08,859.859] DEBUG [140427203171904] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:34:08,936.936] DEBUG [140427203171904] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 05:34:10,037.037] DEBUG [140427203171904] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:34:10,112.112] DEBUG [140427203171904] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 05:34:11,214.214] DEBUG [140427203171904] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:34:11,289.289] DEBUG [140427203171904] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 05:36:02,810.810] DEBUG [140426820445760] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:36:02,901.901] DEBUG [140426820445760] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 05:36:03,996.996] DEBUG [140426820445760] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:36:04,076.076] DEBUG [140426820445760] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 05:36:05,177.177] DEBUG [140426820445760] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:36:05,254.254] DEBUG [140426820445760] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 05:36:06,356.356] DEBUG [140426820445760] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:36:06,437.437] DEBUG [140426820445760] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 05:36:07,536.536] DEBUG [140426820445760] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:36:07,616.616] DEBUG [140426820445760] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 05:36:08,716.716] DEBUG [140426820445760] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:36:08,808.808] DEBUG [140426820445760] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 05:36:11,592.592] DEBUG [140426841421376] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:36:11,669.669] DEBUG [140426841421376] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 05:36:12,769.769] DEBUG [140426841421376] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:36:12,844.844] DEBUG [140426841421376] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 05:36:13,943.943] DEBUG [140426841421376] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:36:14,029.029] DEBUG [140426841421376] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 05:36:15,130.130] DEBUG [140426841421376] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:36:15,224.224] DEBUG [140426841421376] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 05:36:16,329.329] DEBUG [140426841421376] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:36:16,404.404] DEBUG [140426841421376] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 05:36:17,505.505] DEBUG [140426841421376] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:36:17,589.589] DEBUG [140426841421376] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 05:36:18,394.394] DEBUG [140426820445760] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:36:18,502.502] DEBUG [140426820445760] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 05:36:19,597.597] DEBUG [140426820445760] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:36:19,671.671] DEBUG [140426820445760] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 05:36:20,770.770] DEBUG [140426820445760] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:36:20,853.853] DEBUG [140426820445760] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 05:36:21,948.948] DEBUG [140426820445760] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:36:22,035.035] DEBUG [140426820445760] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 05:36:23,519.519] DEBUG [140426820445760] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:36:23,593.593] DEBUG [140426820445760] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 05:36:24,702.702] DEBUG [140426820445760] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:36:24,788.788] DEBUG [140426820445760] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 05:39:56,487.487] INFO [140428168159232] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 05:39:56,487.487] INFO [140428168159232] - NumExpr defaulting to 8 threads.
+[2023-11-16 05:41:45,016.016] INFO [140641781374976] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 05:41:45,017.017] INFO [140641781374976] - NumExpr defaulting to 8 threads.
+[2023-11-16 05:45:02,242.242] ERROR [140641781374976] - Invalid session fHvKa7FJf3YMPCg5AAAG (further occurrences of this error will be logged with level INFO)
+[2023-11-16 05:52:05,650.650] DEBUG [140640814880320] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:52:05,739.739] DEBUG [140640814880320] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 05:52:06,857.857] DEBUG [140640814880320] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:52:06,951.951] DEBUG [140640814880320] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 05:52:08,059.059] DEBUG [140640814880320] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:52:08,144.144] DEBUG [140640814880320] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 05:52:09,253.253] DEBUG [140640814880320] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:52:09,351.351] DEBUG [140640814880320] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 05:52:10,758.758] DEBUG [140640814880320] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:52:10,841.841] DEBUG [140640814880320] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 05:52:11,941.941] DEBUG [140640814880320] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:52:12,022.022] DEBUG [140640814880320] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 05:52:52,718.718] DEBUG [140640574760512] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:52:52,719.719] DEBUG [140640557975104] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:52:52,802.802] DEBUG [140640574760512] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 05:52:52,844.844] DEBUG [140640557975104] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 05:52:53,999.999] DEBUG [140640574760512] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:52:54,030.030] DEBUG [140640557975104] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:52:54,074.074] DEBUG [140640574760512] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 05:52:54,164.164] DEBUG [140640557975104] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 05:52:55,207.207] DEBUG [140640574760512] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:52:55,282.282] DEBUG [140640574760512] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 05:52:55,320.320] DEBUG [140640557975104] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:52:55,436.436] DEBUG [140640557975104] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 05:52:56,387.387] DEBUG [140640574760512] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:52:56,484.484] DEBUG [140640574760512] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 05:52:56,546.546] DEBUG [140640557975104] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:52:56,646.646] DEBUG [140640557975104] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 05:52:57,592.592] DEBUG [140640574760512] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:52:57,668.668] DEBUG [140640574760512] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 05:52:58,049.049] DEBUG [140640557975104] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:52:58,126.126] DEBUG [140640557975104] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 05:52:58,770.770] DEBUG [140640574760512] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:52:58,859.859] DEBUG [140640574760512] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 05:52:59,228.228] DEBUG [140640557975104] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 05:52:59,310.310] DEBUG [140640557975104] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 05:57:56,287.287] INFO [140641781374976] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 05:57:56,287.287] INFO [140641781374976] - NumExpr defaulting to 8 threads.
+[2023-11-16 06:12:14,740.740] INFO [140641781374976] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 06:12:14,740.740] INFO [140641781374976] - NumExpr defaulting to 8 threads.
+[2023-11-16 06:13:03,238.238] ERROR [140641781374976] - Invalid session iNUI3_l_yn83H-S6AAAN (further occurrences of this error will be logged with level INFO)
+[2023-11-16 06:13:50,236.236] DEBUG [140639886886464] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 06:13:50,330.330] DEBUG [140639886886464] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 06:13:51,426.426] DEBUG [140639886886464] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 06:13:51,504.504] DEBUG [140639886886464] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 06:13:52,630.630] DEBUG [140639886886464] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 06:13:52,707.707] DEBUG [140639886886464] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 06:13:53,801.801] DEBUG [140639886886464] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 06:13:53,877.877] DEBUG [140639886886464] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 06:13:55,336.336] DEBUG [140639886886464] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 06:13:55,422.422] DEBUG [140639886886464] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 06:13:56,518.518] DEBUG [140639886886464] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 06:13:56,600.600] DEBUG [140639886886464] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 07:00:24,234.234] ERROR [140641781374976] - Invalid transport (further occurrences of this error will be logged with level INFO)
+[2023-11-16 08:23:22,548.548] INFO [140436183445504] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 08:23:22,548.548] INFO [140436183445504] - NumExpr defaulting to 8 threads.
+[2023-11-16 08:23:22,602.602] INFO [140436183445504] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 08:23:22,602.602] INFO [140436183445504] - NumExpr defaulting to 8 threads.
+[2023-11-16 08:23:22,603.603] INFO [140436183445504] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 08:23:22,604.604] INFO [140436183445504] - NumExpr defaulting to 8 threads.
+[2023-11-16 08:23:22,613.613] INFO [140436183445504] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 08:23:22,613.613] INFO [140436183445504] - NumExpr defaulting to 8 threads.
+[2023-11-16 08:23:45,263.263] DEBUG [140436183445504] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 08:23:45,335.335] DEBUG [140436183445504] - https://www.yna.co.kr:443 "GET /view/AKR20231101070100003?section=economy/all HTTP/1.1" 200 0
+[2023-11-16 08:23:56,981.981] ERROR [140436183445504] - Invalid session 1GN91lrRXuDbtuIOAAAA (further occurrences of this error will be logged with level INFO)
+[2023-11-16 08:23:56,981.981] ERROR [140436183445504] - Invalid session 1GN91lrRXuDbtuIOAAAA (further occurrences of this error will be logged with level INFO)
+[2023-11-16 08:23:57,884.884] ERROR [140436183445504] - Invalid session 9maX6ndgCxfECIkoAAAA (further occurrences of this error will be logged with level INFO)
+[2023-11-16 08:23:59,193.193] ERROR [140436183445504] - Invalid session R1QlmzlaHdbG4kFTAAAA (further occurrences of this error will be logged with level INFO)
+[2023-11-16 08:30:04,049.049] INFO [140436183445504] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 08:30:04,050.050] INFO [140436183445504] - NumExpr defaulting to 8 threads.
+[2023-11-16 08:30:07,242.242] ERROR [140436183445504] - Invalid session C3uXvYrk3-XATwXDAAAJ (further occurrences of this error will be logged with level INFO)
+[2023-11-16 09:02:44,675.675] INFO [139871429492736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 09:02:44,675.675] INFO [139871429492736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 09:02:44,675.675] INFO [139871429492736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 09:02:44,676.676] INFO [139871429492736] - NumExpr defaulting to 8 threads.
+[2023-11-16 09:02:44,676.676] INFO [139871429492736] - NumExpr defaulting to 8 threads.
+[2023-11-16 09:02:44,675.675] INFO [139871429492736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 09:02:44,676.676] INFO [139871429492736] - NumExpr defaulting to 8 threads.
+[2023-11-16 09:02:44,676.676] INFO [139871429492736] - NumExpr defaulting to 8 threads.
+[2023-11-16 14:38:29,135.135] INFO [139871429492736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 14:38:29,135.135] INFO [139871429492736] - NumExpr defaulting to 8 threads.
+[2023-11-16 14:38:29,205.205] INFO [139871429492736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 14:38:29,205.205] INFO [139871429492736] - NumExpr defaulting to 8 threads.
+[2023-11-16 14:38:29,224.224] INFO [139871429492736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 14:38:29,224.224] INFO [139871429492736] - NumExpr defaulting to 8 threads.
+[2023-11-16 14:38:29,263.263] INFO [139871429492736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 14:38:29,263.263] INFO [139871429492736] - NumExpr defaulting to 8 threads.
+[2023-11-16 14:54:55,927.927] ERROR [139871429492736] - Invalid session xVoZCzMqrUOIH2zwAAAA (further occurrences of this error will be logged with level INFO)
+[2023-11-16 14:54:57,328.328] ERROR [139871429492736] - Invalid session EQUV2bRte6pzVgVMAAAA (further occurrences of this error will be logged with level INFO)
+[2023-11-16 14:54:59,526.526] ERROR [139871429492736] - Invalid session ALv6SzEnM9laAkW7AAAE (further occurrences of this error will be logged with level INFO)
+[2023-11-16 14:55:03,479.479] ERROR [139871429492736] - Invalid session CO485eneK7qIzgZ-AAAI (further occurrences of this error will be logged with level INFO)
+[2023-11-16 14:55:43,931.931] DEBUG [139871429492736] - Starting new HTTPS connection (1): bit.ly:443
+[2023-11-16 14:55:44,240.240] DEBUG [139871429492736] - https://bit.ly:443 "GET /40oh8TO HTTP/1.1" 301 0
+[2023-11-16 14:55:44,241.241] DEBUG [139871429492736] - Incremented Retry for (url='https://bit.ly/40oh8TO'): Retry(total=2, connect=None, read=None, redirect=None, status=None)
+[2023-11-16 14:55:44,241.241] INFO [139871429492736] - Redirecting https://bit.ly/40oh8TO -> https://www.yna.co.kr/view/AKR20231106033851002?section=search
+[2023-11-16 14:55:44,241.241] DEBUG [139871429492736] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 14:55:44,378.378] DEBUG [139871429492736] - https://www.yna.co.kr:443 "GET /view/AKR20231106033851002?section=search HTTP/1.1" 200 None
+[2023-11-16 15:04:04,062.062] INFO [139871429492736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 15:04:04,062.062] INFO [139871429492736] - NumExpr defaulting to 8 threads.
+[2023-11-16 15:04:05,952.952] ERROR [139871429492736] - Invalid session etZe5F7bPD38mmyxAAA4 (further occurrences of this error will be logged with level INFO)
+[2023-11-16 15:10:17,928.928] INFO [140243553648640] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-16 15:10:17,929.929] INFO [140243553648640] - NumExpr defaulting to 8 threads.
+[2023-11-16 15:11:21,360.360] ERROR [140243553648640] - Invalid session XLICZmhtA0vQbBfWAAAB (further occurrences of this error will be logged with level INFO)
+[2023-11-16 15:23:06,291.291] DEBUG [140242570950208] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 15:23:06,381.381] DEBUG [140242570950208] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 15:23:07,474.474] DEBUG [140242570950208] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 15:23:07,552.552] DEBUG [140242570950208] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 15:23:08,648.648] DEBUG [140242570950208] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 15:23:08,728.728] DEBUG [140242570950208] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 15:23:09,821.821] DEBUG [140242570950208] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 15:23:09,901.901] DEBUG [140242570950208] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 15:23:11,236.236] DEBUG [140242570950208] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 15:23:11,319.319] DEBUG [140242570950208] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 15:23:12,409.409] DEBUG [140242570950208] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 15:23:12,483.483] DEBUG [140242570950208] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 15:23:13,573.573] DEBUG [140242570950208] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 15:23:13,666.666] DEBUG [140242570950208] - https://www.yna.co.kr:443 "GET /economy/all/7 HTTP/1.1" 200 0
+[2023-11-16 15:23:14,760.760] DEBUG [140242570950208] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 15:23:14,840.840] DEBUG [140242570950208] - https://www.yna.co.kr:443 "GET /economy/all/8 HTTP/1.1" 200 0
+[2023-11-16 15:23:15,934.934] DEBUG [140242570950208] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 15:23:16,014.014] DEBUG [140242570950208] - https://www.yna.co.kr:443 "GET /economy/all/9 HTTP/1.1" 200 0
+[2023-11-16 15:48:27,101.101] DEBUG [140242580391488] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 15:48:27,191.191] DEBUG [140242580391488] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-16 15:48:28,286.286] DEBUG [140242580391488] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 15:48:28,362.362] DEBUG [140242580391488] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-16 15:48:29,451.451] DEBUG [140242580391488] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 15:48:29,536.536] DEBUG [140242580391488] - https://www.yna.co.kr:443 "GET /economy/all/3 HTTP/1.1" 200 0
+[2023-11-16 15:48:30,625.625] DEBUG [140242580391488] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 15:48:30,710.710] DEBUG [140242580391488] - https://www.yna.co.kr:443 "GET /economy/all/4 HTTP/1.1" 200 0
+[2023-11-16 15:48:31,799.799] DEBUG [140242580391488] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 15:48:31,867.867] DEBUG [140242580391488] - https://www.yna.co.kr:443 "GET /economy/all/5 HTTP/1.1" 200 0
+[2023-11-16 15:48:33,231.231] DEBUG [140242580391488] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 15:48:33,308.308] DEBUG [140242580391488] - https://www.yna.co.kr:443 "GET /economy/all/6 HTTP/1.1" 200 0
+[2023-11-16 15:48:34,415.415] DEBUG [140242580391488] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 15:48:34,500.500] DEBUG [140242580391488] - https://www.yna.co.kr:443 "GET /economy/all/7 HTTP/1.1" 200 0
+[2023-11-16 15:48:35,588.588] DEBUG [140242580391488] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 15:48:35,664.664] DEBUG [140242580391488] - https://www.yna.co.kr:443 "GET /economy/all/8 HTTP/1.1" 200 0
+[2023-11-16 15:48:36,755.755] DEBUG [140242580391488] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-16 15:48:36,834.834] DEBUG [140242580391488] - https://www.yna.co.kr:443 "GET /economy/all/9 HTTP/1.1" 200 0
+[2023-11-17 00:20:35,219.219] INFO [140243553648640] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-17 00:20:35,220.220] INFO [140243553648640] - NumExpr defaulting to 8 threads.
+[2023-11-17 00:35:11,650.650] DEBUG [140242571998784] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-17 00:35:11,713.713] DEBUG [140242571998784] - https://www.yna.co.kr:443 "GET /economy/all/1 HTTP/1.1" 200 0
+[2023-11-17 00:35:12,776.776] DEBUG [140242571998784] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-17 00:35:12,842.842] DEBUG [140242571998784] - https://www.yna.co.kr:443 "GET /economy/all/2 HTTP/1.1" 200 0
+[2023-11-17 01:24:57,787.787] INFO [139789957804032] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-17 01:24:57,788.788] INFO [139789957804032] - NumExpr defaulting to 8 threads.
+[2023-11-17 02:12:06,740.740] DEBUG [139789957804032] - Starting new HTTPS connection (1): www.yna.co.kr:443
+[2023-11-17 02:12:06,853.853] DEBUG [139789957804032] - https://www.yna.co.kr:443 "GET /view/AKR20231101070100003?section=economy/all HTTP/1.1" 200 None
+[2023-11-17 03:30:55,166.166] INFO [139789957804032] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-17 03:30:55,166.166] INFO [139789957804032] - NumExpr defaulting to 8 threads.
+[2023-11-17 06:31:08,942.942] INFO [139789957804032] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-17 06:31:08,942.942] INFO [139789957804032] - NumExpr defaulting to 8 threads.
+[2023-11-17 06:47:23,451.451] INFO [139789957804032] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-17 06:47:23,451.451] INFO [139789957804032] - NumExpr defaulting to 8 threads.
+[2023-11-17 08:01:32,948.948] INFO [139789957804032] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-17 08:01:32,948.948] INFO [139789957804032] - NumExpr defaulting to 8 threads.
+[2023-11-19 03:52:52,463.463] INFO [139789957804032] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-19 03:52:52,463.463] INFO [139789957804032] - NumExpr defaulting to 8 threads.
+[2023-11-19 13:51:17,661.661] INFO [139789957804032] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-19 13:51:17,661.661] INFO [139789957804032] - NumExpr defaulting to 8 threads.
+[2023-11-19 15:43:48,144.144] INFO [140458577625088] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-19 15:43:48,144.144] INFO [140458577625088] - NumExpr defaulting to 8 threads.
+[2023-11-20 00:33:33,030.030] INFO [140458577625088] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-20 00:33:33,030.030] INFO [140458577625088] - NumExpr defaulting to 8 threads.
+[2023-11-20 06:32:08,758.758] INFO [139855495753728] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-20 06:32:08,758.758] INFO [139855495753728] - NumExpr defaulting to 8 threads.
+[2023-11-20 23:51:06,238.238] INFO [139855495753728] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-20 23:51:06,238.238] INFO [139855495753728] - NumExpr defaulting to 8 threads.
+[2023-11-21 01:36:41,924.924] INFO [140571043643392] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-21 01:36:41,924.924] INFO [140571043643392] - NumExpr defaulting to 8 threads.
+[2023-11-22 01:33:05,447.447] INFO [140571043643392] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-22 01:33:05,447.447] INFO [140571043643392] - NumExpr defaulting to 8 threads.
+[2023-11-22 23:58:08,318.318] INFO [140571043643392] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-22 23:58:08,318.318] INFO [140571043643392] - NumExpr defaulting to 8 threads.
+[2023-11-23 08:11:27,833.833] INFO [139969714700288] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-23 08:11:27,834.834] INFO [139969714700288] - NumExpr defaulting to 8 threads.
+[2023-11-23 23:56:21,157.157] INFO [139969714700288] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-23 23:56:21,158.158] INFO [139969714700288] - NumExpr defaulting to 8 threads.
+[2023-11-24 10:03:38,198.198] INFO [139969714700288] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-24 10:03:38,198.198] INFO [139969714700288] - NumExpr defaulting to 8 threads.
+[2023-11-24 12:32:46,016.016] INFO [139969714700288] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-24 12:32:46,016.016] INFO [139969714700288] - NumExpr defaulting to 8 threads.
+[2023-11-24 14:05:40,933.933] INFO [139969714700288] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-24 14:05:40,933.933] INFO [139969714700288] - NumExpr defaulting to 8 threads.
+[2023-11-25 09:03:04,044.044] INFO [139969714700288] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-25 09:03:04,045.045] INFO [139969714700288] - NumExpr defaulting to 8 threads.
+[2023-11-27 00:41:14,288.288] INFO [139969714700288] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-27 00:41:14,288.288] INFO [139969714700288] - NumExpr defaulting to 8 threads.
+[2023-11-28 01:01:17,498.498] INFO [139969714700288] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-28 01:01:17,498.498] INFO [139969714700288] - NumExpr defaulting to 8 threads.
+[2023-11-29 00:00:55,081.081] INFO [139969714700288] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-29 00:00:55,082.082] INFO [139969714700288] - NumExpr defaulting to 8 threads.
+[2023-11-29 22:05:20,694.694] INFO [139969714700288] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-11-29 22:05:20,694.694] INFO [139969714700288] - NumExpr defaulting to 8 threads.
+[2023-12-01 02:19:10,203.203] INFO [139969714700288] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-01 02:19:10,203.203] INFO [139969714700288] - NumExpr defaulting to 8 threads.
+[2023-12-05 01:42:18,542.542] INFO [139969714700288] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-05 01:42:18,542.542] INFO [139969714700288] - NumExpr defaulting to 8 threads.
+[2023-12-05 22:46:44,253.253] INFO [139969714700288] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-05 22:46:44,254.254] INFO [139969714700288] - NumExpr defaulting to 8 threads.
+[2023-12-05 22:51:40,257.257] INFO [140165245730816] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-05 22:51:40,257.257] INFO [140165245730816] - NumExpr defaulting to 8 threads.
+[2023-12-07 01:38:56,527.527] INFO [140165245730816] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-07 01:38:56,527.527] INFO [140165245730816] - NumExpr defaulting to 8 threads.
+[2023-12-08 01:00:20,191.191] INFO [140165245730816] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-08 01:00:20,191.191] INFO [140165245730816] - NumExpr defaulting to 8 threads.
+[2023-12-08 06:00:05,551.551] INFO [140165245730816] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-08 06:00:05,551.551] INFO [140165245730816] - NumExpr defaulting to 8 threads.
+[2023-12-08 09:19:56,485.485] INFO [140165245730816] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-08 09:19:56,485.485] INFO [140165245730816] - NumExpr defaulting to 8 threads.
+[2023-12-09 05:05:22,202.202] INFO [140165245730816] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-09 05:05:22,202.202] INFO [140165245730816] - NumExpr defaulting to 8 threads.
+[2023-12-09 07:54:35,897.897] INFO [140165245730816] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-09 07:54:35,897.897] INFO [140165245730816] - NumExpr defaulting to 8 threads.
+[2023-12-10 00:55:45,911.911] INFO [140469725597696] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-10 00:55:45,912.912] INFO [140469725597696] - NumExpr defaulting to 8 threads.
+[2023-12-10 06:04:31,818.818] INFO [140469725597696] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-10 06:04:31,819.819] INFO [140469725597696] - NumExpr defaulting to 8 threads.
+[2023-12-10 06:35:24,148.148] INFO [140469725597696] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-10 06:35:24,148.148] INFO [140469725597696] - NumExpr defaulting to 8 threads.
+[2023-12-10 23:29:15,509.509] INFO [140469725597696] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-10 23:29:15,510.510] INFO [140469725597696] - NumExpr defaulting to 8 threads.
+[2023-12-10 23:53:47,808.808] ERROR [140469725597696] - Exception on /load_content/multi_sum [GET]
+Traceback (most recent call last):
+  File "/home/web/venv/lib/python3.10/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/web/venv/lib/python3.10/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/web/venv/lib/python3.10/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/web/venv/lib/python3.10/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/web/app/main/routes.py", line 277, in load_multi_sum
+    message=message)
+UnboundLocalError: local variable 'message' referenced before assignment
+[2023-12-10 23:53:51,625.625] ERROR [140469725597696] - Exception on /load_content/multi_sum [GET]
+Traceback (most recent call last):
+  File "/home/web/venv/lib/python3.10/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/web/venv/lib/python3.10/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/web/venv/lib/python3.10/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/web/venv/lib/python3.10/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/web/app/main/routes.py", line 277, in load_multi_sum
+    message=message)
+UnboundLocalError: local variable 'message' referenced before assignment
+[2023-12-12 00:35:27,105.105] INFO [140469725597696] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-12 00:35:27,105.105] INFO [140469725597696] - NumExpr defaulting to 8 threads.
+[2023-12-13 01:49:05,250.250] INFO [140469725597696] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-13 01:49:05,250.250] INFO [140469725597696] - NumExpr defaulting to 8 threads.
+[2023-12-13 17:29:38,078.078] INFO [140469725597696] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-13 17:29:38,078.078] INFO [140469725597696] - NumExpr defaulting to 8 threads.
+[2023-12-14 00:35:51,154.154] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-14 00:35:51,155.155] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-15 00:29:30,304.304] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-15 00:29:30,304.304] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-15 12:07:51,237.237] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-15 12:07:51,237.237] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-15 19:21:30,896.896] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-15 19:21:30,897.897] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-16 02:03:04,605.605] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-16 02:03:04,605.605] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-16 03:36:22,779.779] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-16 03:36:22,780.780] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-16 07:19:36,332.332] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-16 07:19:36,333.333] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-17 10:17:01,358.358] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-17 10:17:01,358.358] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-18 00:03:33,095.095] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-18 00:03:33,096.096] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-19 00:45:20,461.461] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-19 00:45:20,461.461] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-20 00:38:26,550.550] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-20 00:38:26,550.550] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-20 23:55:15,078.078] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-20 23:55:15,078.078] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-22 01:47:49,981.981] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-22 01:47:49,981.981] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-22 02:26:27,989.989] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-22 02:26:27,989.989] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-23 12:14:12,127.127] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-23 12:14:12,127.127] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-24 05:25:14,850.850] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-24 05:25:14,850.850] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-24 05:36:59,137.137] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-24 05:36:59,137.137] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-24 13:17:11,661.661] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-24 13:17:11,661.661] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-24 15:47:26,738.738] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-24 15:47:26,739.739] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-25 00:52:42,562.562] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-25 00:52:42,562.562] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-25 09:01:52,446.446] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-25 09:01:52,446.446] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-25 09:06:55,796.796] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-25 09:06:55,797.797] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-25 12:23:36,975.975] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-25 12:23:36,976.976] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-25 13:45:03,872.872] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-25 13:45:03,873.873] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-26 00:36:10,108.108] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-26 00:36:10,108.108] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-27 01:52:30,323.323] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-27 01:52:30,323.323] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-28 00:56:42,158.158] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-28 00:56:42,159.159] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-29 01:08:19,285.285] INFO [140591090573312] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-29 01:08:19,285.285] INFO [140591090573312] - NumExpr defaulting to 8 threads.
+[2023-12-29 14:48:40,223.223] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-29 14:48:40,224.224] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2023-12-29 22:50:33,066.066] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-29 22:50:33,067.067] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2023-12-29 23:43:51,125.125] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-29 23:43:51,126.126] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2023-12-30 01:37:09,491.491] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-30 01:37:09,492.492] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2023-12-30 02:23:34,666.666] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-30 02:23:34,666.666] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2023-12-30 05:21:23,445.445] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-30 05:21:23,445.445] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2023-12-30 05:51:50,717.717] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-30 05:51:50,717.717] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2023-12-30 08:54:31,726.726] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-30 08:54:31,726.726] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2023-12-31 03:17:47,544.544] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2023-12-31 03:17:47,544.544] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-01 01:18:11,716.716] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-01 01:18:11,716.716] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-01 02:08:51,593.593] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-01 02:08:51,593.593] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-01 05:15:35,215.215] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-01 05:15:35,215.215] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-01 08:18:16,748.748] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-01 08:18:16,749.749] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-01 09:01:53,014.014] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-01 09:01:53,014.014] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-01 10:17:26,319.319] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-01 10:17:26,320.320] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-02 01:16:39,527.527] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-02 01:16:39,527.527] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-03 01:12:47,165.165] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-03 01:12:47,166.166] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-03 22:22:53,190.190] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-03 22:22:53,190.190] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-05 01:34:29,146.146] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-05 01:34:29,146.146] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-05 02:00:07,494.494] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-05 02:00:07,494.494] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-05 03:28:03,684.684] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-05 03:28:03,684.684] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-05 05:35:19,996.996] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-05 05:35:19,997.997] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-05 05:47:50,445.445] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-05 05:47:50,445.445] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-05 13:10:00,458.458] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-05 13:10:00,458.458] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-06 06:04:08,157.157] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-06 06:04:08,157.157] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-07 05:49:08,081.081] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-07 05:49:08,081.081] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-08 00:36:22,128.128] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-08 00:36:22,128.128] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-08 23:38:08,270.270] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-08 23:38:08,270.270] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-10 01:11:36,057.057] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-10 01:11:36,057.057] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-10 04:56:33,226.226] INFO [140215182831616] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-10 04:56:33,227.227] INFO [140215182831616] - NumExpr defaulting to 8 threads.
+[2024-01-10 07:25:17,964.964] INFO [140151973289984] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-10 07:25:17,965.965] INFO [140151973289984] - NumExpr defaulting to 8 threads.
+[2024-01-10 10:01:02,041.041] INFO [140151973289984] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-10 10:01:02,042.042] INFO [140151973289984] - NumExpr defaulting to 8 threads.
+[2024-01-10 13:19:32,572.572] INFO [140151973289984] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-10 13:19:32,572.572] INFO [140151973289984] - NumExpr defaulting to 8 threads.
+[2024-01-10 14:15:22,552.552] INFO [140151973289984] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-10 14:15:22,553.553] INFO [140151973289984] - NumExpr defaulting to 8 threads.
+[2024-01-11 00:36:15,098.098] INFO [140151973289984] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-11 00:36:15,098.098] INFO [140151973289984] - NumExpr defaulting to 8 threads.
+                                                                                                                                                                                                                                                [2024-01-12 13:25:17,472.472] INFO [140590961369088] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-12 13:25:17,474.474] INFO [140590961369088] - NumExpr defaulting to 8 threads.
+[2024-01-13 05:25:24,089.089] INFO [140590961369088] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-13 05:25:24,089.089] INFO [140590961369088] - NumExpr defaulting to 8 threads.
+[2024-01-13 06:09:52,430.430] INFO [140590961369088] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-13 06:09:52,430.430] INFO [140590961369088] - NumExpr defaulting to 8 threads.
+[2024-01-13 11:43:24,677.677] INFO [140590961369088] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-13 11:43:24,677.677] INFO [140590961369088] - NumExpr defaulting to 8 threads.
+[2024-01-15 01:07:53,058.058] INFO [140590961369088] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-15 01:07:53,058.058] INFO [140590961369088] - NumExpr defaulting to 8 threads.
+[2024-01-16 02:00:17,802.802] INFO [140590961369088] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-16 02:00:17,802.802] INFO [140590961369088] - NumExpr defaulting to 8 threads.
+[2024-01-16 05:29:56,243.243] INFO [139736743751680] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-16 05:29:56,244.244] INFO [139736743751680] - NumExpr defaulting to 8 threads.
+[2024-01-16 07:51:11,194.194] INFO [139736743751680] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-16 07:51:11,194.194] INFO [139736743751680] - NumExpr defaulting to 8 threads.
+[2024-01-17 01:05:40,258.258] INFO [139736743751680] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-17 01:05:40,258.258] INFO [139736743751680] - NumExpr defaulting to 8 threads.
+[2024-01-17 02:18:57,372.372] INFO [139736743751680] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-17 02:18:57,373.373] INFO [139736743751680] - NumExpr defaulting to 8 threads.
+[2024-01-17 08:36:53,866.866] INFO [139736743751680] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-17 08:36:53,867.867] INFO [139736743751680] - NumExpr defaulting to 8 threads.
+[2024-01-17 23:48:37,359.359] INFO [139736743751680] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-17 23:48:37,359.359] INFO [139736743751680] - NumExpr defaulting to 8 threads.
+[2024-01-19 01:27:03,780.780] INFO [139736743751680] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-19 01:27:03,780.780] INFO [139736743751680] - NumExpr defaulting to 8 threads.
+[2024-01-19 04:10:55,360.360] INFO [139736743751680] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-19 04:10:55,360.360] INFO [139736743751680] - NumExpr defaulting to 8 threads.
+[2024-01-19 09:31:34,585.585] INFO [139736743751680] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-19 09:31:34,585.585] INFO [139736743751680] - NumExpr defaulting to 8 threads.
+[2024-01-19 11:15:44,374.374] INFO [139736743751680] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-19 11:15:44,374.374] INFO [139736743751680] - NumExpr defaulting to 8 threads.
+[2024-01-20 00:49:47,840.840] INFO [139736743751680] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-20 00:49:47,841.841] INFO [139736743751680] - NumExpr defaulting to 8 threads.
+[2024-01-20 03:55:07,467.467] INFO [139736743751680] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-20 03:55:07,467.467] INFO [139736743751680] - NumExpr defaulting to 8 threads.
+[2024-01-20 11:56:15,982.982] INFO [139736743751680] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-20 11:56:15,982.982] INFO [139736743751680] - NumExpr defaulting to 8 threads.
+[2024-01-21 23:19:12,412.412] INFO [139736743751680] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-21 23:19:12,412.412] INFO [139736743751680] - NumExpr defaulting to 8 threads.
+[2024-01-23 00:23:44,748.748] INFO [139736743751680] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-23 00:23:44,749.749] INFO [139736743751680] - NumExpr defaulting to 8 threads.
+[2024-01-23 22:12:34,642.642] INFO [139736743751680] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-23 22:12:34,642.642] INFO [139736743751680] - NumExpr defaulting to 8 threads.
+[2024-01-24 04:37:58,114.114] INFO [139736743751680] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-24 04:37:58,115.115] INFO [139736743751680] - NumExpr defaulting to 8 threads.
+[2024-01-24 23:32:45,939.939] INFO [139736743751680] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-24 23:32:45,939.939] INFO [139736743751680] - NumExpr defaulting to 8 threads.
+[2024-01-25 01:21:31,476.476] INFO [139736743751680] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-25 01:21:31,476.476] INFO [139736743751680] - NumExpr defaulting to 8 threads.
+[2024-01-25 02:56:19,370.370] INFO [139775561916416] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-25 02:56:19,370.370] INFO [139775561916416] - NumExpr defaulting to 8 threads.
+[2024-01-26 03:59:21,816.816] INFO [139775561916416] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-26 03:59:21,816.816] INFO [139775561916416] - NumExpr defaulting to 8 threads.
+[2024-01-26 05:01:31,714.714] INFO [139775561916416] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-26 05:01:31,714.714] INFO [139775561916416] - NumExpr defaulting to 8 threads.
+[2024-01-27 02:52:11,422.422] INFO [139775561916416] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-27 02:52:11,422.422] INFO [139775561916416] - NumExpr defaulting to 8 threads.
+[2024-01-27 05:43:28,557.557] INFO [139775561916416] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-27 05:43:28,558.558] INFO [139775561916416] - NumExpr defaulting to 8 threads.
+[2024-01-29 05:47:47,130.130] INFO [139751612297216] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-29 05:47:47,131.131] INFO [139751612297216] - NumExpr defaulting to 8 threads.
+[2024-01-30 07:07:18,720.720] INFO [140502861307904] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-01-30 07:07:18,721.721] INFO [140502861307904] - NumExpr defaulting to 8 threads.
+[2024-02-01 05:55:31,550.550] INFO [140317975912448] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-01 05:55:31,551.551] INFO [140317975912448] - NumExpr defaulting to 8 threads.
+[2024-02-05 06:07:41,094.094] INFO [140479221719040] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-05 06:07:41,095.095] INFO [140479221719040] - NumExpr defaulting to 8 threads.
+[2024-02-05 12:10:03,277.277] INFO [140074427285504] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-05 12:10:03,278.278] INFO [140074427285504] - NumExpr defaulting to 8 threads.
+[2024-02-06 05:14:43,223.223] INFO [140624654503936] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-06 05:14:43,224.224] INFO [140624654503936] - NumExpr defaulting to 8 threads.
+[2024-02-06 21:24:37,844.844] INFO [140624654503936] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-06 21:24:37,845.845] INFO [140624654503936] - NumExpr defaulting to 8 threads.
+[2024-02-07 22:18:03,685.685] INFO [140624654503936] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-07 22:18:03,686.686] INFO [140624654503936] - NumExpr defaulting to 8 threads.
+[2024-02-10 04:59:03,149.149] INFO [140362215280640] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-10 04:59:03,150.150] INFO [140362215280640] - NumExpr defaulting to 8 threads.
+[2024-02-10 06:37:24,882.882] INFO [140362215280640] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-10 06:37:24,882.882] INFO [140362215280640] - NumExpr defaulting to 8 threads.
+[2024-02-12 07:27:31,584.584] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-12 07:27:31,584.584] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-12 10:08:13,636.636] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-12 10:08:13,636.636] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-12 15:12:10,931.931] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-12 15:12:10,931.931] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-12 23:39:00,798.798] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-12 23:39:00,798.798] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-13 05:31:49,339.339] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-13 05:31:49,339.339] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-13 13:54:41,051.051] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-13 13:54:41,051.051] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-14 22:44:57,571.571] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-14 22:44:57,571.571] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-15 11:23:06,950.950] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-15 11:23:06,950.950] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-15 12:19:49,020.020] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-15 12:19:49,020.020] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-15 14:43:16,684.684] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-15 14:43:16,685.685] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-16 00:50:09,829.829] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-16 00:50:09,829.829] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-16 05:30:54,481.481] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-16 05:30:54,481.481] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-16 07:04:11,847.847] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-16 07:04:11,847.847] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-16 10:47:24,601.601] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-16 10:47:24,601.601] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-16 12:05:24,489.489] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-16 12:05:24,489.489] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-17 00:03:33,168.168] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-17 00:03:33,168.168] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-17 01:08:35,312.312] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-17 01:08:35,312.312] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-17 04:08:27,581.581] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-17 04:08:27,581.581] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-17 11:39:42,305.305] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-17 11:39:42,305.305] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-18 00:05:04,788.788] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-18 00:05:04,788.788] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-18 03:45:02,356.356] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-18 03:45:02,356.356] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-18 23:41:44,555.555] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-18 23:41:44,555.555] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-19 17:29:38,210.210] INFO [140038262824960] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-19 17:29:38,211.211] INFO [140038262824960] - NumExpr defaulting to 8 threads.
+[2024-02-20 01:07:26,595.595] INFO [139620900978688] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-20 01:07:26,596.596] INFO [139620900978688] - NumExpr defaulting to 8 threads.
+[2024-02-20 21:24:53,407.407] INFO [139620900978688] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-20 21:24:53,407.407] INFO [139620900978688] - NumExpr defaulting to 8 threads.
+[2024-02-21 22:57:34,169.169] INFO [139620900978688] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-21 22:57:34,169.169] INFO [139620900978688] - NumExpr defaulting to 8 threads.
+[2024-02-22 07:03:30,974.974] INFO [139620900978688] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-22 07:03:30,975.975] INFO [139620900978688] - NumExpr defaulting to 8 threads.
+[2024-02-22 21:10:45,382.382] INFO [139620900978688] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-22 21:10:45,382.382] INFO [139620900978688] - NumExpr defaulting to 8 threads.
+[2024-02-23 03:56:27,167.167] INFO [139620900978688] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-23 03:56:27,167.167] INFO [139620900978688] - NumExpr defaulting to 8 threads.
+[2024-02-23 05:01:13,001.001] INFO [139620900978688] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-23 05:01:13,001.001] INFO [139620900978688] - NumExpr defaulting to 8 threads.
+[2024-02-25 05:51:42,763.763] INFO [139620900978688] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-25 05:51:42,763.763] INFO [139620900978688] - NumExpr defaulting to 8 threads.
+[2024-02-25 15:37:15,800.800] INFO [139620900978688] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-25 15:37:15,801.801] INFO [139620900978688] - NumExpr defaulting to 8 threads.
+[2024-02-26 01:44:15,287.287] INFO [139620900978688] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-26 01:44:15,287.287] INFO [139620900978688] - NumExpr defaulting to 8 threads.
+[2024-02-28 02:00:04,330.330] INFO [140462069620736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-28 02:00:04,331.331] INFO [140462069620736] - NumExpr defaulting to 8 threads.
+[2024-02-29 01:00:06,859.859] INFO [140462069620736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-02-29 01:00:06,859.859] INFO [140462069620736] - NumExpr defaulting to 8 threads.
+[2024-03-01 00:10:26,417.417] INFO [140462069620736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-01 00:10:26,417.417] INFO [140462069620736] - NumExpr defaulting to 8 threads.
+[2024-03-01 08:43:04,299.299] INFO [140462069620736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-01 08:43:04,299.299] INFO [140462069620736] - NumExpr defaulting to 8 threads.
+[2024-03-01 13:04:15,451.451] INFO [140462069620736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-01 13:04:15,451.451] INFO [140462069620736] - NumExpr defaulting to 8 threads.
+[2024-03-02 01:35:26,884.884] INFO [140462069620736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-02 01:35:26,884.884] INFO [140462069620736] - NumExpr defaulting to 8 threads.
+[2024-03-02 14:13:37,987.987] INFO [140462069620736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-02 14:13:37,987.987] INFO [140462069620736] - NumExpr defaulting to 8 threads.
+[2024-03-02 16:09:03,785.785] INFO [140462069620736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-02 16:09:03,785.785] INFO [140462069620736] - NumExpr defaulting to 8 threads.
+[2024-03-03 07:16:01,328.328] INFO [140462069620736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-03 07:16:01,329.329] INFO [140462069620736] - NumExpr defaulting to 8 threads.
+[2024-03-03 12:20:51,869.869] INFO [140462069620736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-03 12:20:51,870.870] INFO [140462069620736] - NumExpr defaulting to 8 threads.
+[2024-03-03 14:00:41,733.733] INFO [140462069620736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-03 14:00:41,733.733] INFO [140462069620736] - NumExpr defaulting to 8 threads.
+[2024-03-03 23:25:17,269.269] INFO [140462069620736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-03 23:25:17,270.270] INFO [140462069620736] - NumExpr defaulting to 8 threads.
+[2024-03-04 00:45:26,157.157] INFO [140462069620736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-04 00:45:26,157.157] INFO [140462069620736] - NumExpr defaulting to 8 threads.
+[2024-03-05 00:56:01,863.863] INFO [140462069620736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-05 00:56:01,863.863] INFO [140462069620736] - NumExpr defaulting to 8 threads.
+[2024-03-06 01:01:26,190.190] INFO [140462069620736] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-06 01:01:26,190.190] INFO [140462069620736] - NumExpr defaulting to 8 threads.
+[2024-03-06 06:16:38,627.627] INFO [139959558025216] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-06 06:16:38,628.628] INFO [139959558025216] - NumExpr defaulting to 8 threads.
+[2024-03-06 09:15:02,678.678] INFO [139959558025216] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-06 09:15:02,678.678] INFO [139959558025216] - NumExpr defaulting to 8 threads.
+[2024-03-07 01:54:53,867.867] INFO [139959558025216] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-07 01:54:53,867.867] INFO [139959558025216] - NumExpr defaulting to 8 threads.
+[2024-03-07 06:38:36,359.359] INFO [139959558025216] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-07 06:38:36,359.359] INFO [139959558025216] - NumExpr defaulting to 8 threads.
+[2024-03-08 00:48:09,342.342] INFO [139959558025216] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-08 00:48:09,342.342] INFO [139959558025216] - NumExpr defaulting to 8 threads.
+[2024-03-09 02:30:36,448.448] INFO [139959558025216] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-09 02:30:36,448.448] INFO [139959558025216] - NumExpr defaulting to 8 threads.
+[2024-03-09 10:30:42,735.735] INFO [139959558025216] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-09 10:30:42,735.735] INFO [139959558025216] - NumExpr defaulting to 8 threads.
+[2024-03-10 02:44:04,022.022] INFO [139959558025216] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-10 02:44:04,023.023] INFO [139959558025216] - NumExpr defaulting to 8 threads.
+[2024-03-12 01:22:13,983.983] INFO [139959558025216] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-12 01:22:13,984.984] INFO [139959558025216] - NumExpr defaulting to 8 threads.
+[2024-03-12 09:22:10,099.099] INFO [140495485399040] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-12 09:22:10,099.099] INFO [140495485399040] - NumExpr defaulting to 8 threads.
+[2024-03-13 00:09:36,708.708] INFO [140495485399040] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-13 00:09:36,709.709] INFO [140495485399040] - NumExpr defaulting to 8 threads.
+[2024-03-13 02:28:13,236.236] INFO [140495485399040] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-13 02:28:13,237.237] INFO [140495485399040] - NumExpr defaulting to 8 threads.
+[2024-03-13 03:52:16,856.856] INFO [140495485399040] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-13 03:52:16,856.856] INFO [140495485399040] - NumExpr defaulting to 8 threads.
+[2024-03-13 07:30:03,778.778] INFO [140495485399040] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-13 07:30:03,778.778] INFO [140495485399040] - NumExpr defaulting to 8 threads.
+[2024-03-13 17:29:34,148.148] INFO [140495485399040] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-13 17:29:34,148.148] INFO [140495485399040] - NumExpr defaulting to 8 threads.
+[2024-03-14 02:05:11,917.917] INFO [140270761934848] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-14 02:05:11,917.917] INFO [140270761934848] - NumExpr defaulting to 8 threads.
+[2024-03-14 04:03:49,034.034] INFO [140270761934848] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-14 04:03:49,034.034] INFO [140270761934848] - NumExpr defaulting to 8 threads.
+[2024-03-15 00:43:41,704.704] INFO [140270761934848] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-15 00:43:41,705.705] INFO [140270761934848] - NumExpr defaulting to 8 threads.
+[2024-03-16 05:26:52,366.366] INFO [140270761934848] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-16 05:26:52,366.366] INFO [140270761934848] - NumExpr defaulting to 8 threads.
+[2024-03-16 11:02:49,446.446] INFO [140270761934848] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-16 11:02:49,446.446] INFO [140270761934848] - NumExpr defaulting to 8 threads.
+[2024-03-16 22:13:01,461.461] INFO [140270761934848] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-16 22:13:01,461.461] INFO [140270761934848] - NumExpr defaulting to 8 threads.
+[2024-03-17 03:31:12,214.214] INFO [140270761934848] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-17 03:31:12,214.214] INFO [140270761934848] - NumExpr defaulting to 8 threads.
+[2024-03-18 01:44:48,248.248] INFO [140270761934848] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-18 01:44:48,249.249] INFO [140270761934848] - NumExpr defaulting to 8 threads.
+[2024-03-18 04:04:55,921.921] INFO [140270761934848] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-18 04:04:55,922.922] INFO [140270761934848] - NumExpr defaulting to 8 threads.
+[2024-03-18 04:24:51,097.097] INFO [139843120914432] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-03-18 04:24:51,097.097] INFO [139843120914432] - NumExpr defaulting to 8 threads.

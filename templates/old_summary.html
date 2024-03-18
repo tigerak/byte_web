@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summay Demo</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/summary.css') }}">
+    
+    <!-- Custom Box1 JS -->
+    <script src="{{ url_for('static', filename='scripts/summary.js') }}"></script>
+    
+</head>
+
+<body>
+    <div class="total">
+
+    <div class="box-top">
+        <h3>- 요약 및 교정 모델 Demonstration page -</h3>
+    </div>
+
+    <div class="box-wrap">
+        <div class="box1">
+            <form action="/load_content/summary" method="post"  id="inputForm">
+                <p>
+                    기사 주소 (URL) :<br>
+                    <input type="text" name="api_url" size="97" placeholder="연합 뉴스 기사 주소를 넣어주세요." value="{{url}}"><br>
+                    <input type="submit" class="sub_button" id="url_button" value="URL 기사 검색" accesskey="z">(단축키 : Alt + z)
+                </p>
+                <p>
+                    제목 : (기사 송고 시간 : {{d}})<br>
+                    <input type="text" id="title_text" name="api_title", size="97", placeholder="제목으로 요약할 때, 제목 입력이 필요합니다." value="{{t}}">
+                </p>
+                <p>기사 : <br><textarea type="text" id="article_text" name="api_article", cols="100" rows="15", placeholder="교정과 요약 모두 기사 입력이 필요합니다.">{{a}}</textarea></p>
+                
+                <p>모델 선택 : 
+                    <input type="radio" name="model" id="model_3" value="gpt_3">GPT-3.5
+                    <input type="radio" name="model" id="model_4" value="gpt_4">GPT-4
+                    <input type="radio" name="model" id="model_google" value="bard">BARD
+                </p>
+                <p>요약 방법 : 
+                    <input type="radio" name="summary_way" id="summary_way_all" value="all">기사 전체
+                    <input type="radio" name="summary_way" id="summary_way_line" value="line">요약 첫 줄
+                    <input type="radio" name="summary_way" id="summary_way_title" value="title">기사 제목
+                    <!-- <input type="radio" name="summary_way" id="summary_way_topic" value="topic">토픽 -->
+                </p>
+                <p>요약 교정 :
+                    <input type="radio" name="proof" id="proof_yes" value="yes">YES
+                    <input type="radio" name="proof" id="proof_no" value="no">NO
+                </p>
+                
+                <p>
+                    <input type="submit" class="sub_button" value="요약" accesskey="q"> (단축키 : Alt + q)
+                    <input type="submit" class="sub_button" value="교정" accesskey="a"> (단축키 : Alt + a)<br />
+                    &emsp;=> 예상 비용 : ${{total_cost}} / 처리 시간 : {{time}}s
+                </p>
+                
+                <p>
+                    요약 (모델 : {{m}} / 요약 방법 : {{n}} / 글자 수 : {{c}}) <br>
+                    <textarea type="text", name="api_summary", cols="100" rows="6", placeholder="교정을 선택할 때 요약문을 입력하세요.">{{s}}</textarea>
+                </p>
+
+                <p>교정 (모델 : {{m}}) <br>
+                    <textarea type="text", name="api_proof", cols="100" rows="10", placeholder="교정 결과">{{p}}</textarea>
+                </p>
+
+            </form>
+            
+        </div>
+        
+        <div class="box2">
+            <p>수정 과정<br/>
+                <textarea type="text", name="api_topic", cols="50" rows="23", placeholder="Topic & Group">{{topic}}</textarea>
+            </p>
+            <p>
+                <button type="button" id="extract_topic" value="추출">토픽 추출 요약</button>
+                <!-- <button type="button" id="send_topic">이 토픽으로 요약</button> -->
+                1분 이상 걸립니다.
+            </p>
+            <p> 최종 요약문<br/>
+                <textarea type="text", name="api_topic_summary", cols="50" rows="8", placeholder="Summary Result">{{summary}}</textarea>
+                <br/>
+                3줄 요약 글자수 : {{count}} <br/>
+                처리 시간 : {{processing_time}}<br/>
+                비용 : ${{total_cost}} 
+            </p>
+            <p>수정 사항
+                <textarea type="text", name="api_topic_problem", cols="50" rows="15", placeholder="Some Problems">{{problem}}</textarea>
+            </p>
+        </div>
+    </div>
+
+    <div class="box-bott">
+        {{message}}
+        <p style="background-color: #ff330092;">
+            <span style=" font-weight: bold;">1. 기사 주소 (URL)</span> : <br />
+            "연합뉴스 기사" URL을 입력<br />
+            &emsp;a. 연합뉴스 기사 URL을 입력.<br />
+            &emsp;b. "URL 기사 검색" 버튼 (단축키 Alt+z) : <br />
+            &emsp;&emsp;URL page의 제목과 기사가 입력됨.
+        </p>
+        <p style="background-color: #ffcc009a;">
+            <span style=" font-weight: bold;">2. 모델 선택</span> : <br />
+        </p>
+        <p style="background-color: #51ff0088;">
+            <span style=" font-weight: bold;">3. 요약 방법</span> : <br />
+        </p>
+        <p style="background-color: #002aff60;">
+            <span style=" font-weight: bold;">4. 요약 교정</span> : <br />
+        </p>
+        <p style="background-color: #b700ff60;">
+            <span style=" font-weight: bold;">요약 및 교정 버튼</span> : <br />
+        </p>
+    </div>
+    
+    <div id="loading" style="display:none;">
+        <br/><br/>
+        <p>Autumn Loading...</p>
+    </div>
+
+    </div>
+
+    <!-- <table>
+        {% for item in db_items %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.user_id }}</td>
+                <td>{{ item.date }}</td>
+                <td>{{ item.prompt }}</td>
+                <td>{{ item.completion }}</td>
+            </tr>
+        {% endfor %}
+        </table> -->
+</body>
+</html>

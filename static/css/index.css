@@ -1,0 +1,55 @@
+#loading {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #80169a61;
+    z-index: 1000;
+  }
+  
+#loading p {
+    text-align: center;
+    font-size: 24px;
+    color: white;
+  }
+  
+#total { 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 왼쪽으로 줄맞춤 baseline; 베이스라인 */
+    margin: 0 auto; /* 가로 중앙 정렬 */
+    width: 1200px;
+    overflow: hidden;
+}
+#content {
+    margin: 0 auto; /* 가로 중앙 정렬 */
+}
+#menu {
+    float: left; /* 왼쪽에 붙이기 */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-width: 80px;
+    background-color: lemonchiffon;
+    padding: 10px;
+    margin: 0 10px;
+}
+.menu-item {
+    display: inline-block; /* inline 또는 inline-block 또는 block 등으로 설정 */
+    cursor: pointer;
+    transition: transform 0.3s ease; /* 변환 애니메이션을 추가합니다. */
+    transform-origin: center; /* 중심점을 가운데로 설정합니다. */
+    margin: 0 10px; /* 좌우 마진을 10px로 설정 */
+    width: 100px; /* 너비를 고정 */
+    text-align: center; /* 텍스트를 중앙 정렬합니다. */
+    font-weight: bold; /* 글씨를 두껍게 합니다. */
+    padding: 5px;
+}
+
+.menu-item:hover {
+    transform: scale(1.2); /* 마우스가 올라갔을 때 크기가 확대되도록 합니다. */
+    color: #9a1816ae; /* 원하는 색상으로 변경할 수 있습니다. */
+    /* background-color: #f0f0f0; /* 마우스가 올라갔을 때 배경색을 변경할 수 있습니다. */
+}

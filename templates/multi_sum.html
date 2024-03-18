@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summay Demo</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/multi_sum.css') }}">
+    
+    <!-- Custom Box1 JS -->
+    <script src="{{ url_for('static', filename='scripts/multi_sum.js') }}"></script>
+    
+</head>
+
+<body>
+    <div class="total">
+
+    <div class="box-top">
+        <h3>- 복수 기사 요약 Demonstration page -</h3>
+    </div>
+
+    <form action="/load_content/multi_sum" method="post"  id="inputForm">
+        <div class="box-wrap">
+            <div class="box1">
+                <p>
+                    주 기사 주소 (URL) :<br>
+                    <input type="text" name="main_url" size="75" placeholder="연합 뉴스 기사 주소를 넣어주세요." value="{{main_url}}"><br>
+                    <input type="submit" class="sub_button" id="url_button" value="URL 기사 검색">
+                </p>
+                <p>
+                    제목 : (기사 송고 시간 : {{main_date}})<br>
+                    <input type="text" id="title_text" name="main_title", size="75", placeholder="주 기사 제목 입력이 필요합니다." value="{{main_title}}">
+                </p>
+                <p>기사 : <br/>
+                    <textarea type="text" id="article_text" name="main_article", cols="77" rows="15", placeholder="주 기사 내용 입력이 필요합니다.">{{main_article}}</textarea>
+                </p>
+            </div>
+                
+            <div class="box2">
+                <p>
+                    부 기사 주소 (URL) :<br>
+                    <input type="text" name="sub_url" size="75" placeholder="연합 뉴스 기사 주소를 넣어주세요." value="{{sub_url}}"><br>
+                    <input type="submit" class="sub_button" id="url_button" value="URL 기사 검색">
+                </p>
+                <p>
+                    제목 : (기사 송고 시간 : {{sub_date}})<br>
+                    <input type="text" id="title_text" name="sub_title", size="75", placeholder="부 기사 제목 입력이 필요합니다." value="{{sub_title}}">
+                </p>
+                <p>기사 : <br/>
+                    <textarea type="text" id="article_text" name="sub_article", cols="77" rows="15", placeholder="부 기사 내용 입력이 필요합니다.">{{sub_article}}</textarea>
+                </p>
+            </div>
+        </div>
+        <div class="box-bott">
+            <div class="bott1">
+                <p>
+                    <!-- <button type="button" id="extract_topic" value="추출">복수 기사 요약</button> -->
+                    <input type="submit" class="sub_button" id="extract_button" value="복수 요약">
+                    1분 이상 걸립니다.
+                </p> 
+    </form>
+            <p> 최종 요약문<br/>
+                <textarea type="text", name="api_topic_summary", cols="50" rows="9", placeholder="Summary Result">{{summary}}</textarea>
+                <br/>
+                3줄 요약 글자수 : {{count}} <br/>
+                처리 시간 : {{processing_time}}<br/>
+                비용 : ${{total_cost}} 
+            </p>
+            <!-- <p>수정 사항<br/>
+                <textarea type="text", name="api_topic_problem", cols="50" rows="13", placeholder="Some Problems">{{problem}}</textarea>
+            </p> -->
+        </div>
+        <div class="bott2">
+            <p>요약 토픽<br/>
+                <textarea type="text", name="api_topic", cols="100" rows="5", placeholder="Topic & Group">{{topic}}</textarea>
+            </p>
+            <p>요약 제목<br/>
+                <textarea type="text", name="api_topic", cols="100" rows="2", placeholder="Topic & Group">{{summary_title}}</textarea>
+            </p>
+            <p>수정 과정<br/>
+                <textarea type="text", name="api_topic", cols="100" rows="15", placeholder="Topic & Group">{{history}}</textarea>
+            </p>
+        </div>
+        
+     
+    </div>
+    
+    {{message}}
+    <div id="loading" style="display:none;">
+        <br/><br/>
+        <p>Winter Loading...</p>
+    </div>
+
+    </div>
+
+</body>
+</html>

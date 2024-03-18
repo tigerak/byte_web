@@ -1,0 +1,378 @@
+from main import main_bp, socketio
+from models import Article
+from utils import GPT, Vertex, Scraping, importent_sentence
+from utils.mining.crawl import url_scrap
+from utils.mod_db.mod_db_util import requests_get, requests_put, requests_del
+
+import json
+import re
+from time import time, sleep
+
+from flask import render_template, request, redirect, url_for, jsonify
+from sqlalchemy import desc, and_
+# pip install flask-socketio
+from flask_socketio import emit, send
+import threading
+
+import urllib3
+from urllib3.util.ssl_ import create_urllib3_context
+
+message = 'Prompt Version : 24.01.08. '
+
+@main_bp.route('/', methods=['GET', 'POST'])
+def index():
+
+    content = render_template('summary.html', message=message)
+
+    return render_template('index.html', content=content)
+
+    
+    
+@main_bp.route('/load_content/summary', methods=['GET', 'POST'])
+def load_summary():
+    
+    if request.method == 'POST':
+        start_time = time()
+        render = request.form
+        
+        if render['sub_button'] == 'URL 기사 검색':
+            input_url = render['api_url']
+            
+            scrape = Scraping()
+            
+            media, title, article, article_date = scrape.scraping(input_url)
+            return render_template('summary.html', 
+                                   url=input_url,
+                                   title=title, 
+                                   article=article,
+                                   article_date=article_date,
+                                   message=message)
+        
+        else:
+            title = render['api_title']
+            article = render['articleHighLight']
+            
+            if render['sub_button'] == '기존 요약':
+                summary_name = 'topic'
+            elif render['sub_button'] == '실험 요약':
+                summary_name = 'experiment'
+            elif render['sub_button'] == '개인화 요약':
+                summary_name = 'personal'
+            
+            # GPT Ready 
+            qa = GPT(model_name='gpt_4', 
+                     summary_name=summary_name)
+            
+            # Quality Test 
+            loop = 0
+            count = 0
+            while (count <= 140) and (loop < 1):
+                loop += 1
+                print(loop)
+                (result, 
+                 count,
+                 total_cost) = qa.summary_chat(title=title, 
+                                               article=article)
+            # print(result)
+            
+            # Split Result 
+            result_1 = result.split('경제 기자 요약문:')
+            topic = result_1[0]
+            result_2 = result_1[1].split('아나운서용 대본:')
+            history = result_2[0]
+            result_3 = result_2[1].split('대본 제목:')
+            summary = result_3[0]
+            summary_title = result_3[1]
+            
+            # Cost Calcul
+            total_cost = round(total_cost, 6)
+            
+            # Mark Topic Sentences
+            if render['highlight']== 'yes':
+                importent_gpt = GPT(model_name='gpt_4', summary_name='importent')
+                topic_article, importent_cost = importent_gpt.importent_chat(topic=topic, article=article)
+                article = importent_sentence(article=article, topic_article=topic_article)
+                total_cost = round(total_cost, 6) + round(importent_cost, 6)
+                
+            # Processing Time Calcul
+            end_time = time()
+            processing_time = str(end_time - start_time).split(".")[0]
+            return render_template('summary.html',
+                                   title=title,
+                                   article=article,
+                                   topic=topic,
+                                   history=history,
+                                   summary_title=summary_title,
+                                   summary=summary,
+                                   summary_method=render['sub_button'],
+                                   count=count,
+                                   processing_time=processing_time,
+                                   total_cost=total_cost,
+                                   message=message)
+          
+
+    return render_template('summary.html', message=message)
+
+
+@main_bp.route('/load_content/multi_sum', methods=['GET', 'POST'])
+def load_multi_sum():
+    
+    if request.method == 'POST':
+        start_time = time()
+        render = request.form
+        
+        if render['sub_button'] == 'URL 기사 검색':
+            main_url = render['main_url']
+            sub_url = render['sub_url']
+            
+            scrape = Scraping()
+            
+            main_media, main_title, main_article, main_date = scrape.scraping(main_url)
+            sub_media, sub_title, sub_article, sub_date = scrape.scraping(sub_url)
+            return render_template('multi_sum.html', 
+                                   main_url=main_url,
+                                   main_title=main_title, 
+                                   main_article=main_article,
+                                   main_date=main_date,
+                                   sub_url=sub_url,
+                                   sub_title=sub_title, 
+                                   sub_article=sub_article,
+                                   sub_date=sub_date,
+                                   message=message)
+        
+        if render['sub_button'] == '복수 요약':
+            main_title = render['main_title']
+            sub_title = render['sub_title']
+            main_article = render['main_article']
+            sub_article = render['sub_article']
+            
+            qa = GPT(model_name='gpt_4', 
+                     summary_name='topic')
+            (result,
+             count,
+             total_cost) = qa.multi_summary(main_title=main_title,
+                                        main_article=main_article,
+                                        sub_title=sub_title,
+                                        sub_article=sub_article)
+            # print(result)
+            # Split Result 
+            result_1 = result.split('경제 기자 요약문:')
+            topic = result_1[0]
+            result_2 = result_1[1].split('아나운서용 대본:')
+            history = result_2[0]
+            result_3 = result_2[1].split('대본 제목:')
+            summary = result_3[0]
+            summary_title = result_3[1]
+            # Processing Time Calcul
+            end_time = time()
+            processing_time = str(end_time - start_time).split(".")[0]
+            # Cost Calcul
+            total_cost = round(total_cost, 6)
+            return render_template('multi_sum.html', 
+                                   main_title=main_title, 
+                                   main_article=main_article,
+                                   sub_title=sub_title, 
+                                   sub_article=sub_article,
+                                   summary_title=summary_title,
+                                   summary=summary,
+                                   count=count,
+                                   processing_time=processing_time,
+                                   total_cost=total_cost,
+                                #    problem=problem,
+                                   topic=topic,
+                                   history=history,
+                                   message=message)
+    return render_template('multi_sum.html',
+                           message=message)
+
+
+@main_bp.route('/load_content/mod_db', methods=['GET', 'POST'])
+def mod_db():
+    save_path = './app/models/last_save_num.json'
+    read_path = './app/models/last_read_num.json'
+    
+    if request.method == 'GET':
+        with open(read_path, 'r', encoding='utf-8') as f : 
+            j = json.load(f)
+        num = j['last_read_num']
+        res = '이것은 마지막으로 본 기사입니다.'
+
+    elif request.method == 'POST':
+        render = request.form
+        print(render)
+        res = ''
+        
+        if render['sub_button'] == '마지막 저장 기사':
+            with open(save_path, 'r', encoding='utf-8') as f : 
+                j = json.load(f)
+            num = j['last_save_num']
+            res = '이것은 마지막 저장 기사입니다.'
+            
+        elif render['sub_button'] == '마지막 본 기사':
+            with open(read_path, 'r', encoding='utf-8') as f : 
+                j = json.load(f)
+            num = j['last_read_num']
+            res = '이것은 마지막으로 본 기사입니다.'
+            
+        elif render['sub_button'] == '검색':
+            try:
+                num = str(int(render['api_id']))
+            except:
+                num = '숫자 아님'
+            
+        elif render['sub_button'] == '<< 이전':
+            num = render['prev_num'].replace('번', '')
+            
+        elif render['sub_button'] == '다음 >>':
+            num = render['next_num'].replace('번', '')
+        
+        elif render['sub_button'] == '저 장':
+            try: 
+                num = str(int(render['api_id']))
+            except:
+                num = '숫자 아님'
+                
+            company_tag_raw = render.getlist('company_tag')
+            try:
+                company_tag = [item for item in company_tag_raw if item][0]
+                split_pattern = re.compile(r'(?<=})\s*, \s*(?={)')
+                company_tag_raw = list(split_pattern.split(company_tag))
+                company_tag_list = [json.loads(tag) for tag in company_tag_raw if tag]
+            except:
+                company_tag_list = None
+            
+            primary_tag_raw = render['primary_tag']
+            primary_tag_list = list(primary_tag_raw.split(', '))
+            primary_tag = primary_tag_list[0]
+            
+            secondary_tag_raw = render['secondary_tag']
+            secondary_tag_list = list(secondary_tag_raw.split(', '))
+            
+            mod_sum_tit = render['mod_sum_tit']
+            mod_sum = render['mod_sum']
+            mod_rea = render['mod_rea']
+            
+            # print(num, company_tag_list, primary_tag, secondary_tag_list,
+            #       mod_sum_tit, mod_sum, mod_rea, save_path)
+            res = requests_put(db_id=num, 
+                            company_tag_list=company_tag_list, 
+                            primary_tag=primary_tag, 
+                            secondary_tag_list=secondary_tag_list,
+                            mod_sum_tit=mod_sum_tit, 
+                            mod_sum=mod_sum, 
+                            mod_rea=mod_rea, 
+                            save_path=save_path)
+            
+        elif render['sub_button'] == '삭제':
+            try: 
+                num = str(int(render['api_id']))
+            except:
+                num = '숫자 아님'
+            res = requests_del(num)
+            num = str(int(num) - 1)
+            
+    (id, prev_id, next_id, article_date, media, url, category, 
+     title, article, summary_title, summary, modified_reason, 
+     modified_summary_title, modified_summary, modified, modified_date,
+     company_tag_list, primary_tag, secondary_tag_list) = requests_get(num, read_path)
+            
+    return render_template('mod_db.html',
+                            id=id, 
+                            prev_id=prev_id,
+                            next_id=next_id,
+                            article_date = article_date,
+                            media = media,
+                            url = url,
+                            category = category,
+                            title = title,
+                            article = article,
+                            summary_title = summary_title,
+                            summary = summary,
+                            modified_reason = modified_reason,
+                            modified_summary_title = modified_summary_title,
+                            modified_summary = modified_summary,
+                            modified = modified,
+                            modified_date = modified_date,
+                            company_tag_list = company_tag_list,
+                            primary_tag = primary_tag,
+                            secondary_tag_list = secondary_tag_list,
+                            res = res,
+                            message=message)
+    
+
+@main_bp.route('/load_content/kg_db', methods=['GET', 'POST'])
+def kg_db():
+    if request.method == 'GET':
+        render = '겟'
+    
+    if request.method == 'POST':
+        start_time = time()
+        render = request.form
+        
+        if render['sub_button'] == 'URL 기사 검색':
+            input_url = render['api_url']
+            
+            scrape = Scraping()
+            
+            media, title, article, article_date = scrape.scraping(input_url)
+            return render_template('kg_db.html', 
+                                   url=input_url,
+                                   title=title, 
+                                   article=article,
+                                   article_date=article_date,
+                                   message=message)
+        
+    return render_template('kg_db.html',
+                           message=render)
+
+
+@main_bp.route('/load_content/chat', methods=['GET', 'POST'])
+def chating():
+    return render_template('chat.html')
+
+@socketio.on('message')
+def handle_message(data):
+    username = data['username']
+    message = data['message']
+    # 메시지와 사용자 이름을 함께 방송합니다.
+    socketio.emit('message', {'username': username, 'message': message})
+    
+
+@main_bp.route('/load_content/crawl', methods=['GET', 'POST'])
+def crawling():
+    return render_template('crawl.html')
+
+def scrape_loop():
+    next_page = 1
+    while next_page != -1:
+        np, time_list, title_list, url_list = url_scrap(next_page)
+        socketio.emit('scraped_data', {'np': np, 'data': list(zip(time_list, title_list, url_list))})
+        next_page = np
+        if np == -1:
+            socketio.emit('scraping_finished', {'message': '수집이 완료되었습니다'})
+            break
+        sleep(1)
+
+@socketio.on('start_scraping')
+def handle_start_scraping():
+    threading.Thread(target=scrape_loop, daemon=True).start()
+
+   
+@main_bp.route('/test', methods=['GET', 'POST'])
+def test_index():
+    return render_template('test_index.html')
+
+@socketio.on('connect', namespace='/test')
+def test_connect(auth):
+    # send(auth, namespace='/test')
+    print(auth)
+    # emit('test_message', {'name':'알림', 'text':auth}, namespace='/test')
+
+@socketio.on('test_message', namespace='/test')
+def test_message(data):
+    print(f'\n{data}\n')
+    name = data['name']
+    text = data['text']
+    emit('output_message', {'name':name, 'text':text}, namespace='/test')
+    # send(message=data, namespace='/test')
+    # emit('some_event', '아니시에이트!!')

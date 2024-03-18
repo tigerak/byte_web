@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+
+    </nav>
+
+    <div id="main-section">
+        <!-- 방 목록 영역 -->
+        <nav id="sidebar">
+
+        </nav>
+
+        <!-- 메시지 영역 -->
+        <div id="rightside_pannel">
+            <!-- 메시지 출력 -->
+            <div id="display_message_section">
+
+            </div>
+            <!-- 메시지 입력 -->
+            <div id="input_area">
+                <input type="text" id="user_name" placeholder="이름 입력" autocomplete="on">
+                <input type="text" id="user_message" placeholder="대화 입력" autocomplete="off">
+                <button type="button" id="send_button">전송</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SocketIO JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <!-- Custom SocketIO JS -->
+    <script src="{{ url_for('static', filename='scripts/socketio.js') }}"></script>
+</body>
+</html>
