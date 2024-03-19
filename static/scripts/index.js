@@ -15,7 +15,7 @@ $(document).ready(function () {
         // AJAX 요청 시작 시 Loading 메시지 표시
         // showLoading();
         $.ajax({
-            url: '/load_content/' + menu_item,
+            url: '/load_content/' + menu_item + '?lastNewsNumber=' + localStorage.getItem("lastNewsNumber"),
             type: 'GET',
             success: function (data) {
                 $('#content').html(data);

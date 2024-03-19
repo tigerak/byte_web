@@ -192,15 +192,19 @@ def mod_db():
     read_path = './models/last_read_num.json'
     
     if request.method == 'GET':
-        with open(read_path, 'r', encoding='utf-8') as f : 
-            j = json.load(f)
-        num = j['last_read_num']
+        print("get : ", request.args.get('lastNewsNumber'))
+        # with open(read_path, 'r', encoding='utf-8') as f :
+        #     j = json.load(f)
+        # num = j['last_read_num']
+        num = request.args.get('lastNewsNumber')
         res = '이것은 마지막으로 본 기사입니다.'
 
     elif request.method == 'POST':
         render = request.form
         print(render)
         res = ''
+
+        print("post : ", request.form)
         
         if render['sub_button'] == '마지막 저장 기사':
             with open(save_path, 'r', encoding='utf-8') as f :
@@ -210,9 +214,9 @@ def mod_db():
             res = '이것은 마지막 저장 기사입니다.'
             
         elif render['sub_button'] == '마지막 본 기사':
-            #with open(read_path, 'r', encoding='utf-8') as f :
-                #j = json.load(f)
-            #num = j['last_read_num']
+            # with open(read_path, 'r', encoding='utf-8') as f :
+            #     j = json.load(f)
+            # num = j['last_read_num']
             num = request.form['lastNewsNumber']
             res = '이것은 마지막으로 본 기사입니다.'
             
