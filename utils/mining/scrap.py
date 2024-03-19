@@ -136,14 +136,14 @@ class Scraping():
         for table in tables:
             table.decompose()
         paragraph_list = soup.select('body > div.wrap > article > section.view_body_moduleWrap > div.l_content_module > div > div > div.view_contents > div.articleView > p')
-        date_paragraph = soup.select('body > div.wrap > article > section.news_dtail_view_top_wrap > div.view_top_container > div > span')
+        date_paragraph = soup.select('body > div.wrap > article > section.news_dtail_view_top_wrap > div.view_top_container > div > span')[0]
         
         if paragraph_list == []:
             # Mobile version.
             title_list = soup.select('body > div.wrap > div > div.containerWrap > section.DetailView_Wrap.mboxcont > div.view_mtitle > h1')
             paragraph_list = soup.select('#contents_body > p')
             date_paragraph = soup.select('body > div.wrap > div > div.containerWrap > section.DetailView_Wrap.mboxcont > div.view_mtitle > p')
-        
+
         
         # HTML 제거
         for t in title_list:

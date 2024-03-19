@@ -188,8 +188,9 @@ def load_multi_sum():
 
 @main_bp.route('/load_content/mod_db', methods=['GET', 'POST'])
 def mod_db():
-    save_path = './app/models/last_save_num.json'
-    read_path = './app/models/last_read_num.json'
+    save_path = './models/last_save_num.json'
+    read_path = './models/last_read_num.json'
+
     
     if request.method == 'GET':
         with open(read_path, 'r', encoding='utf-8') as f : 
