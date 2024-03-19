@@ -197,6 +197,11 @@ $(document).ready(function () {
         var lastVisitNumberMatches = lastVisitNumberText.match(/\d+/); // 숫자만 추출
         var lastVisitNumber = lastVisitNumberMatches ? lastVisitNumberMatches[0] : "1"; // 매치된 숫자가 있으면 사용하고, 없으면 "1"을 기본값으로 사용
         localStorage.setItem('lastVisitNumber', lastVisitNumber); // Local Storage에 저장
+
+        var lastNewsNumber = $('#title_text').val();
+        localStorage.setItem('lastNewsNumber', lastNewsNumber);
+        console.log(localStorage.getItem("lastNewsNumber") + " : lastNewsNumber")
+
     });
 
     // prevBut 버튼 클릭 시 DB Id 저장
@@ -205,6 +210,9 @@ $(document).ready(function () {
         var lastVisitNumberMatches = lastVisitNumberText.match(/\d+/); // 숫자만 추출
         var lastVisitNumber = lastVisitNumberMatches ? lastVisitNumberMatches[0] : "1"; // 매치된 숫자가 있으면 사용하고, 없으면 "1"을 기본값으로 사용
         localStorage.setItem('lastVisitNumber', lastVisitNumber); // Local Storage에 저장
+
+        localStorage.setItem('lastNewsNumber', lastVisitNumber);
+        console.log(localStorage.getItem("lastNewsNumber") + " : lastNewsNumber")
     });
 
     // nextBut 버튼 클릭 시 DB Id 저장
@@ -216,6 +224,8 @@ $(document).ready(function () {
         // console.log(lastVisitNumber);
         // console.log(typeof lastVisitNumber);
 
+        localStorage.setItem('lastNewsNumber', lastVisitNumber);
+        console.log(localStorage.getItem("lastNewsNumber") + " : lastNewsNumber")
     });
 
     // 폼 제출 이벤트
@@ -263,6 +273,8 @@ $(document).ready(function () {
             formData.append('company_tag', companyTagContent);
             formData.append('primary_tag', primaryTagContent);
             formData.append('secondary_tag', secondaryTagContent);
+
+            formData.append('lastNewsNumber', localStorage.getItem("lastNewsNumber"));
 
             sendData('/load_content/mod_db', formData);
         } else {
