@@ -68,7 +68,7 @@ class Scraping():
             #     기사 :\n{article}\n
             #     날짜 :\n{article_date}
             #     ''')
-            
+
             return media, title, article, article_date
         
         except:
@@ -135,14 +135,20 @@ class Scraping():
         tables = soup.select('table')
         for table in tables:
             table.decompose()
+
         paragraph_list = soup.select('body > div.wrap > article > section.view_body_moduleWrap > div.l_content_module > div > div > div.view_contents > div.articleView > p')
-        date_paragraph = soup.select('body > div.wrap > article > section.news_dtail_view_top_wrap > div.view_top_container > div > span')[0]
-        
+        #date_paragraph = soup.select('body > div.wrap > article > section.news_dtail_view_top_wrap > div.view_top_container > div > span')[0]
         if paragraph_list == []:
+
             # Mobile version.
             title_list = soup.select('body > div.wrap > div > div.containerWrap > section.DetailView_Wrap.mboxcont > div.view_mtitle > h1')
             paragraph_list = soup.select('#contents_body > p')
-            date_paragraph = soup.select('body > div.wrap > div > div.containerWrap > section.DetailView_Wrap.mboxcont > div.view_mtitle > p')
+            date_paragraph = soup.select('body > div.wrap > div > div.containerWrap > section.DetailView_Wrap.mboxcont > div.view_mtitle > p')[0]
+            span_tag = date_paragraph.find('span')
+            if span_tag:
+                span_tag.decompose()
+        else:
+            date_paragraph = soup.select('body > div.wrap > article > section.news_dtail_view_top_wrap > div.view_top_container > div > span')[0]
 
         
         # HTML 제거
