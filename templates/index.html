@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Byte Demo Page</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link id="indexCSS" rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.socket.io/socket.io-3.0.3.min.js"></script>
@@ -21,6 +21,7 @@
             <div class="menu-item" data-menu-item="summary" style="background-color: #ff330092;" width: 50px;>요약</div>
             <div class="menu-item" data-menu-item="multi_sum" style="background-color: #ffcc009a;" width: 50px;>복수 요약</div>
             <div class="menu-item" data-menu-item="mod_db" style="background-color: #51ff0088;" width: 50px;>DB 수정</div>
+            <div class="menu-item" data-menu-item="news_save" style="background-color: #51ff0088;" width: 50px;>DB 저장</div>
             <!-- <div class="menu-item" data-menu-item="kg_db" style="background-color: #002aff60;" width: 50px;>KG 생성</div> -->
             <!-- <div class="menu-item" data-menu-item="crawl">수집</div> -->
             <!-- <div class="menu-item" data-menu-item="chat">미니 채팅</div> -->

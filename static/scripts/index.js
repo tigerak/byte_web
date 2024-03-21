@@ -14,14 +14,26 @@ $(document).ready(function () {
         var menu_item = $(this).data('menu-item');
         // AJAX 요청 시작 시 Loading 메시지 표시
         // showLoading();
-        $.ajax({
-            url: '/load_content/' + menu_item + '?lastNewsNumber=' + localStorage.getItem("lastNewsNumber"),
-            type: 'GET',
-            success: function (data) {
-                $('#content').html(data);
-                // hideLoading()
-            }
-        });
+        if (menu_item == "news_save") {
+            location.href = "/news_save";
+            /*$.ajax({
+                url: '/load_content/' + menu_item + '?lastNewsNumber=' + localStorage.getItem("lastNewsNumber"),
+                type: 'GET',
+                success: function (data) {
+
+                }
+            });*/
+        } else {
+            $.ajax({
+                url: '/load_content/' + menu_item + '?lastNewsNumber=' + localStorage.getItem("lastNewsNumber"),
+                type: 'GET',
+                success: function (data) {
+                    $('#content').html(data);
+                    // hideLoading()
+                }
+            });
+        }
+
     });
 
     // 서버 응답을 받을 때 Loading 메시지를 표시
