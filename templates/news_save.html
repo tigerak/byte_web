@@ -138,7 +138,14 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    <span class="input-group-text" >카테고리</span>
+                    <span class="input-group-text">언론사</span>
+                    <input id="media" type="text" class="form-control" placeholder="" aria-label="" readonly>
+                    <span class="input-group-text" >송고 시간</span>
+                    <input id="articleDate" type="text" class="form-control" placeholder="" aria-label="" readonly>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">카테고리</span>
                     <select id="category" class="form-select" aria-label="Default select example">
                         <option value="" selected>카테고리를 선택하세요.</option>
                         <option value="경제">경제</option>
@@ -153,10 +160,49 @@
                     <input id="customInput" type="text" class="form-control display-none" placeholder="직접 입력" aria-label="">
                     <button class="btn btn-primary display-none" type="button" id="cancel">직접 입력 취소</button>
 
-                    <span class="input-group-text">언론사</span>
-                    <input id="media" type="text" class="form-control" placeholder="" aria-label="" readonly>
-                    <span class="input-group-text" >송고 시간</span>
-                    <input id="article_date" type="text" class="form-control" placeholder="" aria-label="" readonly>
+                </div>
+
+                <div class="input-group mb-3">
+
+                <span class="input-group-text" >관계 설정</span>
+                <input id="mainCompany" type="text" class="form-control" placeholder="mainCompany" aria-label="">
+                <select id="relation" class="dropdown-content" style="width: 300px">
+                    <option value="" selected>관계를 설정해주세요.</option>
+                    <option value="경쟁사">경쟁사</option>
+                    <option value="갈등 관계">갈등 관계</option>
+                    <option value="전략적 제휴 관계">전략적 제휴 관계</option>
+                    <option value="동종 업계">동종 업계</option>
+                    <option value="계열사">계열사</option>
+                    <option value="잠재 협력사">잠재 협력사</option>
+                    <option value="모회사">모회사</option>
+                    <option value="자회사">자회사</option>
+                    <option value="관계회사">관계회사</option>
+                    <option value="투자회사">투자회사</option>
+                    <option value="지주회사">지주회사</option>
+                    <option value="피투자회사">피투자회사</option>
+                    <option value="인수">인수</option>
+                    <option value="매각">매각</option>
+                    <option value="합병">합병</option>
+                    <option value="인적분할">인적분할</option>
+                    <option value="물적분할">물적분할</option>
+                    <option value="동일 기업">동일 기업</option>
+                    <option value="공급사">공급사</option>
+                    <option value="피공급사">피공급사</option>
+                    <option value="벤치마킹">벤치마킹</option>
+                    <option value="기타">기타</option>
+                    <option value="관계 없음">관계 없음</option>
+                </select>
+
+                <input id="subCompany" type="text" class="form-control" placeholder="subCompany" aria-label="">
+                <button class="btn btn-primary" type="button" id="add">추가</button>
+
+                </div>
+
+                <div id="companyTagList" class="mb-3">
+                    <!--<div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" readonly="">
+                        <button class="btn btn-primary" type="button" id="remove">삭제</button>
+                    </div>-->
                 </div>
 
                 <div class="input-group mb-3">
@@ -193,7 +239,8 @@
                     </div>
                 </div>
 
-            <button class="w-100 btn btn-lg btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#saveModal">저장</button>
+            <!--<button class="w-100 btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#saveModal" id="save">저장</button>-->
+            <button class="w-100 btn btn-lg btn-primary" id="save">저장</button>
             <hr class="my-4">
             <small class="text-body-secondary">저장 버튼을 누르면 데이터베이스에 저장됩니다.</small>
 
@@ -295,8 +342,7 @@
                         <h1>저장되었습니다.</h1>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">확인</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="saveModalBtn">확인</button>
                     </div>
                 </div>
             </div>

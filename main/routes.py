@@ -1,3 +1,5 @@
+import requests
+
 from main import main_bp, socketio
 from models import Article
 from utils import GPT, Vertex, Scraping, importent_sentence
@@ -383,7 +385,7 @@ def test_message(data):
 
 # DB 저장 페이지
 @main_bp.route('/news_save', methods=['GET'])
-def page_test():
+def news_save():
 
     return render_template('news_save.html')
 
@@ -404,3 +406,11 @@ def get_news():
         jsonify(result)
 
     return result
+
+@main_bp.route('/save', methods=['POST'])
+def save_news():
+    payLoad = request.get_json()
+
+    response = requests.post('https://dev-api.mydailybyte.com/article', json=payLoad)
+
+    return response.text;

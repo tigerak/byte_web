@@ -14,6 +14,123 @@ var secondaryCategories  = {
 
 $(document).ready(function () {
 
+
+    // 삭제 버튼에 대한 클릭 이벤트 추가
+    $('#companyTagList').on('click', '.relationDelete', function() {
+        // 현재 삭제 버튼이 속한 input-group 요소를 찾아서 삭제
+        $(this).closest('.input-group').remove();
+    });
+
+    $("#add").click(
+        (e) => {
+            const mainCompany = $("#mainCompany").val();
+            const subCompany = $("#subCompany").val();
+            const relation = $("#relation").val();
+
+            if(mainCompany || relation || subCompany) {
+                var data = {};
+                // 존재하는 필드만 데이터 객체에 추가
+                if (mainCompany) data.main = mainCompany;
+                if (relation) data.relation = relation;
+                if (subCompany) data.sub = subCompany;
+
+                const relationDataString = JSON.stringify(data).replace(/"/g, '&quot;');
+                // 새 div에 데이터 추가
+                $("#companyTagList").append(
+                    '<div class="input-group mb-3">' +
+                    '<input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" readonly=""' +
+                    'value="' + relationDataString + '">' +
+                    '<button class="btn btn-primary relationDelete" type="button">삭제</button>' +
+                    '</div>'
+                );
+
+            } else {
+                alert("적어도 하나의 필드를 채워주세요.");
+            }
+
+        }
+    )
+
+    $("#saveModalBtn").click(
+        (e) => {
+            location.reload(true);
+        }
+    )
+
+    $("#save").click(
+        (e) => {
+
+            const inputUrl = $("#inputUrl").val();
+            const title = $("#title").val();
+            const media = $("#media").val();
+            const articleDate = $("#articleDate").val();
+            const category = $("#category").val();
+            const article = $("#article").val();
+
+            const companyTag = [];
+            $("#companyTagList input").each(function() {
+                const parsedObject = JSON.parse($(this).val());
+                companyTag.push(parsedObject);
+            });
+
+            const primaryTag = [];
+            $("#primaryGroup label").each(function() {
+                primaryTag.push($(this).text());
+            });
+
+            const secondaryTag = [];
+            $("#secondaryGroup label").each(function() {
+                secondaryTag.push($(this).text());
+            });
+            const data = [{
+                "articleDate" : articleDate,
+                "media" : media,
+                "url" : inputUrl,
+                "category" : category,
+                "title" : title,
+                "article" : article,
+                "companyTag" : companyTag,
+                "primaryTag" : primaryTag.toString(),
+                "secondaryTag" : secondaryTag
+            }];
+
+            // 유효성 검사
+            if (inputUrl == "") {
+                alert("URL을 입력해주세요.")
+                return;
+            }
+
+            if (title == "") {
+                alert("뉴스 기사를 검색해주세요.")
+                return;
+            }
+
+            if (category == "") {
+                alert("카테고리를 입력해주세요.")
+                return;
+            }
+
+
+            $.ajax({
+                url: "/save",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(data),
+                success: function (res) {
+
+                    console.log(res);
+                    if (res.result.created == true) {
+                        alert("DB에 저장되었습니다.");
+                        location.href = "/news_save";
+                    }
+
+                },
+                error: function (res) {
+                }
+            });
+        });
+
     $.each(secondaryCategories, function(category, items) {
         $.each(items, function (idx, item) {
             if (category == "경제") {
@@ -35,13 +152,10 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on("click", "#secondaryGroupModal input[type='checkbox']", function(e) {
-        console.log(e.target);
-    });
 
-    $("#secondaryGroupModal .btn-check").click(
+    $("#economy, #industry, #nation .btn-check").click(
         (e) => {
-            console.log(e.target.id)
+
             if ($(e.target).is(":checked")) {
                 $("#secondaryGroup").append(
                     '<input type="checkbox" class="btn-check" id="' + e.target.id + 'copy" autocomplete="off" checked disabled>'
@@ -90,27 +204,10 @@ $(document).ready(function () {
         (e) => {
             console.log(e.target.dataset.value)
             var menu_item = e.target.dataset.value;
-            // AJAX 요청 시작 시 Loading 메시지 표시
-            // showLoading();
             if (menu_item == "news_save") {
                 location.href = "/news_save";
-                /*$.ajax({
-                    url: '/load_content/' + menu_item + '?lastNewsNumber=' + localStorage.getItem("lastNewsNumber"),
-                    type: 'GET',
-                    success: function (data) {
-
-                    }
-                });*/
             } else {
-                location.href = "/";
-                $.ajax({
-                    url: '/load_content/' + menu_item + '?lastNewsNumber=' + localStorage.getItem("lastNewsNumber"),
-                    type: 'GET',
-                    success: function (data) {
-                        $('#content').html(data);
-                        // hideLoading()
-                    }
-                });
+                location.href = "/?menu=" + menu_item;
             }
 
     });
@@ -133,7 +230,7 @@ $(document).ready(function () {
                     } else {
                         $("#title").val(res.title);
                         $("#media").val(res.media);
-                        $("#article_date").val(res.article_date);
+                        $("#articleDate").val(res.article_date);
                         $("#article").val(res.article);
                     }
                 },

@@ -1,4 +1,21 @@
 $(document).ready(function () {
+
+    // url에 menu 확인 (DB 저장 화면에서 다른 화면 이동시에만 동작)
+    var queryString = window.location.search;
+    var urlParam = new URLSearchParams(queryString);
+    var menu = urlParam.get("menu");
+    if (menu != null) {
+        $.ajax({
+            url: '/load_content/' + menu + '?lastNewsNumber=' + localStorage.getItem("lastNewsNumber"),
+            type: 'GET',
+            success: function (data) {
+                $('#content').html(data);
+                // hideLoading()
+            }
+        });
+    }
+
+
     // 메뉴 항목에 마우스가 올라갔을 때
     $('.menu-item').mouseenter(function () {
         $(this).css('color', '##9a1816ae'); // 텍스트 색상을 변경하거나 다른 스타일을 추가할 수 있습니다.
