@@ -414,4 +414,4 @@ def save_news():
     response = requests.post('https://dev-api.mydailybyte.com/article', json=payLoad)
     #response = requests.post('http://localhost:8080/article', json=payLoad)
 
-    return response.text;
+    return response.text
