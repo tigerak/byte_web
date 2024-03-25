@@ -66,6 +66,10 @@ $(document).ready(function () {
             const articleDate = $("#articleDate").val();
             const category = $("#category").val();
             const article = $("#article").val();
+            const summaryTitle = $("#summaryTitle").val();
+            const summary = $("#summary").val();
+            const modifiedReason = $("#modifiedReason").val();
+
 
             const companyTag = [];
             $("#companyTagList input").each(function() {
@@ -89,6 +93,9 @@ $(document).ready(function () {
                 "category" : category,
                 "title" : title,
                 "article" : article,
+                "summaryTitle" : summaryTitle,
+                "summary" : summary,
+                "modifiedReason" : modifiedReason,
                 "companyTag" : companyTag,
                 "primaryTag" : primaryTag.toString(),
                 "secondaryTag" : secondaryTag
