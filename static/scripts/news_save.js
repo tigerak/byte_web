@@ -64,7 +64,7 @@ $(document).ready(function () {
             const title = $("#title").val();
             const media = $("#media").val();
             const articleDate = $("#articleDate").val();
-            const category = $("#category").val();
+            /*const category = $("#category").val();*/
             const article = $("#article").val();
             const summaryTitle = $("#summaryTitle").val();
             const summary = $("#summary").val();
@@ -90,7 +90,7 @@ $(document).ready(function () {
                 "articleDate" : articleDate,
                 "media" : media,
                 "url" : inputUrl,
-                "category" : category,
+                /*"category" : category,*/
                 "title" : title,
                 "article" : article,
                 "summaryTitle" : summaryTitle,
@@ -112,10 +112,10 @@ $(document).ready(function () {
                 return;
             }
 
-            if (category == "") {
+            /*if (category == "") {
                 alert("카테고리를 입력해주세요.")
                 return;
-            }
+            }*/
 
 
             $.ajax({
@@ -125,10 +125,8 @@ $(document).ready(function () {
                 dataType: "json",
                 data: JSON.stringify(data),
                 success: function (res) {
-
-                    console.log(res);
-                    if (res.result.created == true) {
-                        alert("DB에 저장되었습니다.");
+                    if (res.result.message != null) {
+                        alert("DB에 저장되었습니다. DB 번호 : " + res.result.message);
                         location.href = "/news_save";
                     }
 
@@ -178,7 +176,12 @@ $(document).ready(function () {
     $("#primaryGroupModal .btn-check").click(
         (e) => {
 
-            if ($(e.target).is(":checked")) {
+            $("#primaryGroup").html(
+                '<input type="checkbox" class="btn-check" id="' + e.target.id + 'copy" autocomplete="off" checked disabled>'
+                + '<label class="btn btn-outline-primary m-1" id="' + e.target.id + 'copyLabel" for="' + e.target.id + 'copy">' + e.target.id + '</label>'
+            )
+
+            /*if ($(e.target).is(":checked")) {
                 $("#primaryGroup").append(
                     '<input type="checkbox" class="btn-check" id="' + e.target.id + 'copy" autocomplete="off" checked disabled>'
                     + '<label class="btn btn-outline-primary m-1" id="' + e.target.id + 'copyLabel" for="' + e.target.id + 'copy">' + e.target.id + '</label>'
@@ -186,7 +189,7 @@ $(document).ready(function () {
             } else {
                 $("#" + e.target.id + "copy").remove();
                 $("#" + e.target.id + "copyLabel").remove();
-            }
+            }*/
     });
 
     $("#category").change(
