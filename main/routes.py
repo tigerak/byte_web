@@ -4,7 +4,7 @@ from main import main_bp, socketio
 from models import Article
 from utils import GPT, Vertex, Scraping, importent_sentence
 from utils.mining.crawl import url_scrap
-from utils.mod_db.mod_db_util import requests_get, requests_put, requests_del
+from utils.mod_db.mod_db_util import requests_get, requests_put, requests_del, get_last_id
 
 import json
 import re
@@ -218,6 +218,10 @@ def mod_db():
             # num = j['last_read_num']
             num = request.form['lastViewNumber']
             res = '이것은 마지막으로 본 기사입니다.'
+
+        elif render['sub_button'] == '마지막 기사 조회':
+            num = get_last_id()
+            res = '이것은 DB의 마지막 기사입니다.'
 
         elif render['sub_button'] == '검색':
             try:

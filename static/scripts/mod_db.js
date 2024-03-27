@@ -311,6 +311,8 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (data) {
+                var lastViewNumber =$(data).find("#currentNewsNumber").text();
+                localStorage.setItem('lastViewNumber', lastViewNumber);
                 $('#content').html(data);
                 hideLoading()
             },

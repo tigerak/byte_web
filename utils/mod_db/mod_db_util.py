@@ -150,3 +150,11 @@ def requests_post(add_data_dict):
         res = '무엇인가 잘못되었음.'
         
     return res
+
+def get_last_id():
+    try:
+        response = requests.get(f"{api_url}/last-id")
+        res = response.json()['result']
+    except:
+        res = 'error'
+    return res
