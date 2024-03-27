@@ -191,16 +191,22 @@ $(document).ready(function () {
         clickedButtonValue = $(this).val();
     });
 
+    // 저장 버튼 클릭 이벤트
+    $('#save_but').click(function() {
+        var lastSaveNumber = $('#currentNewsNumber').text();
+        localStorage.setItem('lastSaveNumber', lastSaveNumber);
+        console.log(localStorage.getItem("lastSaveNumber") + " : lastSaveNumber");
+    });
+
     // targetDBid 버튼 클릭 시 DB Id 저장
     $('#searchBut').click(function() {
         var lastVisitNumberText = $('#title_text').text(); // 버튼의 텍스트 값을 가져옴
         var lastVisitNumberMatches = lastVisitNumberText.match(/\d+/); // 숫자만 추출
         var lastVisitNumber = lastVisitNumberMatches ? lastVisitNumberMatches[0] : "1"; // 매치된 숫자가 있으면 사용하고, 없으면 "1"을 기본값으로 사용
-        localStorage.setItem('lastVisitNumber', lastVisitNumber); // Local Storage에 저장
 
-        var lastNewsNumber = $('#title_text').val();
-        localStorage.setItem('lastNewsNumber', lastNewsNumber);
-        console.log(localStorage.getItem("lastNewsNumber") + " : lastNewsNumber")
+        var lastViewNumber = $('#title_text').val();
+        localStorage.setItem('lastViewNumber', lastViewNumber);
+        console.log(localStorage.getItem("lastViewNumber") + " : lastViewNumber");
 
     });
 
@@ -209,10 +215,9 @@ $(document).ready(function () {
         var lastVisitNumberText = $('#prevDiv').text(); // prevDiv의 텍스트 값을 가져옴
         var lastVisitNumberMatches = lastVisitNumberText.match(/\d+/); // 숫자만 추출
         var lastVisitNumber = lastVisitNumberMatches ? lastVisitNumberMatches[0] : "1"; // 매치된 숫자가 있으면 사용하고, 없으면 "1"을 기본값으로 사용
-        localStorage.setItem('lastVisitNumber', lastVisitNumber); // Local Storage에 저장
 
-        localStorage.setItem('lastNewsNumber', lastVisitNumber);
-        console.log(localStorage.getItem("lastNewsNumber") + " : lastNewsNumber")
+        localStorage.setItem('lastViewNumber', lastVisitNumber);
+        console.log(localStorage.getItem("lastViewNumber") + " : lastViewNumber")
     });
 
     // nextBut 버튼 클릭 시 DB Id 저장
@@ -220,12 +225,9 @@ $(document).ready(function () {
         var lastVisitNumberText = $('#nextDiv').text(); // 버튼의 텍스트 값을 가져옴
         var lastVisitNumberMatches = lastVisitNumberText.match(/\d+/); // 숫자만 추출
         var lastVisitNumber = lastVisitNumberMatches ? lastVisitNumberMatches[0] : "1"; // 매치된 숫자가 있으면 사용하고, 없으면 "1"을 기본값으로 사용
-        localStorage.setItem('lastVisitNumber', lastVisitNumber); // Local Storage에 저장
-        // console.log(lastVisitNumber);
-        // console.log(typeof lastVisitNumber);
 
-        localStorage.setItem('lastNewsNumber', lastVisitNumber);
-        console.log(localStorage.getItem("lastNewsNumber") + " : lastNewsNumber")
+        localStorage.setItem('lastViewNumber', lastVisitNumber);
+        console.log(localStorage.getItem("lastViewNumber") + " : lastViewNumber")
     });
 
     // 폼 제출 이벤트
@@ -274,7 +276,15 @@ $(document).ready(function () {
             formData.append('primary_tag', primaryTagContent);
             formData.append('secondary_tag', secondaryTagContent);
 
-            formData.append('lastNewsNumber', localStorage.getItem("lastNewsNumber"));
+            formData.append('lastViewNumber', localStorage.getItem("lastViewNumber"));
+
+            if (localStorage.getItem("lastSaveNumber") == null) {
+                formData.append('lastSaveNumber', 0);
+            } else {
+                formData.append('lastSaveNumber', localStorage.getItem("lastSaveNumber"));
+            }
+
+            formData.append('currentNewsNumber', $("#currentNewsNumber").text());
 
             sendData('/load_content/mod_db', formData);
         } else {

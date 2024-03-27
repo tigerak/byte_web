@@ -10,7 +10,7 @@ import json
 import re
 from time import time, sleep
 
-from flask import render_template, request, redirect, url_for, jsonify
+from flask import render_template, request, redirect, url_for, jsonify, abort
 from sqlalchemy import desc, and_
 # pip install flask-socketio
 from flask_socketio import emit, send
@@ -190,14 +190,14 @@ def load_multi_sum():
 
 @main_bp.route('/load_content/mod_db', methods=['GET', 'POST'])
 def mod_db():
-    save_path = './models/last_save_num.json'
-    read_path = './models/last_read_num.json'
+    # save_path = './models/last_save_num.json'
+    # read_path = './models/last_read_num.json'
 
     if request.method == 'GET':
         # with open(read_path, 'r', encoding='utf-8') as f :
         #     j = json.load(f)
         # num = j['last_read_num']
-        num = request.args.get('lastNewsNumber')
+        num = request.args.get('lastViewNumber')
         res = '이것은 마지막으로 본 기사입니다.'
 
     elif request.method == 'POST':
@@ -206,17 +206,17 @@ def mod_db():
         res = ''
 
         if render['sub_button'] == '마지막 저장 기사':
-            with open(save_path, 'r', encoding='utf-8') as f :
-                j = json.load(f)
-            num = j['last_save_num']
-            num = request.form['lastNewsNumber']
+            # with open(save_path, 'r', encoding='utf-8') as f :
+            #     j = json.load(f)
+            # num = j['last_save_num']
+            num = request.form['lastSaveNumber']
             res = '이것은 마지막 저장 기사입니다.'
 
         elif render['sub_button'] == '마지막 본 기사':
             # with open(read_path, 'r', encoding='utf-8') as f :
             #     j = json.load(f)
             # num = j['last_read_num']
-            num = request.form['lastNewsNumber']
+            num = request.form['lastViewNumber']
             res = '이것은 마지막으로 본 기사입니다.'
 
         elif render['sub_button'] == '검색':
@@ -233,7 +233,7 @@ def mod_db():
 
         elif render['sub_button'] == '저 장':
             try:
-                num = str(int(render['api_id']))
+                num = str(int(render['currentNewsNumber']))
             except:
                 num = '숫자 아님'
 
@@ -265,12 +265,11 @@ def mod_db():
                             secondary_tag_list=secondary_tag_list,
                             mod_sum_tit=mod_sum_tit,
                             mod_sum=mod_sum,
-                            mod_rea=mod_rea,
-                            save_path=save_path)
+                            mod_rea=mod_rea)
 
         elif render['sub_button'] == '삭제':
             try:
-                num = str(int(render['api_id']))
+                num = str(int(render['currentNewsNumber']))
             except:
                 num = '숫자 아님'
             res = requests_del(num)
@@ -279,7 +278,7 @@ def mod_db():
     (id, prev_id, next_id, article_date, media, url, category,
      title, article, summary_title, summary, modified_reason,
      modified_summary_title, modified_summary, modified, modified_date,
-     company_tag_list, primary_tag, secondary_tag_list) = requests_get(num, read_path)
+     company_tag_list, primary_tag, secondary_tag_list) = requests_get(num)
 
     return render_template('mod_db.html',
                             id=id,
@@ -410,8 +409,12 @@ def get_news():
 @main_bp.route('/save', methods=['POST'])
 def save_news():
     payLoad = request.get_json()
+    print(payLoad)
 
     response = requests.post('https://dev-api.mydailybyte.com/article', json=payLoad)
     #response = requests.post('http://localhost:8080/article', json=payLoad)
 
-    return response.text
+    if (response.status_code == 201):
+        return response.text
+    else:
+        return abort(400, "error")

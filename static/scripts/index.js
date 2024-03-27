@@ -6,7 +6,7 @@ $(document).ready(function () {
     var menu = urlParam.get("menu");
     if (menu != null) {
         $.ajax({
-            url: '/load_content/' + menu + '?lastNewsNumber=' + localStorage.getItem("lastNewsNumber"),
+            url: '/load_content/' + menu + '?lastViewNumber=' + localStorage.getItem("lastViewNumber"),
             type: 'GET',
             success: function (data) {
                 $('#content').html(data);
@@ -42,7 +42,7 @@ $(document).ready(function () {
             });*/
         } else {
             $.ajax({
-                url: '/load_content/' + menu_item + '?lastNewsNumber=' + localStorage.getItem("lastNewsNumber"),
+                url: '/load_content/' + menu_item + '?lastViewNumber=' + localStorage.getItem("lastViewNumber"),
                 type: 'GET',
                 success: function (data) {
                     $('#content').html(data);

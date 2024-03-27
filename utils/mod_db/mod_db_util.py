@@ -4,7 +4,7 @@ import requests
 
 api_url = 'https://dev-api.mydailybyte.com/article'
     
-def requests_get(db_id, read_path):
+def requests_get(db_id):
     try:
         response = requests.get(f"{api_url}/{db_id}")  # URL로부터 데이터를 GET 요청
         data = response.json()  # 응답 데이터를 JSON 형태로 변환
@@ -45,9 +45,9 @@ def requests_get(db_id, read_path):
             tag_list.append(tag_json)
         company_tag_list = tag_list
         
-        data = {'last_read_num' : db_id}
-        with open(read_path, 'w', encoding='utf-8') as f : 
-            j = json.dump(data, f, indent=4, ensure_ascii=False)
+        # data = {'last_read_num' : db_id}
+        # with open(read_path, 'w', encoding='utf-8') as f :
+        #     j = json.dump(data, f, indent=4, ensure_ascii=False)
 
     except :
         mess = ''
@@ -82,7 +82,7 @@ def requests_get(db_id, read_path):
             company_tag_list, primary_tag, secondary_tag_list)
         
 
-def requests_put(db_id, mod_sum_tit, mod_sum, mod_rea, save_path,
+def requests_put(db_id, mod_sum_tit, mod_sum, mod_rea,
                  company_tag_list, primary_tag, secondary_tag_list):
     
     mod_sum_json = {"modifiedSummaryTitle" : mod_sum_tit,
@@ -97,9 +97,9 @@ def requests_put(db_id, mod_sum_tit, mod_sum, mod_rea, save_path,
         
         if str(response) == '<Response [200]>':
             res = '!!! 저장 성공 !!!'
-            data = {'last_save_num' : db_id}
-            with open(save_path, 'w', encoding='utf-8') as f : 
-                j = json.dump(data, f, indent=4, ensure_ascii=False)
+            # data = {'last_save_num' : db_id}
+            # with open(save_path, 'w', encoding='utf-8') as f :
+            #     j = json.dump(data, f, indent=4, ensure_ascii=False)
             
         else :
             res = '@@@ 저장 실패 @@@'

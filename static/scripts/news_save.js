@@ -93,8 +93,8 @@ $(document).ready(function () {
                 /*"category" : category,*/
                 "title" : title,
                 "article" : article,
-                "summaryTitle" : summaryTitle,
-                "summary" : summary,
+                "modifiedSummaryTitle" : summaryTitle,
+                "modifiedSummary" : summary,
                 "modifiedReason" : modifiedReason,
                 "companyTag" : companyTag,
                 "primaryTag" : primaryTag.toString(),
@@ -132,6 +132,7 @@ $(document).ready(function () {
 
                 },
                 error: function (res) {
+                    alert("저장에 실패하였습니다.")
                 }
             });
         });
