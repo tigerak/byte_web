@@ -63,6 +63,10 @@ class Scraping():
                 article = real_url
                 article_date = '날씨 : 맑음'
             
+            # article과 article_date의 \n 제거.
+            article = article.replace("\n", "")
+            article_date = article_date.replace("\n", "")
+            
             # print(f'''
             #     제목 :\n{title} \n
             #     기사 :\n{article}\n
