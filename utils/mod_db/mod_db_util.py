@@ -41,8 +41,8 @@ def requests_get(db_id):
         
         tag_list = []
         for tag in company_tag_list:
-            tag_json = json.dumps(tag, ensure_ascii=False)
-            tag_list.append(tag_json)
+            filtered_item = {k: v for k, v in tag.items() if v is not None}
+            tag_list.append(filtered_item)
         company_tag_list = tag_list
         
         # data = {'last_read_num' : db_id}

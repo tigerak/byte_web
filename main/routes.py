@@ -243,10 +243,12 @@ def mod_db():
 
             company_tag_raw = render.getlist('company_tag')
             try:
+                # company_tag_raw가 통채로 string임.
                 company_tag = [item for item in company_tag_raw if item][0]
                 split_pattern = re.compile(r'(?<=})\s*, \s*(?={)')
                 company_tag_raw = list(split_pattern.split(company_tag))
-                company_tag_list = [json.loads(tag) for tag in company_tag_raw if tag]
+                corrected_data = [item.replace("'", '"') for item in company_tag_raw]
+                company_tag_list = [json.loads(tag) for tag in corrected_data if tag]
             except:
                 company_tag_list = None
 

@@ -99,7 +99,15 @@
             <button id="addButton">추가</button>
             <div id="companyTagContainer">
                 {% for companyItem in company_tag_list %}
-                <div class='data-item'>{{ companyItem }}<span class='delete-btn'>삭제</span></div>
+                <div class='data-item'>
+                    {{companyItem}}
+                    <!-- {% if companyItem['first-main'] %}<span>First Main: {{ companyItem['first-main'] }}</span><br>{% endif %}
+                    {% if companyItem['first-sub'] %}<span>First Sub: {{ companyItem['first-sub'] }}</span><br>{% endif %}
+                    {% if companyItem['relation'] %}<span>Relation: {{ companyItem['relation'] }}</span><br>{% endif %}
+                    {% if companyItem['second-main'] %}<span>Second Main: {{ companyItem['second-main'] }}</span>{% endif %}
+                    {% if companyItem['second-sub'] %}<span>Second Sub: {{ companyItem['second-sub'] }}</span>{% endif %} -->
+                    <span class='delete-btn'>삭제</span>
+                </div>
                 {% endfor %}
             </div> 
             <input type="hidden" id="hiddenCompanyTag" name="company_tag">
