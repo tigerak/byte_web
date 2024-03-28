@@ -63,7 +63,8 @@
             <br/>
             <input type="submit" class="sub_button" id="save_but" value="저 장">
             <br/>
-            <div contenteditable="True" class="content-div" id="mainCompany"></div>
+            <div contenteditable="True" class="content-div" id="firstCompany"></div>
+            <button class="toggle-btn" data-target="#firstCompany">Main</button> 
             <div class="dropdown">
                 <button class="dropbtn">관계 설정</button>
                 <div class="dropdown-content">
@@ -92,8 +93,9 @@
                   <a href="#">관계 없음</a>
                 </div>
             </div>
-            <div contenteditable="True" class="content-div" id="subCompany"></div>
-
+            <div contenteditable="True" class="content-div" id="secondCompany"></div>
+            <button class="toggle-btn" data-target="#secondCompany">Sub</button>
+            <br>
             <button id="addButton">추가</button>
             <div id="companyTagContainer">
                 {% for companyItem in company_tag_list %}

@@ -29,6 +29,8 @@ $(document).ready(function () {
 
     // 드롭다운 메뉴
     var selectedRelation = ""; // 사용자가 선택한 관계를 저장하는 변수
+    var firstCompanyRole = "main"; // 기본적으로 firstCompany는 main으로 설정
+    var secondCompanyRole = "sub"; // 기본적으로 secondCompany는 sub으로 설정
   
     $(".dropdown-content a").click(function(e){
         e.preventDefault(); // 기본 이벤트 방지
@@ -38,16 +40,16 @@ $(document).ready(function () {
     });
 
     $("#addButton").click(function(){
-        var mainCompany = $("#mainCompany").text().trim();
-        var subCompany = $("#subCompany").text().trim();
+        var firstCompany  = $("#firstCompany ").text().trim();
+        var secondCompany  = $("#secondCompany ").text().trim();
         
         // 하나 이상의 필드가 채워져 있는지 확인
-        if(mainCompany || selectedRelation || subCompany) {
+        if(firstCompany || selectedRelation || secondCompany) {
             var data = {};
             // 존재하는 필드만 데이터 객체에 추가
-            if (mainCompany) data.main = mainCompany;
+            if (firstCompany) data['first-' + firstCompanyRole] = firstCompany;
             if (selectedRelation) data.relation = selectedRelation;
-            if (subCompany) data.sub = subCompany;
+            if (secondCompany) data['second-' + secondCompanyRole] = secondCompany;
             // 새 div에 데이터 추가
             var dataItem = $("<div class='data-item'>" + JSON.stringify(data) + "<span class='delete-btn'>삭제</span></div>");
             dataItem.appendTo("#companyTagContainer");
@@ -68,6 +70,19 @@ $(document).ready(function () {
 
     $(".dropbtn").click(function(){
         $(".dropdown-content").toggle();
+    });
+
+    // main/sub 선택 버튼
+    $(".toggle-btn").click(function() {
+        var target = $(this).data('target');
+        if ($(target).attr('id') === "firstCompany") {
+            firstCompanyRole = (firstCompanyRole === "main" ? "sub" : "main");
+            $(this).text(firstCompanyRole === "main" ? "Main" : "Sub"); // 토글 버튼의 텍스트 업데이트
+        } else {
+            secondCompanyRole = (secondCompanyRole === "main" ? "sub" : "main");
+            $(this).text(secondCompanyRole === "main" ? "Main" : "Sub");
+        }
+        
     });
 
     // 외부 클릭 시 드롭다운 메뉴 닫기
