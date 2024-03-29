@@ -14,6 +14,31 @@ var secondaryCategories  = {
 
 $(document).ready(function () {
 
+    $("#changeBtn2").click(
+        (e) => {
+            if ($(e.target).data('value') == 'main') {
+                $(e.target).html("sub")
+                $(e.target).data('value', 'sub')
+            } else {
+                $(e.target).html("main")
+                $(e.target).data('value', 'main')
+            }
+        }
+    )
+
+    $("#changeBtn1").click(
+        (e) => {
+            if ($(e.target).data('value') == 'main') {
+                $(e.target).html("sub")
+                $(e.target).data('value', 'sub')
+            } else {
+                $(e.target).html("main")
+                $(e.target).data('value', 'main')
+            }
+        }
+    )
+
+
 
     // 삭제 버튼에 대한 클릭 이벤트 추가
     $('#companyTagList').on('click', '.relationDelete', function() {
@@ -23,16 +48,20 @@ $(document).ready(function () {
 
     $("#add").click(
         (e) => {
-            const mainCompany = $("#mainCompany").val();
-            const subCompany = $("#subCompany").val();
+            /*const mainCompany = $("#mainCompany").val();
+            const subCompany = $("#subCompany").val();*/
+            const first = $("#first").val();
+            const second = $("#second").val();
+            const firstValue = $("#changeBtn1").data('value');
+            const secondValue = $("#changeBtn2").data('value');
             const relation = $("#relation").val();
 
-            if(mainCompany || relation || subCompany) {
+            if(first || relation || second) {
                 var data = {};
                 // 존재하는 필드만 데이터 객체에 추가
-                if (mainCompany) data.main = mainCompany;
+                if (first) data['first-' + firstValue] = first;
                 if (relation) data.relation = relation;
-                if (subCompany) data.sub = subCompany;
+                if (second) data['second-' + secondValue] = second;
 
                 const relationDataString = JSON.stringify(data).replace(/"/g, '&quot;');
                 // 새 div에 데이터 추가

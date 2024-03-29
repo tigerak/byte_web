@@ -200,7 +200,8 @@
                 <div class="input-group mb-3">
 
                     <span class="input-group-text" >관계 설정</span>
-                    <input id="mainCompany" type="text" class="form-control" placeholder="mainCompany" aria-label="">
+                    <input id="first" type="text" class="form-control" placeholder="first" aria-label="">
+                    <button class="btn btn-secondary" type="button" data-value="main" id="changeBtn1">main</button>
                     <select id="relation" class="dropdown-content" style="width: 300px">
                         <option value="" selected>관계를 설정해주세요.</option>
                         <option value="경쟁사">경쟁사</option>
@@ -228,7 +229,8 @@
                         <option value="관계 없음">관계 없음</option>
                     </select>
 
-                    <input id="subCompany" type="text" class="form-control" placeholder="subCompany" aria-label="">
+                    <input id="second" type="text" class="form-control" placeholder="second" aria-label="">
+                    <button class="btn btn-secondary" type="button" data-value="main" id="changeBtn2">main</button>
                     <button class="btn btn-primary" type="button" id="add">추가</button>
 
                 </div>
