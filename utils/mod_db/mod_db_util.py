@@ -32,8 +32,15 @@ def requests_get(db_id):
         primary_tag = data['result']['primaryTag']
         secondary_tag_list = data['result']['secondaryTag']
         
-        article = article.replace('. ', '. <br>')
+        ### 불러올 때 줄바꿈 - HTML Tag로 변형
+        article = article.replace('다.', '다.<br>')
+        
         summary = summary.replace('\n-', '<br>-')
+        summary = summary.replace('\r\n-', '<br>-')
+        
+        modified_summary = modified_summary.replace('\n-', '<br>-')
+        modified_summary = modified_summary.replace('\r\n-', '<br>-')
+        
         if modified == True:
             modified = '수정 완료'
         else:
@@ -44,10 +51,6 @@ def requests_get(db_id):
             filtered_item = {k: v for k, v in tag.items() if v is not None}
             tag_list.append(filtered_item)
         company_tag_list = tag_list
-        
-        # data = {'last_read_num' : db_id}
-        # with open(read_path, 'w', encoding='utf-8') as f :
-        #     j = json.dump(data, f, indent=4, ensure_ascii=False)
 
     except :
         mess = ''
@@ -92,6 +95,10 @@ def requests_put(db_id, mod_sum_tit, mod_sum, mod_rea,
                     "primaryTag" : primary_tag,
                     "secondaryTag" : secondary_tag_list
                     }
+    # 줄바꿈 HTML Tag -> \n
+    for key in ['modifiedSummary', 'modifiedReason']:
+        mod_sum_json[key] = mod_sum_json[key].replace('<br>', '\n')
+    
     try:
         response = requests.put(f"{api_url}/{db_id}", json=mod_sum_json)
         

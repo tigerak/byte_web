@@ -190,13 +190,7 @@ def load_multi_sum():
 
 @main_bp.route('/load_content/mod_db', methods=['GET', 'POST'])
 def mod_db():
-    # save_path = './models/last_save_num.json'
-    # read_path = './models/last_read_num.json'
-
     if request.method == 'GET':
-        # with open(read_path, 'r', encoding='utf-8') as f :
-        #     j = json.load(f)
-        # num = j['last_read_num']
         num = request.args.get('lastViewNumber')
         res = '이것은 마지막으로 본 기사입니다.'
 
@@ -206,16 +200,10 @@ def mod_db():
         res = ''
 
         if render['sub_button'] == '마지막 저장 기사':
-            # with open(save_path, 'r', encoding='utf-8') as f :
-            #     j = json.load(f)
-            # num = j['last_save_num']
             num = request.form['lastSaveNumber']
             res = '이것은 마지막 저장 기사입니다.'
 
         elif render['sub_button'] == '마지막 본 기사':
-            # with open(read_path, 'r', encoding='utf-8') as f :
-            #     j = json.load(f)
-            # num = j['last_read_num']
             num = request.form['lastViewNumber']
             res = '이것은 마지막으로 본 기사입니다.'
 
