@@ -96,8 +96,11 @@ $(document).ready(function () {
             /*const category = $("#category").val();*/
             const article = $("#article").val();
             const summaryTitle = $("#summaryTitle").val();
-            const summary = $("#summary").val();
-            const modifiedReason = $("#modifiedReason").val();
+            // const summary = $("#summary").val();
+            // const modifiedReason = $("#modifiedReason").val();
+
+            const summary = $("#summary").val().replace(/(?:\r\n|\r|\n)/g, '\n');
+            const modifiedReason = $("#modifiedReason").val().replace(/(?:\r\n|\r|\n)/g, '\n');
 
 
             const companyTag = [];
