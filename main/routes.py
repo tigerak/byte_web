@@ -196,7 +196,7 @@ def mod_db():
 
     elif request.method == 'POST':
         render = request.form
-        print(render)
+        # print(render)
         res = ''
 
         if render['sub_button'] == '마지막 저장 기사':
@@ -273,7 +273,10 @@ def mod_db():
      title, article, summary_title, summary, modified_reason,
      modified_summary_title, modified_summary, modified, modified_date,
      company_tag_list, primary_tag, secondary_tag_list) = requests_get(num)
-
+    # print(id, prev_id, next_id, article_date, media, url, category,
+    #         title, article, summary_title, summary, modified_reason, 
+    #         modified_summary_title, modified_summary, modified, modified_date,
+    #         company_tag_list, primary_tag, secondary_tag_list)
     return render_template('mod_db.html',
                             id=id,
                             prev_id=prev_id,

@@ -30,7 +30,7 @@ def requests_get(db_id):
         modified_date = data['result']['modifiedDate']
         company_tag_list = data['result']['companyTag']
         primary_tag = data['result']['primaryTag']
-        secondary_tag_list = data['result']['secondaryTag']
+        secondary_tag_list = data['result']['secondaryTag']    
         
         ### 불러올 때 줄바꿈 - HTML Tag로 변형
         article = article.replace('다.', '다.<br>')
@@ -78,10 +78,10 @@ def requests_get(db_id):
         company_tag_list = [mess]
         primary_tag = mess
         secondary_tag_list = [mess]
-        print(id, prev_id, next_id, article_date, media, url, category,
-            title, article, summary_title, summary, modified_reason, 
-            modified_summary_title, modified_summary, modified, modified_date,
-            company_tag_list, primary_tag, secondary_tag_list)
+    # print(id, prev_id, next_id, article_date, media, url, category,
+    #     title, article, summary_title, summary, modified_reason, 
+    #     modified_summary_title, modified_summary, modified, modified_date,
+    #     company_tag_list, primary_tag, secondary_tag_list)
     return (id, prev_id, next_id, article_date, media, url, category,
             title, article, summary_title, summary, modified_reason, 
             modified_summary_title, modified_summary, modified, modified_date,
