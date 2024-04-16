@@ -854,3 +854,5 @@ UnboundLocalError: local variable 'message' referenced before assignment
 [2024-03-18 04:04:55,922.922] INFO [140270761934848] - NumExpr defaulting to 8 threads.
 [2024-03-18 04:24:51,097.097] INFO [139843120914432] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
 [2024-03-18 04:24:51,097.097] INFO [139843120914432] - NumExpr defaulting to 8 threads.
+[2024-04-16 06:22:33,131.131] INFO [140165645742080] - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-16 06:22:33,131.131] INFO [140165645742080] - NumExpr defaulting to 8 threads.
