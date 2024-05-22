@@ -1,8 +1,8 @@
 import requests
-
+# module
 from main import main_bp, socketio
 from models import Article
-from utils import GPT, Vertex, Scraping, importent_sentence
+from utils import GPT, Vertex, Scraping, importent_sentence, remove_mac_specialsymbol
 from utils.mining.crawl import url_scrap
 from utils.mod_db.mod_db_util import requests_get, requests_put, requests_del, get_last_id
 
@@ -249,6 +249,7 @@ def mod_db():
 
             mod_sum_tit = render['mod_sum_tit']
             mod_sum = render['mod_sum']
+            mod_sum = remove_mac_specialsymbol(mod_sum)
             mod_rea = render['mod_rea']
 
             # print(num, company_tag_list, primary_tag, secondary_tag_list,

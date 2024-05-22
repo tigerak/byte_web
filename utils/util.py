@@ -18,6 +18,12 @@ def remove_newlines(serie):
     serie = serie.replace('  ', ' ')
     return serie
 
+
+def remove_mac_specialsymbol(summary):
+    symbol_pattern = re.compile(r"[\u001f\b]")
+    summary = symbol_pattern.sub(r" ", summary)
+    return summary
+    
     
 def cost_calculation(prompt_complet):
     '''
