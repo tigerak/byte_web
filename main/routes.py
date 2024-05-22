@@ -251,6 +251,7 @@ def mod_db():
             mod_sum = render['mod_sum']
             mod_sum = remove_mac_specialsymbol(mod_sum)
             mod_rea = render['mod_rea']
+            mod_rea = remove_mac_specialsymbol(mod_rea)
 
             # print(num, company_tag_list, primary_tag, secondary_tag_list,
             #       mod_sum_tit, mod_sum, mod_rea, save_path)
