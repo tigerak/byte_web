@@ -2,7 +2,8 @@ import requests
 # module
 from main import main_bp, socketio
 from models import Article
-from utils import GPT, Vertex, Scraping, importent_sentence, remove_mac_specialsymbol
+from utils import (GPT, Vertex, Scraping, 
+                   importent_sentence, remove_mac_specialsymbol, count_summary_char)
 from utils.mining.crawl import url_scrap
 from utils.mod_db.mod_db_util import requests_get, requests_put, requests_del, get_last_id
 
@@ -279,6 +280,10 @@ def mod_db():
     #         title, article, summary_title, summary, modified_reason, 
     #         modified_summary_title, modified_summary, modified, modified_date,
     #         company_tag_list, primary_tag, secondary_tag_list)
+    
+    # 수정 요약문 총 글자 수 계산
+    count_summary = len(count_summary_char(modified_summary))
+    
     return render_template('mod_db.html',
                             id=id,
                             prev_id=prev_id,
@@ -294,6 +299,7 @@ def mod_db():
                             modified_reason = modified_reason,
                             modified_summary_title = modified_summary_title,
                             modified_summary = modified_summary,
+                            count_summary = count_summary,
                             modified = modified,
                             modified_date = modified_date,
                             company_tag_list = company_tag_list,

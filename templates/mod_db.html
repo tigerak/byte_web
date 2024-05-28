@@ -171,6 +171,7 @@
             {{ modified_date }}
             <br/>
             <input type="submit" class="sub_button" id="copy_sum" value=">> 기존 요약문 그대로 가져오기">
+            글자수 : {{ count_summary }} / 250
             <br />
             <div contenteditable="True" class="content-div" id="modTitDiv">{{modified_summary_title|safe}}</div>
             <input type="hidden" id="hiddenModTit" name="mdt">
