@@ -25,12 +25,24 @@ $(document).ready(function () {
         alert('복사되었습니다:\n' + text);
     }
 
-    $('#copySummaries').on('click', function() {
-        const summary1Text = $('#summary1').val();
-        const summary2Text = $('#summary2').val();
-        const summary3Text = $('#summary3').val();
+    $('#copyKakao').on('click', function() {
+        const primaryTag = [];
+        $("#primaryGroup label").each(function() {
+            primaryTag.push($(this).text());
+        });
 
-        const combinedText = summary1Text + '\n' + summary2Text + '\n' + summary3Text;
+        const title = $("#title").val();
+
+        const inputUrl = $("#inputUrl").val();
+
+        const summary1Text = "- " + $('#summary1').val();
+        const summary2Text = "- " + $('#summary2').val();
+        const summary3Text = "- " + $('#summary3').val();
+
+        const combinedText = '[' + primaryTag.toString() + ']\n'
+                                    + title + '\n\n'
+                                    + summary1Text + '\n' + summary2Text + '\n' + summary3Text
+                                    + '\n\n' + inputUrl;
         copyToClipboard(combinedText);
     });
 
@@ -171,7 +183,7 @@ $(document).ready(function () {
             const summary1Text = $('#summary1').val().replace(/(?:\r\n|\r|\n)/g, '\n');
             const summary2Text = $('#summary2').val().replace(/(?:\r\n|\r|\n)/g, '\n');
             const summary3Text = $('#summary3').val().replace(/(?:\r\n|\r|\n)/g, '\n');
-            const summary = summary1Text + '\n' + summary2Text + '\n' + summary3Text;
+            const summary = '- ' + summary1Text + '\n- ' + summary2Text + '\n- ' + summary3Text;
 
             const modifiedReason = $("#modifiedReason").val().replace(/(?:\r\n|\r|\n)/g, '\n');
 
