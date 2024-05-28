@@ -31,7 +31,7 @@ $(document).ready(function () {
             primaryTag.push($(this).text());
         });
 
-        const title = $("#title").val();
+        const summaryTitle = $("#summaryTitle").val();
 
         const inputUrl = $("#inputUrl").val();
 
@@ -40,7 +40,7 @@ $(document).ready(function () {
         const summary3Text = "- " + $('#summary3').val();
 
         const combinedText = '[' + primaryTag.toString() + ']\n'
-                                    + title + '\n\n'
+                                    + summaryTitle + '\n\n'
                                     + summary1Text + '\n' + summary2Text + '\n' + summary3Text
                                     + '\n\n' + inputUrl;
         copyToClipboard(combinedText);
