@@ -15,6 +15,73 @@ var secondaryCategories  = {
 
 $(document).ready(function () {
 
+    function copyToClipboard(text) {
+        const tempInput = document.createElement('textarea');
+        tempInput.value = text;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        alert('복사되었습니다:\n' + text);
+    }
+
+    $('#copySummaries').on('click', function() {
+        const summary1Text = $('#summary1').val();
+        const summary2Text = $('#summary2').val();
+        const summary3Text = $('#summary3').val();
+
+        const combinedText = summary1Text + '\n' + summary2Text + '\n' + summary3Text;
+        copyToClipboard(combinedText);
+    });
+
+    $("#summary1, #summary2, #summary3").on('keyup', function() {
+        let summary1Val = $("#summary1").val();
+        let summary2Val = $("#summary2").val();
+        let summary3Val = $("#summary3").val();
+
+        let summary1Length = summary1Val.length;
+        let summary2Length = summary2Val.length;
+        let summary3Length = summary3Val.length;
+        let total = summary1Length + summary2Length + summary3Length;
+
+        $("#summary1Length").text(summary1Length);
+        $("#summary2Length").text(summary2Length);
+        $("#summary3Length").text(summary3Length);
+        $("#summaryLength").text(total);
+
+        if (total > 250) {
+            alert("요약은 250자까지 입력 가능합니다.");
+
+            let allowedLength = 250 - (summary1Length + summary2Length);
+
+            if (allowedLength < 0) {
+                allowedLength = 0;
+            }
+
+            if ($(this).attr('id') === 'summary1') {
+                summary1Val = summary1Val.substring(0, 250 - (summary2Length + summary3Length));
+            } else if ($(this).attr('id') === 'summary2') {
+                summary2Val = summary2Val.substring(0, 250 - (summary1Length + summary3Length));
+            } else if ($(this).attr('id') === 'summary3') {
+                summary3Val = summary3Val.substring(0, allowedLength);
+            }
+
+            $("#summary1").val(summary1Val);
+            $("#summary2").val(summary2Val);
+            $("#summary3").val(summary3Val);
+
+            summary1Length = summary1Val.length;
+            summary2Length = summary2Val.length;
+            summary3Length = summary3Val.length;
+            total = summary1Length + summary2Length + summary3Length;
+
+            $("#summary1Length").text(summary1Length);
+            $("#summary2Length").text(summary2Length);
+            $("#summary3Length").text(summary3Length);
+            $("#summaryLength").text(total);
+        }
+    });
+
     $("#changeBtn2").click(
         (e) => {
             if ($(e.target).data('value') == 'main') {
@@ -100,7 +167,12 @@ $(document).ready(function () {
             // const summary = $("#summary").val();
             // const modifiedReason = $("#modifiedReason").val();
 
-            const summary = $("#summary").val().replace(/(?:\r\n|\r|\n)/g, '\n');
+            //const summary = $("#summary").val().replace(/(?:\r\n|\r|\n)/g, '\n');
+            const summary1Text = $('#summary1').val().replace(/(?:\r\n|\r|\n)/g, '\n');
+            const summary2Text = $('#summary2').val().replace(/(?:\r\n|\r|\n)/g, '\n');
+            const summary3Text = $('#summary3').val().replace(/(?:\r\n|\r|\n)/g, '\n');
+            const summary = summary1Text + '\n' + summary2Text + '\n' + summary3Text;
+
             const modifiedReason = $("#modifiedReason").val().replace(/(?:\r\n|\r|\n)/g, '\n');
 
 

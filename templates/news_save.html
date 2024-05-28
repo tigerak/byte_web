@@ -246,10 +246,41 @@
                     <input id="summaryTitle" type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
                 </div>
 
-                <div class="input-group mb-3">
-                    <span class="input-group-text">요약</span>
-                    <textarea id="summary" class="form-control" aria-label="With textarea" style="height: 300px"></textarea>
+                <div class="input-group">
+                    <span class="input-group-text">요약 1</span>
+                    <textarea maxlength="100" id="summary1" class="form-control" aria-label="With textarea" style="height: 100px"></textarea>
                 </div>
+
+                <small class="text-body-secondary">글자수 : </small>
+                <small class="text-body-secondary" id="summary1Length">0</small>
+                <small class="text-body-secondary"> / 100</small>
+
+                <div class="input-group">
+                    <span class="input-group-text">요약 2</span>
+                    <textarea maxlength="100" id="summary2" class="form-control" aria-label="With textarea" style="height: 100px"></textarea>
+                </div>
+
+                <small class="text-body-secondary">글자수 : </small>
+                <small class="text-body-secondary" id="summary2Length">0</small>
+                <small class="text-body-secondary"> / 100</small>
+
+                <div class="input-group">
+                    <span class="input-group-text">요약 3</span>
+                    <textarea maxlength="100" id="summary3" class="form-control" aria-label="With textarea" style="height: 100px"></textarea>
+                </div>
+
+                <small class="text-body-secondary">글자수 : </small>
+                <small class="text-body-secondary" id="summary3Length">0</small>
+                <small class="text-body-secondary"> / 100</small>
+
+                <br>
+
+                <small class="text-body-emphasis">글자수 총합 : </small>
+                <small class="text-body-emphasis" id="summaryLength">0</small>
+                <small class="text-body-emphasis"> / 250</small>
+
+                <button class="w-100 btn btn-lg btn-primary" id="copySummaries">요약문 복사</button>
+                <hr class="my-4">
 
                 <div class="input-group mb-3">
                     <span class="input-group-text">요약문 구성 이유</span>
@@ -257,7 +288,7 @@
                 </div>
 
             <!--<button class="w-100 btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#saveModal" id="save">저장</button>-->
-            <button class="w-100 btn btn-lg btn-primary" id="save">저장</button>
+            <button class="w-100 btn btn-lg btn-primary mb-3" id="save">저장</button>
             <hr class="my-4">
             <small class="text-body-secondary">저장 버튼을 누르면 데이터베이스에 저장됩니다.</small>
 
