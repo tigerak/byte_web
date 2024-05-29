@@ -22,12 +22,14 @@ def remove_newlines(serie):
 def remove_mac_specialsymbol(summary):
     symbol_pattern = re.compile(r"[\u001f\b]|&nbsp;")
     summary = symbol_pattern.sub(r" ", summary)
+    summary = re.sub(r'  ', ' ', summary)
     return summary
 
 
 def count_summary_char(summary):
-    cleaned_summary = re.sub(r'<br>|[-\[\]].*?\]|-', '', summary)
+    cleaned_summary = re.sub(r'<br>|[\[\]].*?\]|-', '', summary)
     cleaned_summary = cleaned_summary.strip()
+    cleaned_summary = re.sub(r'  ', '', cleaned_summary)
     return cleaned_summary
     
     
