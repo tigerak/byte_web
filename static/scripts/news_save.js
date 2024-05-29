@@ -15,6 +15,48 @@ var secondaryCategories  = {
 
 $(document).ready(function () {
 
+    $('#clearDate').on('click', function() {
+        $('#modifiedReason2').val('');
+    });
+
+    $('#removeDate').on('click', function() {
+        $('#dateReasonArea').addClass('display-none');
+    });
+
+    $('#addDate').on('click', function() {
+        const value = $('#selectDateReason').val();
+
+        if (value == '') {
+            alert('번호를 선택해 주세요.')
+            return;
+        }
+
+        $('#modifiedReason2').val(value);
+        $('#dateReasonArea').removeClass('display-none');
+    });
+
+    $('#removeSpecial').on('click', function() {
+        $('#specialArea').addClass('display-none');
+    });
+
+    $('#addSpecial').on('click', function() {
+        $('#specialArea').removeClass('display-none');
+    });
+
+    $('#copyWeb').on('click', function() {
+        const summaryTitle = $("#summaryTitle").val();
+
+        const summary1Text = $('#summary1').val().trim();
+        const summary2Text = $('#summary2').val().trim();
+        const summary3Text = $('#summary3').val().trim();
+
+        const combinedText = summaryTitle + "\n"
+            + summary1Text + ' ' + summary2Text + ' ' + summary3Text;
+
+        copyToClipboard(combinedText);
+
+    });
+
     function copyToClipboard(text) {
         const tempInput = document.createElement('textarea');
         tempInput.value = text;
@@ -185,8 +227,30 @@ $(document).ready(function () {
             const summary3Text = $('#summary3').val().replace(/(?:\r\n|\r|\n)/g, '\n');
             const summary = '- ' + summary1Text + '\n- ' + summary2Text + '\n- ' + summary3Text;
 
-            const modifiedReason = $("#modifiedReason").val().replace(/(?:\r\n|\r|\n)/g, '\n');
 
+
+            let modifiedReason = '';
+            if ($('#specialArea').hasClass('display-none')) {
+            } else {
+                modifiedReason += '- ' + $('#modifiedReason1').val().replace(/(?:\r\n|\r|\n)/g, '\n') + '\n';
+            }
+
+            if ($('#dateReasonArea').hasClass('display-none')) {
+            } else {
+                modifiedReason += '- ' + $('#modifiedReason2').val().replace(/(?:\r\n|\r|\n)/g, '\n') + '\n';
+            }
+
+            const reason3Arr = $('#modifiedReason3').val().replace(/(?:\r\n|\r|\n)/g, '\n').split('\n');
+
+            for (i = 0; i < reason3Arr.length; i++) {
+                if ((i + 1) == reason3Arr.length) {
+                    modifiedReason += '- ' + reason3Arr[i];
+                } else {
+                    modifiedReason += '- ' + reason3Arr[i] + '\n';
+                }
+            }
+
+            //const modifiedReason = $("#modifiedReason").val().replace(/(?:\r\n|\r|\n)/g, '\n');
 
             const companyTag = [];
             $("#companyTagList input").each(function() {

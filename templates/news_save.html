@@ -279,12 +279,47 @@
                 <small class="text-body-emphasis" id="summaryLength">0</small>
                 <small class="text-body-emphasis"> / 250</small>
 
-                <button class="w-100 btn btn-lg btn-primary" id="copyKakao">카톡용 복사</button>
+                <button class="w-100 btn btn-lg btn-primary mb-3" id="copyKakao">카톡용 복사</button>
+                <button class="w-100 btn btn-lg btn-primary" id="copyWeb">웹 업로드용 복사</button>
+
                 <hr class="my-4">
 
                 <div class="input-group mb-3">
+                    <span class="input-group-text">특수 문자 구성 이유 추가</span>
+                    <button class="btn btn-primary" type="button" id="addSpecial">추가</button>
+                    <button class="btn btn-secondary" type="button" id="removeSpecial">제거</button>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">날짜 구성 이유 추가</span>
+                    <select id="selectDateReason" class="dropdown-content">
+                        <option value="" selected>선택해 주세요.</option>
+                        <option value="Key Instructions의 9.에 따라 '일'을 '2024년 월 일'로 수정했다.">9.</option>
+                        <option value="Key Instructions의 9.1.에 따라 '올해'를 '2024년'으로 수정했다.">9.1</option>
+                        <option value="Key Instructions의 9.2.에 따라 '월'을 '2024년 월'로 수정했다.">9.2</option>
+                        <option value="Key Instructions의 9.와 9.4.에 따라 '일(현지시간)'을 '2024년 월 일(현지 시각)'로 수정했다.">9.4</option>
+                    </select>
+
+                    <button class="btn btn-primary" type="button" id="addDate">추가</button>
+                    <button class="btn btn-danger" type="button" id="clearDate">초기화</button>
+                    <button class="btn btn-secondary" type="button" id="removeDate">제거</button>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="input-group mb-3 display-none" id="specialArea">
+                    <span class="input-group-text">특수 문자 구성 이유</span>
+                    <textarea id="modifiedReason1" class="form-control" aria-label="With textarea" style="height: 100px">Key Instructions의 5.에 따라  ''를 ''로 수정했다.</textarea>
+                </div>
+
+                <div class="input-group mb-3 display-none" id="dateReasonArea">
+                    <span class="input-group-text">날짜 구성 이유</span>
+                    <textarea id="modifiedReason2" class="form-control" aria-label="With textarea" style="height: 100px"></textarea>
+                </div>
+
+                <div class="input-group mb-3">
                     <span class="input-group-text">요약문 구성 이유</span>
-                    <textarea id="modifiedReason" class="form-control" aria-label="With textarea" style="height: 300px"></textarea>
+                    <textarea id="modifiedReason3" class="form-control" aria-label="With textarea" style="height: 300px">Article의 핵심 내용은 대한 것이다.&#10;Article에 가 있으므로 []번 요약 구조를 택했다.&#10;이에 따라 Summary의 두 번째 문장에는 를, 마지막 문장에는 를 제시했다.</textarea>
                 </div>
 
             <!--<button class="w-100 btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#saveModal" id="save">저장</button>-->
