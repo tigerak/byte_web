@@ -106,7 +106,8 @@
     border: 1px solid #f2b498;
 }
 .box4 {
-    width: 300px;
+    /* width: 300px; */
+    width: 585px;
     float: left;
     margin: 2px;
     padding: 4px;
@@ -114,7 +115,8 @@
     border: 1px solid #7b9a16;
 }
 .box5 {
-    width: 430px;
+    /* width: 430px; */
+    width: 585px;
     float: left;
     margin: 2px;
     padding: 4px;
@@ -200,18 +202,21 @@
 /* box4 */
 #modTitDiv{
     height: 20px;
-    width: 415px;
+    /* width: 415px; */
+    width: 575px;
     overflow: visible;
 }
 #modSumDiv {
     height: 180px;
-    width: 415px;
+    /* width: 415px; */
+    width: 575px;
     overflow: auto;
 }
 /* box5 */
 #modReaDiv{
     height: 250px;
-    width: 285px;
+    /* width: 285px; */
+    width: 575px;
     overflow: auto;
 }
 
