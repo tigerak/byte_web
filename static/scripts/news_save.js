@@ -267,6 +267,17 @@ $(document).ready(function () {
             $("#secondaryGroup label").each(function() {
                 secondaryTag.push($(this).text());
             });
+
+            const textarea = document.createElement('textarea');
+            textarea.innerHTML = modifiedReason;
+
+            const textarea2 = document.createElement('textarea');
+            textarea2.innerHTML = summary;
+
+            const decodeModifiedReason = textarea.value;
+
+            const decodeSummary = textarea2.value;
+
             const data = [{
                 "articleDate" : articleDate,
                 "media" : media,
@@ -275,8 +286,8 @@ $(document).ready(function () {
                 "title" : title,
                 "article" : article,
                 "modifiedSummaryTitle" : summaryTitle,
-                "modifiedSummary" : summary,
-                "modifiedReason" : modifiedReason,
+                "modifiedSummary" : decodeSummary,
+                "modifiedReason" : decodeModifiedReason,
                 "companyTag" : companyTag,
                 "primaryTag" : primaryTag.toString(),
                 "secondaryTag" : secondaryTag
