@@ -253,11 +253,11 @@ $(document).ready(function () {
             var formData = new FormData(this);
             formData.append('sub_button', clickedButtonValue);
 
-            var modSumContent = $('#modSumDiv').html();
+            var modSumContent = decodeHTMLEntities($('#modSumDiv').html());
             $('#hiddenModSum').val(modSumContent);
-            var modTitContent = $('#modTitDiv').html();
+            var modTitContent = decodeHTMLEntities($('#modTitDiv').html());
             $('#hiddenModTit').val(modTitContent);
-            var modReaContent = $('#modReaDiv').html();
+            var modReaContent = decodeHTMLEntities($('#modReaDiv').html());
             $('#hiddenModRea').val(modReaContent);
             var prevContent = $('#prevDiv').html();
             $('#hiddenPrev').val(prevContent);
