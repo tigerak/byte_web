@@ -246,6 +246,12 @@ $(document).ready(function () {
         console.log(localStorage.getItem("lastViewNumber") + " : lastViewNumber")
     });
 
+    function decodeHTMLEntities(text) {
+        const textarea = document.createElement('textarea');
+        textarea.innerHTML = text;
+        return textarea.value;
+    }
+
     // 폼 제출 이벤트
     $('#searchForm').submit(function (e) {
         e.preventDefault();
