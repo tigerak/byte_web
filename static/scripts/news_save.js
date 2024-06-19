@@ -274,9 +274,14 @@ $(document).ready(function () {
             const textarea2 = document.createElement('textarea');
             textarea2.innerHTML = summary;
 
+            const textarea3 = document.createElement('textarea');
+            textarea3.innerHTML = summaryTitle;
+
             const decodeModifiedReason = textarea.value;
 
             const decodeSummary = textarea2.value;
+
+            const decodeSummaryTitle = textarea3.value;
 
             const data = [{
                 "articleDate" : articleDate,
@@ -285,7 +290,7 @@ $(document).ready(function () {
                 /*"category" : category,*/
                 "title" : title,
                 "article" : article,
-                "modifiedSummaryTitle" : summaryTitle,
+                "modifiedSummaryTitle" : decodeSummaryTitle,
                 "modifiedSummary" : decodeSummary,
                 "modifiedReason" : decodeModifiedReason,
                 "companyTag" : companyTag,
