@@ -246,6 +246,7 @@ $(document).ready(function () {
         console.log(localStorage.getItem("lastViewNumber") + " : lastViewNumber")
     });
 
+    // HTML 특수 기호 제거 함수.
     function decodeHTMLEntities(text) {
         const textarea = document.createElement('textarea');
         textarea.innerHTML = text;

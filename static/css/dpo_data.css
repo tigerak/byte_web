@@ -1,0 +1,374 @@
+#url_button {
+    float: right;
+    margin-right: 15px;
+    margin-top: 5px;
+}
+
+#loading {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #9a4d1661;
+    z-index: 1000;
+  }
+  
+  #loading p {
+    text-align: center;
+    font-size: 24px;
+    color: white;
+  }
+
+.total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 1200px) {
+    .total {
+    display: inline;
+    }
+}
+
+.box-top{
+    display: flex;
+    flex-direction: center;
+    justify-content : center;
+}
+
+.box-wrap-upper{
+    width: 1200px;
+    display: flex;
+    flex-direction: center;
+}
+
+.box1 {     
+    width: 750px;
+    float: left;
+    margin: 2px;
+    padding: 5px;
+    border: 1px solid #f2d498;
+}
+.box2 {
+    position: relative; /* 이 div를 포지셔닝 컨텍스트로 만듦 */
+    float: left;
+    margin: 2px;
+    padding: 5px;
+    height: 410px;
+    min-width: 420px;
+    table-layout:fixed;
+    border: 1px solid #9a4d16;
+}
+
+.box-wrap-mid{
+    width: 1200px;
+    /* margin: 5px; */
+    display: flex;
+    flex-direction: center;
+}
+.box6 {
+    display: flex; /* Flexbox 레이아웃 적용 */
+    align-items: center; /* 버튼과 div를 수직 방향의 중앙에 정렬 */
+    gap: 5px; /* 버튼과 div 사이의 간격 설정 */
+    width: 200px;
+    float: left;
+    margin: 2px;
+    padding: 4px;
+    table-layout:fixed;
+    border: 1px solid #9a166c9d;
+}
+.box7 {
+    display: flex; /* Flexbox 레이아웃 적용 */
+    align-items: center; /* 버튼과 div를 수직 방향의 중앙에 정렬 */
+    gap: 5px; /* 버튼과 div 사이의 간격 설정 */
+    width: 974px;
+    float: left;
+    margin: 2px;
+    padding: 4px;
+    table-layout:fixed;
+    border: 1px solid #9a16169d;
+}
+
+.box-wrap-under{
+    width: 1200px;
+    /* margin: 5px; */
+    display: flex;
+    flex-direction: center;
+}
+.box3 {     
+    width: 430px;
+    float: left;
+    margin: 2px;
+    padding: 4px;
+    border: 1px solid #f2b498;
+}
+.box4 {
+    /* width: 300px; */
+    width: 585px;
+    float: left;
+    margin: 2px;
+    padding: 4px;
+    table-layout:fixed;
+    border: 1px solid #7b9a16;
+}
+.box5 {
+    /* width: 430px; */
+    width: 585px;
+    float: left;
+    margin: 2px;
+    padding: 4px;
+    table-layout:fixed;
+    border: 1px solid #18169a9d;
+}
+.box-bott{
+    /* margin: 10px; */
+    display: flex;
+    flex-direction: center;
+}
+
+.sub_button {
+    margin: 4px;
+}
+.content-div{
+    display: inline-block; /* div를 옆으로 나열 */
+    margin: 2px;
+    border: 1px solid #ccc;
+    padding: 1px 2px;
+}
+
+/* box1 */
+#tagDiv {
+    height: 20px;
+    min-width: 50px;
+    overflow: visible; /* 기본값, 내용이 넘쳐도 그대로 보여줍니다. */
+    text-align: center;
+    background-color: lemonchiffon;
+}
+#etcDiv {
+    height: 20px;
+    min-width: 50px;
+    overflow: visible; /* 기본값, 내용이 넘쳐도 그대로 보여줍니다. */
+    text-align: center;
+}
+#urlDiv {
+    height: 20px;
+    width: 550px;
+    overflow: visible;
+}
+#titleDiv {
+    height: 20px;
+    width: 660px;
+    overflow: visible; /* auto; */
+}
+#articleDiv {
+    height: 310px;
+    width: 735px;
+    overflow: auto;
+}
+
+/* box2 */
+#memo_but {
+    height: 20;
+    width: 120px;
+}
+#title_text {
+    width: 150px;
+}
+#prevBut, #nextBut {
+    width: 100px;
+}
+#prevDiv, #nextDiv{
+    width: 55px;
+} 
+#save_but {
+    height: 35px;
+    width: 365px;
+}
+
+/* box3 */
+#sumTitDiv{
+    height: 20px;
+    width: 415px;
+    overflow: visible;
+}
+#sumDiv {
+    height: 200px;
+    width: 415px;
+    overflow: auto;
+}
+/* box4 */
+#modTitDiv{
+    height: 20px;
+    /* width: 415px; */
+    width: 575px;
+    overflow: visible;
+}
+#modSumDiv {
+    height: 180px;
+    /* width: 415px; */
+    width: 575px;
+    overflow: auto;
+}
+/* box5 */
+#modReaDiv{
+    height: 250px;
+    /* width: 285px; */
+    width: 575px;
+    overflow: auto;
+}
+
+/* 카테고리 선택 스타일링 */
+.modal {
+    background-color: #ffffff;
+    color: #333333;
+    padding: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%);
+    border-radius: 8px;
+    display: none; /* 기본적으로 숨김 */
+    z-index: 2; /* 모달을 내용 위에 표시 */
+    width: 60%; /* 모달의 너비 조정 */
+    max-height: 60vh;
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤 */
+}
+
+.categories {
+    display: flex;
+    flex-direction: column; /* 카테고리를 세로로 배치 */
+}
+
+.category {
+    margin-bottom: 20px;
+}
+
+.category-item {
+    display: inline-block; /* 항목을 가로로 나열 */
+    margin: 5px;
+    padding: 10px;
+    background-color: #FFC0CB ; 
+    color: #333;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.category-item.selected {
+    background-color: #FFD700 ; /* 선택된 항목의 배경색 변경 */
+    color: #333; /* 글씨 색상 */
+}
+
+.categories div, #selectedCategories span {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px;
+    background-color: #E6E6FA; 
+    color: #333;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.close-modal {
+    margin-top: 20px;
+    display: inline-block;
+    background-color: #87CEEB; /* 닫기 버튼 색상 */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#selectedCategories {
+    display: flex; /* 선택된 카테고리를 가로로 나열 */
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+.selected-item {
+    display: inline-block; /* 인라인 블록 요소로 표시 */
+    margin: 5px; /* 주변 요소와의 간격 */
+    padding: 5px 10px; /* 내부 여백 */
+    background-color: #FFD700 ; /* 박스 배경색, 예를 들어 부드러운 핑크 */
+    color: #333; /* 글씨 색상 */
+    border-radius: 4px; /* 모서리 둥글게 처리 */
+}
+#openPrimaryModal{
+    height: 50px;
+    width: 70px;
+}
+#selectedPrimaryCategories{
+    height: 50px;
+    width: 150px;
+    overflow: auto;
+}
+#openSecondaryModal{
+    height: 50px;
+    width: 70px;
+}
+#selectedSecondaryCategories{
+    height: 50px;
+    width: 875px;
+    overflow: auto;
+}
+
+/* 관계 설정 메뉴 */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropbtn {
+    width: 128px;
+    background-color: #4caf4f;
+    color: white;
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 180px;
+    max-height: 450px; /* 최대 높이 설정 */
+    overflow-y: auto; /* 내용이 최대 높이를 초과할 경우 스크롤바 표시 */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: black;
+    padding: 10px 10px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {background-color: #f1f1f1}
+.data-item {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    background-color: #f3f3f3;
+}
+.delete-btn {
+    color: red;
+    cursor: pointer;
+    float: right;
+}
+#firstCompany{
+    width: 75px;
+}
+#secondCompany{
+    width: 75px;
+}
+#addButton {
+    width: 175px;
+    float: right;
+}
+#companyTagContainer {
+    width: 418px;
+    height: 175px;
+    border: 1px solid #ccc;
+    overflow-y: auto; 
+}

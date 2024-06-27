@@ -57,7 +57,7 @@ $(document).ready(function () {
             contentType: false,
             success: function (data) {
                 $('#content').html(data);
-                console.log('@@@ DATA @@@', data)
+                // console.log('@@@ DATA @@@', data)
                 hideLoading()
             },
             error: function () {

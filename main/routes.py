@@ -309,6 +309,42 @@ def mod_db():
                             message=message)
 
 
+
+@main_bp.route('/load_content/dpo_data', methods=['GET', 'POST'])
+def dpo_data():
+
+    return render_template('dpo_data.html',
+                            message=message)
+    
+@main_bp.route('/util/url_scraping', methods=['POST'])
+def url_scraping():
+    data = request.form
+    
+    url = data['urlDiv']
+    
+    scrape = Scraping()
+    media, title, article, article_date = scrape.scraping(url)
+    
+    response = {
+        "urlDiv" : url,
+        "mediaDiv" : media,
+        "titleDiv" : title,
+        "articleDiv" : article,
+        "dateDiv" : article_date
+    }
+    
+    return jsonify(response)
+    
+@main_bp.route('/util/model_api', methods=['POST'])
+def model_api():
+    data = request.form
+    
+    
+    
+    response = ''
+    
+    return jsonify(response)
+    
 @main_bp.route('/load_content/kg_db', methods=['GET', 'POST'])
 def kg_db():
     if request.method == 'GET':
