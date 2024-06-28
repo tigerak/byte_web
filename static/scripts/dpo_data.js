@@ -1,10 +1,27 @@
 $(document).ready(function() {
+    // 커서 위치마다 엔터 기능 변경 
+    $('.contentDiv').on('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent the 엔터의 default behavior (new line)
+            var divId = $(this).attr('id');
+            if (divId === 'urlDiv') {
+                $('#scrapButton').click();
+            } else if (divId === 'inputIdDiv') {
+                $('#searchBut').click();
+            } else if (divId === 'div3') {
+                $('#button3').click();
+            }
+        }
+    });
+
     // 스크래핑 버튼
-    $('#searchButton').click(function() {
+    $('#scrapButton').click(function() {
         // 클릭된 버튼의 data-divs 속성 값을 가져옵니다.
         var divIds = $(this).data('divs').split(',');
         // FormData 객체를 생성하고 데이터 추가
         var formData = createFormData(divIds);
+        // content-div 클래스를 가진 모든 div의 텍스트를 지웁니다.
+        $('.contentDiv').text('');
         // 데이터를 서버로 전송합니다.
         sendData('/util/url_scraping', formData);
     });
@@ -13,7 +30,7 @@ $(document).ready(function() {
     $('#summaryButton').click(function() {
         var divIds = $(this).data('divs').split(',');
         var formData = createFormData(divIds);
-        sendData('http://10.34.120.29:8181/api', formData);
+        sendData('/util/model_api', formData);
     });
 
     function createFormData(divIds) {
@@ -41,7 +58,12 @@ $(document).ready(function() {
             success: function(response) {
                 // 서버로부터 받은 데이터를 해당하는 div에 출력합니다.
                 $.each(response, function(key, value) {
-                    $('#' + key).text(value);
+                    // 제일 앞의 개행 문자 제거
+                    if (value.startsWith('\n')) {
+                        value = value.substring(1);
+                    }
+                    // 해당 id를 가진 div에 값 설정
+                    $('#' + key).text(value).css('white-space', 'pre-wrap');  // .text()를 사용하여 텍스트 설정하고, 인라인 스타일 추가
                 });
                 // Loding 메시지 제거
                 hideLoading();

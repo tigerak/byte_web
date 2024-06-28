@@ -45,7 +45,10 @@
     flex-direction: center;
 }
 
-.box1 {     
+.box1 {
+    display: flex;                /* Flexbox 레이아웃 사용 */
+    flex-wrap: wrap; /* 요소들을 다음 줄로 넘기기 위해 wrap 설정 */
+    gap: 5px;                    /* 자식 요소 간의 간격 설정 */
     width: 750px;
     float: left;
     margin: 2px;
@@ -54,6 +57,9 @@
 }
 .box2 {
     position: relative; /* 이 div를 포지셔닝 컨텍스트로 만듦 */
+    display: flex;                /* Flexbox 레이아웃 사용 */
+    flex-wrap: wrap; /* 요소들을 다음 줄로 넘기기 위해 wrap 설정 */
+    gap: 5px;                    /* 자식 요소 간의 간격 설정 */
     float: left;
     margin: 2px;
     padding: 5px;
@@ -129,39 +135,49 @@
     flex-direction: center;
 }
 
-.sub_button {
-    margin: 4px;
-}
-.content-div{
-    display: inline-block; /* div를 옆으로 나열 */
-    margin: 2px;
+.contentDiv {
+    height: 20px;
+    min-width: 50px;
     border: 1px solid #ccc;
     padding: 1px 2px;
 }
-
-/* box1 */
-#tagDiv {
+.tagDiv {
+    display: inline-block; /* div를 옆으로 나열 */
     height: 20px;
-    min-width: 50px;
+    width: 70px;
     overflow: visible; /* 기본값, 내용이 넘쳐도 그대로 보여줍니다. */
     text-align: center;
     background-color: lemonchiffon;
+    border: 1px solid #ccc;
+    padding: 1px 2px;
 }
-#etcDiv {
-    height: 20px;
-    min-width: 50px;
-    overflow: visible; /* 기본값, 내용이 넘쳐도 그대로 보여줍니다. */
-    text-align: center;
+.subButton{
+    height: 25px;
 }
+/* box1 */
 #urlDiv {
-    height: 20px;
     width: 550px;
     overflow: visible;
 }
+#scrapButton {
+    width: 85px;
+}
 #titleDiv {
-    height: 20px;
-    width: 660px;
+    width: 640px;
     overflow: visible; /* auto; */
+}
+#categoryDiv, #mediaDiv, #dateDiv, #dbIdDiv {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    transition: width 0.3s, max-width 0.3s; /* 부드러운 애니메이션을 위해 추가 */
+}
+#mediaDiv:hover, #dateDiv:hover {
+    width: 120px; 
+    overflow: hidden; 
+    white-space: nowrap;
 }
 #articleDiv {
     height: 310px;
@@ -170,18 +186,21 @@
 }
 
 /* box2 */
-#memo_but {
-    height: 20;
+#memoBut {
     width: 120px;
+    margin: 0px 5px;
 }
-#title_text {
+#inputIdDiv {
     width: 150px;
 }
-#prevBut, #nextBut {
+#searchButton {
     width: 100px;
 }
+#prevBut, #nextBut {
+    width: 80px;
+}
 #prevDiv, #nextDiv{
-    width: 55px;
+    width: 80px;
 } 
 #save_but {
     height: 35px;
@@ -368,7 +387,7 @@
 }
 #companyTagContainer {
     width: 418px;
-    height: 175px;
+    height: 220px;
     border: 1px solid #ccc;
     overflow-y: auto; 
 }

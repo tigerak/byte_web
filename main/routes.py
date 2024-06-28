@@ -1,6 +1,7 @@
 import requests
 # module
 from main import main_bp, socketio
+from config import MODEL_API_ADDRESS
 from models import Article
 from utils import (GPT, Vertex, Scraping, 
                    importent_sentence, remove_mac_specialsymbol, count_summary_char)
@@ -339,11 +340,11 @@ def url_scraping():
 def model_api():
     data = request.form
     
+    response = requests.post(MODEL_API_ADDRESS, data=data)
     
-    
-    response = ''
-    
-    return jsonify(response)
+    return response.json()
+
+
     
 @main_bp.route('/load_content/kg_db', methods=['GET', 'POST'])
 def kg_db():

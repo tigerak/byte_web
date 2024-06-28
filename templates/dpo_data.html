@@ -1,204 +1,188 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>modify Demo</title>
-    
-    <!-- CSS JS -->
-    <script src="{{ url_for('static', filename='scripts/dpo_data.js') }}"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dpo_data.css') }}">
-    
-</head>
+<div class="total">
 
-<body>
-    <div class="total">
+<div class="box-top">
+    <h3>- DPO 데이터 수집 -</h3>
+</div>
 
-    <div class="box-top">
-        <h3>- DPO 데이터 수집 -</h3>
-    </div>
-
-    <div class="box-wrap-upper">
-        <div class="box1">
-            <div contenteditable="false" class="content-div" id="tagDiv">주 소</div>
-            <div contenteditable="true" class="content-div" id="urlDiv"></div>
-            <button id="searchButton" data-divs="urlDiv">검색</button>
-            <br/>
-            <div contenteditable="false" class="content-div" id="tagDiv">제 목</div>
-            <div contenteditable="false" class="content-div" id="titleDiv"></div>
-            <br/>
-            <div contenteditable="false" class="content-div" id="tagDiv">카테고리</div>
-            <div contenteditable="false" class="content-div" id="etcDiv">{{category|safe}}</div>
-            <div contenteditable="false" class="content-div" id="tagDiv">언론사</div>
-            <div contenteditable="false" class="content-div" id="mediaDiv"></div>
-            <div contenteditable="false" class="content-div" id="tagDiv">송고 시간</div>
-            <div contenteditable="false" class="content-div" id="dateDiv"></div>
-            <div contenteditable="false" class="content-div" id="tagDiv">번호</div>
-            <div contenteditable="false" class="content-div" id="currentNewsNumber">{{id|safe}}</div>
-            <input type="submit" class="sub_button" id="del_but" value="삭제">
-            <br/>
-            <div contenteditable="false" class="content-div" id="articleDiv"></div>
-            <input type="hidden" id="hiddenInput" name="articleHighLight">
-        </div>
-
-        <div class="box2">
-            <input type="submit" class="sub_button" id="memo_but" value="마지막 저장 기사">
-            <input type="submit" class="sub_button" id="memo_but" value="마지막 본 기사">
-            <input type="submit" class="sub_button" id="memo_but" value="마지막 기사 조회">
-            <br/>
-            <div contenteditable="false" class="content-div" id="targetDBid">DB 번호</div>
-            <input type="text" id="db_id" name="api_id", size="10", placeholder="번호는 숫자만 입력." value="{{id}}">
-            <input type="submit" class="sub_button" id="searchBut" value="검색" accesskey="z"> (art+z)
-            <br/>
-            <div contenteditable="false" class="content-div" id="prevDiv">{{prev_id}}번</div>
-            <input type="submit" class="sub_button" id="prevBut" value="<< 이전">
-            <input type="submit" class="sub_button" id="nextBut" value="다음 >>">
-            <div contenteditable="false" class="content-div" id="nextDiv">{{next_id}}번</div>
-            <br/>
-            {{ modified }} {{ modified_date }}
-            <br/>
-            {{ res }} 
-            <br/>
-            <input type="submit" class="sub_button" id="save_but" value="저 장">
-            <br/>
-            <div contenteditable="True" class="content-div" id="firstCompany"></div>
-            <button class="toggle-btn" data-target="#firstCompany">Main</button> 
-            <div class="dropdown">
-                <button class="dropbtn">관계 설정</button>
-                <div class="dropdown-content">
-                  <a href="#">경쟁사</a>
-                  <a href="#">갈등 관계</a>
-                  <a href="#">전략적 제휴 관계</a>
-                  <a href="#">동종 업계</a>
-                  <a href="#">계열사</a>
-                  <a href="#">잠재 협력사</a>
-                  <a href="#">모회사</a>
-                  <a href="#">자회사</a>
-                  <a href="#">관계회사</a>
-                  <a href="#">투자회사</a>
-                  <a href="#">지주회사</a>
-                  <a href="#">피투자회사</a>
-                  <a href="#">인수</a>
-                  <a href="#">매각</a>
-                  <a href="#">합병</a>
-                  <a href="#">인적분할</a>
-                  <a href="#">물적분할</a>
-                  <a href="#">동일 기업</a>
-                  <a href="#">공급사</a>
-                  <a href="#">피공급사</a>
-                  <a href="#">벤치마킹</a>
-                  <a href="#">기타</a>
-                  <a href="#">관계 없음</a>
-                </div>
-            </div>
-            <div contenteditable="True" class="content-div" id="secondCompany"></div>
-            <button class="toggle-btn" data-target="#secondCompany">Sub</button>
-            <br>
-            <button id="addButton">추가</button>
-            <div id="companyTagContainer">
-                {% for companyItem in company_tag_list %}
-                <div class='data-item'>
-                    {{companyItem}}
-                    <!-- {% if companyItem['first-main'] %}<span>First Main: {{ companyItem['first-main'] }}</span><br>{% endif %}
-                    {% if companyItem['first-sub'] %}<span>First Sub: {{ companyItem['first-sub'] }}</span><br>{% endif %}
-                    {% if companyItem['relation'] %}<span>Relation: {{ companyItem['relation'] }}</span><br>{% endif %}
-                    {% if companyItem['second-main'] %}<span>Second Main: {{ companyItem['second-main'] }}</span>{% endif %}
-                    {% if companyItem['second-sub'] %}<span>Second Sub: {{ companyItem['second-sub'] }}</span>{% endif %} -->
-                    <span class='delete-btn'>삭제</span>
-                </div>
-                {% endfor %}
-            </div> 
-            <input type="hidden" id="hiddenCompanyTag" name="company_tag">
-        </div>
-    </div>
-
-    <div class="box-wrap-mid">
-        <div class="box6">
-            <!-- 선택 버튼 -->
-            <button class="sub_button" id="openPrimaryModal">대분류 선택</button>
-            <!-- 선택된 카테고리를 표시할 div -->
-            <div contenteditable="False" class="content-div" id="selectedPrimaryCategories">
-                <span class="selected-item">{{ primary_tag }}</span> 
-            </div>
-            <input type="hidden" id="hiddenPrimaryTag" name="primary_tag">
-        </div>
-        <div class="box7">
-            <button class="sub_button" id="openSecondaryModal">중분류 선택</button>
-            <div contenteditable="False" class="content-div" id="selectedSecondaryCategories">
-                {% for secondaryItem in secondary_tag_list %}
-                <span class="selected-item">{{ secondaryItem }}</span>
-                {% endfor %}
-            </div>
-            <input type="hidden" id="hiddenSecondaryTag" name="secondary_tag">
-        </div>
+<div class="box-wrap-upper">
+    <div class="box1">
+        <div contenteditable="false" class="tagDiv">주 소</div>
+        <div contenteditable="true" class="contentDiv" id="urlDiv"></div>
+        <button class="subButton" id="scrapButton" data-divs="urlDiv">기사 수집</button>
         
-
-        <!-- 팝업 모달 -->
-        <!-- 1차 카테고리 모달 -->
-        <div id="primaryCategoryModal" class="modal" style="display:none;">
-            <div class="modal-content">
-                <h2>대분류</h2>
-                <div id="primaryCategories" class="categories"></div>
-                <button class="close-modal">닫기</button>
-            </div>
-        </div>
-
-        <!-- 2차 카테고리 모달 -->
-        <div id="secondaryCategoryModal" class="modal" style="display:none;">
-            <div class="modal-content">
-                <h2>중분류</h2>
-                <div id="secondaryCategories" class="categories"></div>
-                <button class="close-modal">닫기</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="box-wrap-under">
-        <!-- <div class="box3">
-            <p>기존 요약문 :</p>
-            <div contenteditable="false" class="content-div" id="sumTitDiv">{{summary_title|safe}}</div>
-            <div contenteditable="false" class="content-div" id="sumDiv">{{summary|safe}}</div>
-        </div> -->
-
-        <div class="box5">
-            <div contenteditable="false" class="content-div" id="tagDiv">수정 상태</div>
-            {{ modified }} 
-            <div contenteditable="false" class="content-div" id="tagDiv">수정 시간</div>
-            {{ modified_date }}
-            <button id="summaryButton" data-divs="titleDiv,dateDiv,articleDiv">요약</button>
-            <br/>
-            <input type="submit" class="sub_button" id="copy_sum" value=">> 기존 요약문 그대로 가져오기">
-            글자수 : {{ count_summary }} / 250
-            <br />
-            <div contenteditable="True" class="content-div" id="modTitDiv">{{modified_summary_title|safe}}</div>
-            <input type="hidden" id="hiddenModTit" name="mdt">
-            <br />
-            <div contenteditable="True" class="content-div" id="modSumDiv">{{modified_summary|safe}}</div>
-            <input type="hidden" id="hiddenModSum" name="msd">
-        </div>
-
-        <div class="box4">
-            요약문 구성 이유 : <br />
-            <div contenteditable="True" class="content-div" id="modReaDiv">{{modified_reason|safe}}</div>
-            <input type="hidden" id="hiddenModRea" name="mrd">
-        </div>
-
-    </div>
-
-    <div class="box-bott">
-        <div width: 200px;>
-            {{message}}
-        </div>
+        <div contenteditable="false" class="tagDiv">제 목</div>
+        <div contenteditable="false" class="contentDiv" id="titleDiv"></div>
         
+        <div contenteditable="false" class="tagDiv">카테고리</div>
+        <div contenteditable="false" class="contentDiv" id="categoryDiv"></div>
+        <div contenteditable="false" class="tagDiv">언론사</div>
+        <div contenteditable="false" class="contentDiv" id="mediaDiv"></div>
+        <div contenteditable="false" class="tagDiv">송고 시간</div>
+        <div contenteditable="false" class="contentDiv" id="dateDiv"></div>
+        <div contenteditable="false" class="tagDiv">DB 번호</div>
+        <div contenteditable="false" class="contentDiv" id="dbIdDiv"></div>
+        <input type="submit" class="subButton" id="delBut" value="삭제">
+        
+        <div contenteditable="false" class="contentDiv" id="articleDiv"></div>
+    </div>
+
+    <div class="box2">
+        <input type="submit" class="subButton" id="memoBut" value="마지막 저장 기사">
+        <input type="submit" class="subButton" id="memoBut" value="마지막 본 기사">
+        <input type="submit" class="subButton" id="memoBut" value="마지막 기사 조회">
+        
+        <div contenteditable="false" class="tagDiv">DB 번호</div>
+        <div contenteditable="true" class="contentDiv" id="inputIdDiv" data-placeholder="번호는 숫자만 입력."></div>
+        <input type="submit" class="subButton" id="searchButton" value="검색" accesskey="z"> (art+z)
+        
+        <div contenteditable="false" class="contentDiv" id="prevDiv"></div>
+        <button class="subButton" id="prevBut" data-divs="prevDiv"><< 이전</button>
+        <button class="subButton" id="nextBut" data-divs="nextDiv">다음 >></button>
+        <div contenteditable="false" class="contentDiv" id="nextDiv"></div>
+        
+        <div contenteditable="True" class="contentDiv" id="firstCompany"></div>
+        <button class="toggle-btn" data-target="#firstCompany">Main</button> 
+        <div class="dropdown">
+            <button class="dropbtn">관계 설정</button>
+            <div class="dropdown-content">
+                <a href="#">경쟁사</a>
+                <a href="#">갈등 관계</a>
+                <a href="#">전략적 제휴 관계</a>
+                <a href="#">동종 업계</a>
+                <a href="#">계열사</a>
+                <a href="#">잠재 협력사</a>
+                <a href="#">모회사</a>
+                <a href="#">자회사</a>
+                <a href="#">관계회사</a>
+                <a href="#">투자회사</a>
+                <a href="#">지주회사</a>
+                <a href="#">피투자회사</a>
+                <a href="#">인수</a>
+                <a href="#">매각</a>
+                <a href="#">합병</a>
+                <a href="#">인적분할</a>
+                <a href="#">물적분할</a>
+                <a href="#">동일 기업</a>
+                <a href="#">공급사</a>
+                <a href="#">피공급사</a>
+                <a href="#">벤치마킹</a>
+                <a href="#">기타</a>
+                <a href="#">관계 없음</a>
+            </div>
+        </div>
+        <div contenteditable="True" class="contentDiv" id="secondCompany"></div>
+        <button class="toggle-btn" data-target="#secondCompany">Sub</button>
+        <br>
+        <button id="addButton">추가</button>
+        <div id="companyTagContainer">
+            {% for companyItem in company_tag_list %}
+            <div class='data-item'>
+                {{companyItem}}
+                <!-- {% if companyItem['first-main'] %}<span>First Main: {{ companyItem['first-main'] }}</span><br>{% endif %}
+                {% if companyItem['first-sub'] %}<span>First Sub: {{ companyItem['first-sub'] }}</span><br>{% endif %}
+                {% if companyItem['relation'] %}<span>Relation: {{ companyItem['relation'] }}</span><br>{% endif %}
+                {% if companyItem['second-main'] %}<span>Second Main: {{ companyItem['second-main'] }}</span>{% endif %}
+                {% if companyItem['second-sub'] %}<span>Second Sub: {{ companyItem['second-sub'] }}</span>{% endif %} -->
+                <span class='delete-btn'>삭제</span>
+            </div>
+            {% endfor %}
+        </div> 
+        <input type="hidden" id="hiddenCompanyTag" name="company_tag">
+    </div>
+</div>
+
+<div class="box-wrap-mid">
+    <div class="box6">
+        <!-- 선택 버튼 -->
+        <button class="sub_button" id="openPrimaryModal">대분류 선택</button>
+        <!-- 선택된 카테고리를 표시할 div -->
+        <div contenteditable="False" class="contentDiv" id="selectedPrimaryCategories">
+            <span class="selected-item">{{ primary_tag }}</span> 
+        </div>
+        <input type="hidden" id="hiddenPrimaryTag" name="primary_tag">
+    </div>
+    <div class="box7">
+        <button class="sub_button" id="openSecondaryModal">중분류 선택</button>
+        <div contenteditable="False" class="contentDiv" id="selectedSecondaryCategories">
+            {% for secondaryItem in secondary_tag_list %}
+            <span class="selected-item">{{ secondaryItem }}</span>
+            {% endfor %}
+        </div>
+        <input type="hidden" id="hiddenSecondaryTag" name="secondary_tag">
     </div>
     
-    <div id="loading" style="display:none;">
-        <br/><br/>
-        <p>Autumn Loading...</p>
+
+    <!-- 팝업 모달 -->
+    <!-- 1차 카테고리 모달 -->
+    <div id="primaryCategoryModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2>대분류</h2>
+            <div id="primaryCategories" class="categories"></div>
+            <button class="close-modal">닫기</button>
+        </div>
     </div>
 
+    <!-- 2차 카테고리 모달 -->
+    <div id="secondaryCategoryModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2>중분류</h2>
+            <div id="secondaryCategories" class="categories"></div>
+            <button class="close-modal">닫기</button>
+        </div>
+    </div>
+</div>
+
+<div class="box-wrap-under">
+    <!-- <div class="box3">
+        <p>기존 요약문 :</p>
+        <div contenteditable="false" class="contentDiv" id="sumTitDiv">{{summary_title|safe}}</div>
+        <div contenteditable="false" class="contentDiv" id="sumDiv">{{summary|safe}}</div>
+    </div> -->
+
+    <div class="box5">
+        <div contenteditable="false" class="contentDiv" id="tagDiv">수정 상태</div>
+        {{ modified }} 
+        <div contenteditable="false" class="contentDiv" id="tagDiv">수정 시간</div>
+        {{ modified_date }}
+        <button id="summaryButton" data-divs="titleDiv,dateDiv,articleDiv">요약</button>
+        
+        글자수 : {{ count_summary }} / 250
+        
+        {{ modified }} {{ modified_date }}
+        <br/>
+        {{ res }} 
+        <br/>
+        <input type="submit" class="sub_button" id="save_but" value="저 장">
+
+        <div contenteditable="True" class="contentDiv" id="modTitDiv">{{modified_summary_title|safe}}</div>
+        <input type="hidden" id="hiddenModTit" name="mdt">
+        <br />
+        <div contenteditable="True" class="contentDiv" id="modSumDiv">{{modified_summary|safe}}</div>
+        <input type="hidden" id="hiddenModSum" name="msd">
     </div>
 
-</body>
-</html>
+    <div class="box4">
+        요약문 구성 이유 : <br />
+        <div contenteditable="True" class="contentDiv" id="modReaDiv">{{modified_reason|safe}}</div>
+        <input type="hidden" id="hiddenModRea" name="mrd">
+    </div>
+
+</div>
+
+<div class="box-bott">
+    <div width: 200px;>
+        {{message}}
+    </div>
+    
+</div>
+
+<div id="loading" style="display:none;">
+    <br/><br/>
+    <p>Autumn Loading...</p>
+</div>
+
+</div>
+
+<!-- CSS JS -->
+<script src="{{ url_for('static', filename='scripts/dpo_data.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dpo_data.css') }}">
