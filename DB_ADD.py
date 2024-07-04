@@ -1,7 +1,5 @@
 ### 실수 실행 방지 ###
-from utils.mod_db.mod_db_util import requests_post, requests_del
 import pandas as pd
-import requests
 import json
 ### 실수 실행 방지 ###
 data_path = '/home/web/app/data.csv'

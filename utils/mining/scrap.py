@@ -3,7 +3,6 @@ import urllib3
 from urllib3.util.ssl_ import create_urllib3_context
 import ssl
 import re
-import time
 # pip install pyOpenSSL
 
 class Scraping():

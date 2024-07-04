@@ -6,40 +6,46 @@
 
 <div class="box-wrap-upper">
     <div class="box1">
-        <div contenteditable="false" class="tagDiv">주 소</div>
+        <div contenteditable="false" class="sign-div">주 소</div>
         <div contenteditable="true" class="contentDiv" id="urlDiv"></div>
-        <button class="subButton" id="scrapButton" data-divs="urlDiv">기사 수집</button>
+        <button id="scrapButton" data-divs="urlDiv">기사 수집</button>
         
-        <div contenteditable="false" class="tagDiv">제 목</div>
+        <div contenteditable="false" class="sign-div">제 목</div>
         <div contenteditable="false" class="contentDiv" id="titleDiv"></div>
         
-        <div contenteditable="false" class="tagDiv">카테고리</div>
+        <div contenteditable="false" class="sign-div">카테고리</div>
         <div contenteditable="false" class="contentDiv" id="categoryDiv"></div>
-        <div contenteditable="false" class="tagDiv">언론사</div>
+        <div contenteditable="false" class="sign-div">언론사</div>
         <div contenteditable="false" class="contentDiv" id="mediaDiv"></div>
-        <div contenteditable="false" class="tagDiv">송고 시간</div>
+        <div contenteditable="false" class="sign-div">송고 시간</div>
         <div contenteditable="false" class="contentDiv" id="dateDiv"></div>
-        <div contenteditable="false" class="tagDiv">DB 번호</div>
+        <div contenteditable="false" class="sign-div">DB 번호</div>
         <div contenteditable="false" class="contentDiv" id="dbIdDiv"></div>
-        <input type="submit" class="subButton" id="delBut" value="삭제">
+        <button class="aws-db-but" id="delButton" data-divs="dbIdDiv,prevDiv,nextDiv">삭제</button>
         
         <div contenteditable="false" class="contentDiv" id="articleDiv"></div>
     </div>
 
     <div class="box2">
-        <input type="submit" class="subButton" id="memoBut" value="마지막 저장 기사">
-        <input type="submit" class="subButton" id="memoBut" value="마지막 본 기사">
-        <input type="submit" class="subButton" id="memoBut" value="마지막 기사 조회">
+        <button class="aws-db-but" id="lastSaveButton" data-divs="">마지막 저장 기사</button>
+        <button class="aws-db-but" id="listVisitButton">방금 전 본 기사</button>
+        <button class="aws-db-but" id="lastArticleButton">마지막 기사 조회</button>
         
-        <div contenteditable="false" class="tagDiv">DB 번호</div>
+        <div contenteditable="false" class="sign-div">DB 번호</div>
         <div contenteditable="true" class="contentDiv" id="inputIdDiv" data-placeholder="번호는 숫자만 입력."></div>
-        <input type="submit" class="subButton" id="searchButton" value="검색" accesskey="z"> (art+z)
+        <button class="aws-db-but" id="searchButton" data-divs="inputIdDiv">검색</button>
         
         <div contenteditable="false" class="contentDiv" id="prevDiv"></div>
-        <button class="subButton" id="prevBut" data-divs="prevDiv"><< 이전</button>
-        <button class="subButton" id="nextBut" data-divs="nextDiv">다음 >></button>
+        <button class="aws-db-but" id="prevBut" data-divs="prevDiv"><< 이전</button>
+        <button class="aws-db-but" id="nextBut" data-divs="nextDiv">다음 >></button>
         <div contenteditable="false" class="contentDiv" id="nextDiv"></div>
         
+        <!-- 기업 태그 -->
+        <div class="contentDiv" id="companyTagContainer">
+            <div class='data-item'>
+            </div>
+        </div> 
+        <input type="hidden" id="hiddenCompanyTag" name="company_tag">
         <div contenteditable="True" class="contentDiv" id="firstCompany"></div>
         <button class="toggle-btn" data-target="#firstCompany">Main</button> 
         <div class="dropdown">
@@ -72,22 +78,8 @@
         </div>
         <div contenteditable="True" class="contentDiv" id="secondCompany"></div>
         <button class="toggle-btn" data-target="#secondCompany">Sub</button>
-        <br>
+        
         <button id="addButton">추가</button>
-        <div id="companyTagContainer">
-            {% for companyItem in company_tag_list %}
-            <div class='data-item'>
-                {{companyItem}}
-                <!-- {% if companyItem['first-main'] %}<span>First Main: {{ companyItem['first-main'] }}</span><br>{% endif %}
-                {% if companyItem['first-sub'] %}<span>First Sub: {{ companyItem['first-sub'] }}</span><br>{% endif %}
-                {% if companyItem['relation'] %}<span>Relation: {{ companyItem['relation'] }}</span><br>{% endif %}
-                {% if companyItem['second-main'] %}<span>Second Main: {{ companyItem['second-main'] }}</span>{% endif %}
-                {% if companyItem['second-sub'] %}<span>Second Sub: {{ companyItem['second-sub'] }}</span>{% endif %} -->
-                <span class='delete-btn'>삭제</span>
-            </div>
-            {% endfor %}
-        </div> 
-        <input type="hidden" id="hiddenCompanyTag" name="company_tag">
     </div>
 </div>
 
@@ -96,18 +88,12 @@
         <!-- 선택 버튼 -->
         <button class="sub_button" id="openPrimaryModal">대분류 선택</button>
         <!-- 선택된 카테고리를 표시할 div -->
-        <div contenteditable="False" class="contentDiv" id="selectedPrimaryCategories">
-            <span class="selected-item">{{ primary_tag }}</span> 
-        </div>
+        <div contenteditable="False" class="contentDiv" id="selectedPrimaryCategories"></div>
         <input type="hidden" id="hiddenPrimaryTag" name="primary_tag">
     </div>
     <div class="box7">
         <button class="sub_button" id="openSecondaryModal">중분류 선택</button>
-        <div contenteditable="False" class="contentDiv" id="selectedSecondaryCategories">
-            {% for secondaryItem in secondary_tag_list %}
-            <span class="selected-item">{{ secondaryItem }}</span>
-            {% endfor %}
-        </div>
+        <div contenteditable="False" class="contentDiv" id="selectedSecondaryCategories"></div>
         <input type="hidden" id="hiddenSecondaryTag" name="secondary_tag">
     </div>
     
@@ -140,31 +126,29 @@
     </div> -->
 
     <div class="box5">
-        <div contenteditable="false" class="contentDiv" id="tagDiv">수정 상태</div>
-        {{ modified }} 
-        <div contenteditable="false" class="contentDiv" id="tagDiv">수정 시간</div>
-        {{ modified_date }}
-        <button id="summaryButton" data-divs="titleDiv,dateDiv,articleDiv">요약</button>
-        
-        글자수 : {{ count_summary }} / 250
-        
-        {{ modified }} {{ modified_date }}
-        <br/>
-        {{ res }} 
-        <br/>
-        <input type="submit" class="sub_button" id="save_but" value="저 장">
+        <div contenteditable="false" class="sign-div">수정 상태</div>
+        <div contenteditable="false" class="contentDiv" id="modifiedStatus"></div>
+        <div contenteditable="false" class="sign-div">수정 시간</div>
+        <div contenteditable="false" class="contentDiv" id="modifiedDate"></div>
+        <div contenteditable="false" class="sign-div">글자 수</div>
+        <div contenteditable="false" class="contentDiv" id="summaryTextCount"></div>
 
-        <div contenteditable="True" class="contentDiv" id="modTitDiv">{{modified_summary_title|safe}}</div>
-        <input type="hidden" id="hiddenModTit" name="mdt">
-        <br />
-        <div contenteditable="True" class="contentDiv" id="modSumDiv">{{modified_summary|safe}}</div>
-        <input type="hidden" id="hiddenModSum" name="msd">
+        <div contenteditable="True" class="contentDiv" id="modTitDiv"></div>
+        <div contenteditable="True" class="contentDiv" id="modSumDiv"></div>
+        <div contenteditable="True" class="contentDiv" id="modReaDiv"></div>
     </div>
 
     <div class="box4">
-        요약문 구성 이유 : <br />
-        <div contenteditable="True" class="contentDiv" id="modReaDiv">{{modified_reason|safe}}</div>
-        <input type="hidden" id="hiddenModRea" name="mrd">
+        자체 모델 요약 : 
+        <button id="summaryButton" data-divs="titleDiv,dateDiv,articleDiv">요약</button>
+        <button class="aws-db-but" id="saveButton" data-divs="">저 장</button>
+
+        <div contenteditable="false" class="sign-div">글자 수</div>
+        <div contenteditable="false" class="contentDiv" id="modelSummaryCount"></div>
+
+        <div contenteditable="True" class="contentDiv" id="modelTitle"></div>
+        <div contenteditable="True" class="contentDiv" id="modelSummary"></div>
+        <div contenteditable="True" class="contentDiv" id="modelReason"></div>
     </div>
 
 </div>

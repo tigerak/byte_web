@@ -222,7 +222,7 @@ $(document).ready(function () {
 
         var lastViewNumber = $('#title_text').val();
         localStorage.setItem('lastViewNumber', lastViewNumber);
-        console.log(localStorage.getItem("lastViewNumber") + " : lastViewNumber");
+        // console.log(localStorage.getItem("lastViewNumber") + " : lastViewNumber");
 
     });
 
@@ -233,7 +233,7 @@ $(document).ready(function () {
         var lastVisitNumber = lastVisitNumberMatches ? lastVisitNumberMatches[0] : "1"; // 매치된 숫자가 있으면 사용하고, 없으면 "1"을 기본값으로 사용
 
         localStorage.setItem('lastViewNumber', lastVisitNumber);
-        console.log(localStorage.getItem("lastViewNumber") + " : lastViewNumber")
+        // console.log(localStorage.getItem("lastViewNumber") + " : lastViewNumber")
     });
 
     // nextBut 버튼 클릭 시 DB Id 저장
@@ -243,7 +243,7 @@ $(document).ready(function () {
         var lastVisitNumber = lastVisitNumberMatches ? lastVisitNumberMatches[0] : "1"; // 매치된 숫자가 있으면 사용하고, 없으면 "1"을 기본값으로 사용
 
         localStorage.setItem('lastViewNumber', lastVisitNumber);
-        console.log(localStorage.getItem("lastViewNumber") + " : lastViewNumber")
+        // console.log(localStorage.getItem("lastViewNumber") + " : lastViewNumber")
     });
 
     // HTML 특수 기호 제거 함수.

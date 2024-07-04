@@ -67,20 +67,20 @@ class GPT():
         input_token = cost_calculation(c_t)
         output_token = cost_calculation(summary_result)
         if self.model_name == 'gpt_3':
-            input_cost = input_token * (0.0015 / 1000)
-            output_cost = output_token * (0.002 / 1000)
+            input_cost = input_token * (0.5 / 1000000)
+            output_cost = output_token * (1.5 / 1000000)
             total_cost = input_cost + output_cost
         elif self.model_name == 'gpt_4':
-            input_cost = input_token * (0.03 / 1000)
-            output_cost = output_token * (0.06 / 1000)
+            input_cost = input_token * (5. / 1000000)
+            output_cost = output_token * (15. / 1000000)
             total_cost = input_cost + output_cost
         ###################################################
         
         ###################################################
         ### 글자 수 계산 ###
         try:
-            count = summary_result.split('아나운서용 대본:')[1]
-            count = count.split('대본 제목:')[0]
+            count = summary_result.split('### 아나운서용 대본')[1]
+            count = count.split('### 대본 제목')[0]
             count = remove_newlines(count)
             count = count.replace(' ', '')
         except:
@@ -115,8 +115,8 @@ class GPT():
         c_t = main_title + main_article + sub_title + sub_article + Prompts.topic_multi
         input_token = cost_calculation(c_t)
         output_token = cost_calculation(multi_result)
-        input_cost = input_token * (0.03 / 1000)
-        output_cost = output_token * (0.06 / 1000)
+        input_cost = input_token * (5. / 1000000)
+        output_cost = output_token * (15. / 1000000)
         total_cost = input_cost + output_cost
         ###################################################
         
@@ -157,11 +157,11 @@ class GPT():
         input_token = cost_calculation(article + self.prompt())
         output_token = cost_calculation(importent_result)
         if self.model_name == 'gpt_3':
-            input_cost = input_token * (0.0015 / 1000)
-            output_cost = output_token * (0.002 / 1000)
+            input_cost = input_token * (0.5 / 1000000)
+            output_cost = output_token * (1.5 / 1000000)
         elif self.model_name == 'gpt_4':
-            input_cost = input_token * (0.03 / 1000)
-            output_cost = output_token * (0.06 / 1000)
+            input_cost = input_token * (5. / 1000000)
+            output_cost = output_token * (15. / 1000000)
         total_cost = input_cost + output_cost
         ###################################################
         

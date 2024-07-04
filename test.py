@@ -1,5 +1,5 @@
 from utils import GPT
-from utils.palm import Vertex
+from app.utils.api_palm import Vertex
 from models import Article
 import time
 import pandas as pd

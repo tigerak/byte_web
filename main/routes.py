@@ -1,4 +1,16 @@
+import json
+import re
+from time import time, sleep
+
 import requests
+
+from flask import (render_template, request, 
+                   redirect, url_for, jsonify, abort)
+from sqlalchemy import desc, and_
+# pip install flask-socketio
+from flask_socketio import emit, send
+import threading
+
 # module
 from main import main_bp, socketio
 from config import MODEL_API_ADDRESS
@@ -6,20 +18,8 @@ from models import Article
 from utils import (GPT, Vertex, Scraping, 
                    importent_sentence, remove_mac_specialsymbol, count_summary_char)
 from utils.mining.crawl import url_scrap
-from utils.mod_db.mod_db_util import requests_get, requests_put, requests_del, get_last_id
-
-import json
-import re
-from time import time, sleep
-
-from flask import render_template, request, redirect, url_for, jsonify, abort
-from sqlalchemy import desc, and_
-# pip install flask-socketio
-from flask_socketio import emit, send
-import threading
-
-import urllib3
-from urllib3.util.ssl_ import create_urllib3_context
+from utils.api_aws import (requests_get, requests_put, requests_del, 
+                           aws_db_get, aws_db_del, get_last_id)
 
 message = 'Prompt Version : 24.01.08. '
 
@@ -72,7 +72,7 @@ def load_summary():
             count = 0
             while (count <= 140) and (loop < 1):
                 loop += 1
-                print(loop)
+                # print(loop)
                 (result,
                  count,
                  total_cost) = qa.summary_chat(title=title,
@@ -80,11 +80,11 @@ def load_summary():
             # print(result)
 
             # Split Result 
-            result_1 = result.split('경제 기자 요약문:')
+            result_1 = result.split('### 경제 기자 요약문')
             topic = result_1[0]
-            result_2 = result_1[1].split('아나운서용 대본:')
+            result_2 = result_1[1].split('### 아나운서용 대본')
             history = result_2[0]
-            result_3 = result_2[1].split('대본 제목:')
+            result_3 = result_2[1].split('### 대본 제목')
             summary = result_3[0]
             summary_title = result_3[1]
 
@@ -344,6 +344,36 @@ def model_api():
     
     return response.json()
 
+@main_bp.route('/util/aws_db_api', methods=['POST'])
+def db_move():
+    data = request.form
+    
+    button_values = ['searchButton', 'prevBut', 'nextBut']
+    if data['buttonId'] in button_values:
+        db_id = [value for key, value in data.items() 
+                 if key not in ['buttonId', 'lastViewNumber']]
+        get_dict = aws_db_get(db_id[0])
+        return jsonify(get_dict)
+    
+    elif data['buttonId'] == 'listVisitButton':
+        db_id = request.form['lastViewNumber']
+        get_dict = aws_db_get(db_id)
+        return jsonify(get_dict)
+    
+    elif data['buttonId'] == 'lastArticleButton':
+        db_id = get_last_id()
+        get_dict = aws_db_get(db_id)
+        return jsonify(get_dict)
+    
+    elif data['buttonId'] == 'delButton':
+        del_db_id = request.form['dbIdDiv']
+        aws_db_del(del_db_id)
+        return_db_id = request.form['prevDiv'] if request.form['prevDiv'] != 'None' else request.form['nextDiv']
+        get_dict = aws_db_get(return_db_id)
+        return jsonify(get_dict)
+    
+    elif data['buttonId'] == 'saveButton':
+        return jsonify()
 
     
 @main_bp.route('/load_content/kg_db', methods=['GET', 'POST'])

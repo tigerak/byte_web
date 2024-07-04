@@ -59,7 +59,7 @@
     position: relative; /* 이 div를 포지셔닝 컨텍스트로 만듦 */
     display: flex;                /* Flexbox 레이아웃 사용 */
     flex-wrap: wrap; /* 요소들을 다음 줄로 넘기기 위해 wrap 설정 */
-    gap: 5px;                    /* 자식 요소 간의 간격 설정 */
+    gap: 5px;           
     float: left;
     margin: 2px;
     padding: 5px;
@@ -112,18 +112,26 @@
     border: 1px solid #f2b498;
 }
 .box4 {
+    position: relative; /* 이 div를 포지셔닝 컨텍스트로 만듦 */
+    display: flex;                /* Flexbox 레이아웃 사용 */
+    flex-wrap: wrap; /* 요소들을 다음 줄로 넘기기 위해 wrap 설정 */
     /* width: 300px; */
     width: 585px;
     float: left;
+    gap: 5px;
     margin: 2px;
     padding: 4px;
     table-layout:fixed;
     border: 1px solid #7b9a16;
 }
 .box5 {
+    position: relative; /* 이 div를 포지셔닝 컨텍스트로 만듦 */
+    display: flex;                /* Flexbox 레이아웃 사용 */
+    flex-wrap: wrap; /* 요소들을 다음 줄로 넘기기 위해 wrap 설정 */
     /* width: 430px; */
     width: 585px;
     float: left;
+    gap: 5px;
     margin: 2px;
     padding: 4px;
     table-layout:fixed;
@@ -141,7 +149,7 @@
     border: 1px solid #ccc;
     padding: 1px 2px;
 }
-.tagDiv {
+.sign-div {
     display: inline-block; /* div를 옆으로 나열 */
     height: 20px;
     width: 70px;
@@ -151,9 +159,13 @@
     border: 1px solid #ccc;
     padding: 1px 2px;
 }
-.subButton{
-    height: 25px;
+.aws-db-but {
+    height: 24px;
 }
+.toggle-btn {
+    height: 24px;
+}
+
 /* box1 */
 #urlDiv {
     width: 550px;
@@ -218,7 +230,13 @@
     width: 415px;
     overflow: auto;
 }
-/* box4 */
+/* box5 */
+#modifiedStatus, #summaryTextCount {
+    width: 75px;
+}
+#modifiedDate {
+    width: 160px;
+}
 #modTitDiv{
     height: 20px;
     /* width: 415px; */
@@ -226,13 +244,34 @@
     overflow: visible;
 }
 #modSumDiv {
-    height: 180px;
+    height: 150px;
     /* width: 415px; */
     width: 575px;
     overflow: auto;
 }
-/* box5 */
 #modReaDiv{
+    height: 250px;
+    /* width: 285px; */
+    width: 575px;
+    overflow: auto;
+}
+/* box4 */
+#summaryButton {
+    width: 100px;
+}
+#modelTitle{
+    height: 20px;
+    /* width: 415px; */
+    width: 575px;
+    overflow: visible;
+}
+#modelSummary {
+    height: 150px;
+    /* width: 415px; */
+    width: 575px;
+    overflow: auto;
+}
+#modelReason{
     height: 250px;
     /* width: 285px; */
     width: 575px;
@@ -339,11 +378,11 @@
     display: inline-block;
 }
 .dropbtn {
-    width: 128px;
+    width: 120px;
     background-color: #4caf4f;
     color: white;
-    padding: 5px 10px;
-    font-size: 14px;
+    padding: 5px 5px;
+    font-size: 12px;
     border: none;
     cursor: pointer;
 }
@@ -376,18 +415,18 @@
     float: right;
 }
 #firstCompany{
-    width: 75px;
+    width: 90px;
 }
 #secondCompany{
-    width: 75px;
+    width: 90px;
 }
 #addButton {
     width: 175px;
     float: right;
 }
 #companyTagContainer {
-    width: 418px;
-    height: 220px;
+    width: 420px;
+    height: 250px;
     border: 1px solid #ccc;
     overflow-y: auto; 
 }
