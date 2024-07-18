@@ -13,7 +13,7 @@ import threading
 
 # module
 from main import main_bp, socketio
-from config import MODEL_API_ADDRESS
+from config import MODEL_API_ADDRESS, DATA_API_ADDRESS
 from models import Article
 # from utils import (GPT, Scraping, Vertex,  
 from utils import (GPT, Scraping, importent_sentence, remove_mac_specialsymbol, count_summary_char)
@@ -384,9 +384,11 @@ def db_move():
 
 @main_bp.route('/util/data_api', methods=['POST'])
 def data_api():
-    data = request.form
-    
-    response = requests.post(MODEL_API_ADDRESS, data=data)
+    data_1 = request.form
+    print('여기까지',data_1)
+    response = requests.post(DATA_API_ADDRESS, json=data_1)
+
+    print(response.json())
     
     return response.json()
 

@@ -32,7 +32,7 @@ $(document).ready(function() {
 
     // 완성된 json 가져오는 API로 연결되는 버튼
     $('#get-data-API-button').click(function() {
-        var formData = createFormData(divIds);
+        var formData = new FormData();
 
         sendData('/util/data_api', formData);
     });
