@@ -211,7 +211,6 @@ $(document).ready(function () {
     $('#save_but').click(function() {
         var lastSaveNumber = $('#currentNewsNumber').text();
         localStorage.setItem('lastSaveNumber', lastSaveNumber);
-        console.log(localStorage.getItem("lastSaveNumber") + " : lastSaveNumber");
     });
 
     // targetDBid 버튼 클릭 시 DB Id 저장
@@ -253,6 +252,27 @@ $(document).ready(function () {
         return textarea.value;
     }
 
+    // HTML Tag 제거 
+    function stripHTMLTags(htmlContent) {
+        const div = document.createElement('div');
+        // <br> 태그를 줄바꿈 문자로 대체
+        const htmlWithNewlines = htmlContent.replace(/<br\s*\/?>/gi, '\n');
+        div.innerHTML = htmlContent;
+        const text = div.textContent || div.innerText || '';
+        return text;
+    }
+
+    // 합치기 <br> 태그는 \n으로 대체 후 텍스트 추출
+    function extractTextFromHTML(htmlContent) {
+        // <br> 태그를 줄바꿈 문자로 대체
+        const htmlWithNewlines = htmlContent.replace(/<br\s*\/?>/gi, '\n');
+        // Remove HTML tags
+        const textWithoutTags = stripHTMLTags(htmlWithNewlines);
+        // Decode HTML entities
+        const cleanText = decodeHTMLEntities(textWithoutTags);
+        return cleanText;
+    }
+
     // 폼 제출 이벤트
     $('#searchForm').submit(function (e) {
         e.preventDefault();
@@ -260,11 +280,11 @@ $(document).ready(function () {
             var formData = new FormData(this);
             formData.append('sub_button', clickedButtonValue);
 
-            var modSumContent = decodeHTMLEntities($('#modSumDiv').html());
+            var modSumContent = extractTextFromHTML($('#modSumDiv').html());
             $('#hiddenModSum').val(modSumContent);
-            var modTitContent = decodeHTMLEntities($('#modTitDiv').html());
+            var modTitContent = extractTextFromHTML($('#modTitDiv').html());
             $('#hiddenModTit').val(modTitContent);
-            var modReaContent = decodeHTMLEntities($('#modReaDiv').html());
+            var modReaContent = extractTextFromHTML($('#modReaDiv').html());
             $('#hiddenModRea').val(modReaContent);
             var prevContent = $('#prevDiv').html();
             $('#hiddenPrev').val(prevContent);

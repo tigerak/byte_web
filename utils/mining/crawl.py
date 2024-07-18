@@ -1,5 +1,5 @@
 # pip install selenium
-from selenium import webdriver
+# from selenium import webdriver
 from bs4 import BeautifulSoup as bs
 import urllib3
 from urllib3.util.ssl_ import create_urllib3_context

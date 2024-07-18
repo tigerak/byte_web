@@ -10,7 +10,6 @@ from langchain.chat_models import ChatOpenAI
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 
-
 class GPT():
     def __init__(self, 
                  openai_api_key=Openai_api.API_KEY, 

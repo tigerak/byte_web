@@ -6,7 +6,7 @@ import requests
 
 from flask import (render_template, request, 
                    redirect, url_for, jsonify, abort)
-from sqlalchemy import desc, and_
+# from sqlalchemy import desc, and_
 # pip install flask-socketio
 from flask_socketio import emit, send
 import threading
@@ -15,8 +15,8 @@ import threading
 from main import main_bp, socketio
 from config import MODEL_API_ADDRESS
 from models import Article
-from utils import (GPT, Vertex, Scraping, 
-                   importent_sentence, remove_mac_specialsymbol, count_summary_char)
+# from utils import (GPT, Scraping, Vertex,  
+from utils import (GPT, Scraping, importent_sentence, remove_mac_specialsymbol, count_summary_char)
 from utils.mining.crawl import url_scrap
 from utils.api_aws import (requests_get, requests_put, requests_del, 
                            aws_db_get, aws_db_del, get_last_id)
@@ -316,6 +316,13 @@ def dpo_data():
 
     return render_template('dpo_data.html',
                             message=message)
+
+@main_bp.route('/load_content/db_manager', methods=['GET', 'POST'])
+def db_manager():
+
+    return render_template('db_manager.html',
+                            message=message)
+
     
 @main_bp.route('/util/url_scraping', methods=['POST'])
 def url_scraping():
@@ -374,6 +381,14 @@ def db_move():
     
     elif data['buttonId'] == 'saveButton':
         return jsonify()
+
+@main_bp.route('/util/data_api', methods=['POST'])
+def data_api():
+    data = request.form
+    
+    response = requests.post(MODEL_API_ADDRESS, data=data)
+    
+    return response.json()
 
     
 @main_bp.route('/load_content/kg_db', methods=['GET', 'POST'])
