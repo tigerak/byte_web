@@ -384,9 +384,9 @@ def db_move():
 
 @main_bp.route('/util/data_api', methods=['POST'])
 def data_api():
-    data_1 = request.form
-    print('여기까지',data_1)
-    response = requests.post(DATA_API_ADDRESS, json=data_1)
+    data = request.form
+    
+    response = requests.post(DATA_API_ADDRESS, json=data)
 
     print(response.json())
     
