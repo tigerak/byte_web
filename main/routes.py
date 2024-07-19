@@ -384,12 +384,9 @@ def db_move():
 
 @main_bp.route('/util/data_api', methods=['POST'])
 def data_api():
-    data = request.form
     
-    response = requests.post(DATA_API_ADDRESS, json=data)
+    response = requests.post(DATA_API_ADDRESS)
 
-    print(response.json())
-    
     return response.json()
 
     

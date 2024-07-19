@@ -11,7 +11,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #9a4d1661;
+    background-color: #4f169a61;
     z-index: 1000;
   }
   
@@ -49,7 +49,7 @@
     display: flex;                /* Flexbox 레이아웃 사용 */
     flex-wrap: wrap; /* 요소들을 다음 줄로 넘기기 위해 wrap 설정 */
     gap: 5px;                    /* 자식 요소 간의 간격 설정 */
-    width: 750px;
+    width: 1185px;
     float: left;
     margin: 2px;
     padding: 5px;
@@ -76,14 +76,13 @@
     flex-direction: center;
 }
 .box6 {
-    display: flex; /* Flexbox 레이아웃 적용 */
-    align-items: center; /* 버튼과 div를 수직 방향의 중앙에 정렬 */
-    gap: 5px; /* 버튼과 div 사이의 간격 설정 */
-    width: 200px;
+    display: flex;                /* Flexbox 레이아웃 사용 */
+    flex-wrap: wrap; /* 요소들을 다음 줄로 넘기기 위해 wrap 설정 */
+    gap: 5px;                    /* 자식 요소 간의 간격 설정 */
+    width: 820px;
     float: left;
     margin: 2px;
-    padding: 4px;
-    table-layout:fixed;
+    padding: 5px;
     border: 1px solid #9a166c9d;
 }
 .box7 {
@@ -167,15 +166,8 @@
 }
 
 /* box1 */
-#urlDiv {
-    width: 550px;
-    overflow: visible;
-}
-#scrapButton {
-    width: 85px;
-}
 #titleDiv {
-    width: 640px;
+    width: 700px;
     overflow: visible; /* auto; */
 }
 #categoryDiv, #mediaDiv, #dateDiv, #dbIdDiv {
@@ -184,17 +176,49 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     text-align: center;
-    transition: width 0.3s, max-width 0.3s; /* 부드러운 애니메이션을 위해 추가 */
 }
 #mediaDiv:hover, #dateDiv:hover {
-    width: 120px; 
+    width: 150px; 
     overflow: hidden; 
     white-space: nowrap;
 }
 #articleDiv {
     height: 310px;
-    width: 735px;
+    width: 800px;
     overflow: auto;
+}
+
+
+.item {
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+}
+.item.checked {
+    background-color: #0026ff48; /* 체크되었을 때 배경색 */
+}
+.checkbox, .set_num, .article_date {
+    display: inline-block;
+    margin-right: 5px;
+}
+.title {
+    display: inline-block;
+    flex-grow: 1;
+    margin-right: 5px;
+}
+.view-article, .url {
+    margin-left: 5px;
+}
+.item:hover {
+    background-color: #ff001560; /* 원하는 색상으로 변경 */
+    cursor: pointer;
+}
+#get-data-API-box {
+    height: 310px;
+    width: 1180px;
+    overflow: auto;
+    border: 1px solid #ccc;
+    padding: 1px 2px;
 }
 
 /* box2 */

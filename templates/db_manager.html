@@ -8,104 +8,60 @@
 
         <div class="box1">
             <button id="get-data-API-button">DB 데이터 가져오기</button>
-            <div id="get-api-box">
-                <h3>Keys</h3>
-                <ul id="kyes-list"></ul>
-                
-            </div>
-
-            <div id="details-box">
-                <h3>Details</h3>
-                <div id="details-content"></div>
-            </div>
+            <div contenteditable="false" id="get-data-API-box"></div>
             
         </div>
     
-        <div class="box2">
+        <!-- <div class="box2">
             
-        </div>
+        </div> -->
     </div>
     
     <div class="box-wrap-mid">
         <div class="box6">
-            <!-- 선택 버튼 -->
-            <button class="sub_button" id="openPrimaryModal">대분류 선택</button>
-            <!-- 선택된 카테고리를 표시할 div -->
-            <div contenteditable="False" class="contentDiv" id="selectedPrimaryCategories"></div>
-            <input type="hidden" id="hiddenPrimaryTag" name="primary_tag">
-        </div>
-        <div class="box7">
-            <button class="sub_button" id="openSecondaryModal">중분류 선택</button>
-            <div contenteditable="False" class="contentDiv" id="selectedSecondaryCategories"></div>
-            <input type="hidden" id="hiddenSecondaryTag" name="secondary_tag">
-        </div>
         
-    
-        <!-- 팝업 모달 -->
-        <!-- 1차 카테고리 모달 -->
-        <div id="primaryCategoryModal" class="modal" style="display:none;">
-            <div class="modal-content">
-                <h2>대분류</h2>
-                <div id="primaryCategories" class="categories"></div>
-                <button class="close-modal">닫기</button>
-            </div>
+            <div contenteditable="false" class="sign-div">제 목</div>
+            <div contenteditable="false" class="contentDiv" id="titleDiv"></div>
+            
+            <div contenteditable="false" class="sign-div">카테고리</div>
+            <div contenteditable="false" class="contentDiv" id="categoryDiv"></div>
+            <div contenteditable="false" class="sign-div">언론사</div>
+            <div contenteditable="false" class="contentDiv" id="mediaDiv"></div>
+            <div contenteditable="false" class="sign-div">송고 시간</div>
+            <div contenteditable="false" class="contentDiv" id="dateDiv"></div>
+            <div contenteditable="false" class="sign-div">DB 번호</div>
+            <div contenteditable="false" class="contentDiv" id="dbIdDiv"></div>
+            <button class="aws-db-but" id="delButton" data-divs="dbIdDiv,prevDiv,nextDiv">삭제</button>
+            
+            <div contenteditable="false" class="contentDiv" id="articleDiv"></div>
         </div>
-    
-        <!-- 2차 카테고리 모달 -->
-        <div id="secondaryCategoryModal" class="modal" style="display:none;">
-            <div class="modal-content">
-                <h2>중분류</h2>
-                <div id="secondaryCategories" class="categories"></div>
-                <button class="close-modal">닫기</button>
-            </div>
-        </div>
+
+        <!-- <div class="box7">
+        </div> -->
+        
     </div>
     
     <div class="box-wrap-under">
         <!-- <div class="box3">
-            <p>기존 요약문 :</p>
-            <div contenteditable="false" class="contentDiv" id="sumTitDiv">{{summary_title|safe}}</div>
-            <div contenteditable="false" class="contentDiv" id="sumDiv">{{summary|safe}}</div>
         </div> -->
     
-        <div class="box5">
-            <div contenteditable="false" class="sign-div">수정 상태</div>
-            <div contenteditable="false" class="contentDiv" id="modifiedStatus"></div>
-            <div contenteditable="false" class="sign-div">수정 시간</div>
-            <div contenteditable="false" class="contentDiv" id="modifiedDate"></div>
-            <div contenteditable="false" class="sign-div">글자 수</div>
-            <div contenteditable="false" class="contentDiv" id="summaryTextCount"></div>
-    
-            <div contenteditable="True" class="contentDiv" id="modTitDiv"></div>
-            <div contenteditable="True" class="contentDiv" id="modSumDiv"></div>
-            <div contenteditable="True" class="contentDiv" id="modReaDiv"></div>
+        <!-- <div class="box5">
+     
         </div>
     
         <div class="box4">
-            자체 모델 요약 : 
-            <button id="summaryButton" data-divs="titleDiv,dateDiv,articleDiv">요약</button>
-            <button class="aws-db-but" id="saveButton" data-divs="">저 장</button>
-    
-            <div contenteditable="false" class="sign-div">글자 수</div>
-            <div contenteditable="false" class="contentDiv" id="modelSummaryCount"></div>
-    
-            <div contenteditable="True" class="contentDiv" id="modelTitle"></div>
-            <div contenteditable="True" class="contentDiv" id="modelSummary"></div>
-            <div contenteditable="True" class="contentDiv" id="modelReason"></div>
-        </div>
+
+        </div> -->
     
     </div>
     
     <div class="box-bott">
-        <div width: 200px;>
-            {{message}}
-        </div>
-        
+
     </div>
     
     <div id="loading" style="display:none;">
         <br/><br/>
-        <p>Autumn Loading...</p>
+        <p>Winter Loading...</p>
     </div>
     
     </div>
