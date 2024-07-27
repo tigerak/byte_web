@@ -348,8 +348,22 @@ def model_api():
     data = request.form
     
     response = requests.post(MODEL_API_ADDRESS, data=data)
+
+    transfor_html_id = {
+        "modelSummaryCount" : response['summary_count'],
+        "modelTitle" : response['summary_title'],
+        "modelSummary" : response['summary'],
+        "modelReason" : response['summary_reason'] + "\n" \
+                        + "기업 태그(Company Tag):\n" \
+                        + "Main:" + response['main'] + "\n" \
+                        + "Sub:" + response['sub'] + "\n" \
+                        + "대분류(Major Classification):\n" \
+                        + response['major_class'] + "\n" \
+                        + "중분류(Medium Classification):\n" \
+                        + response['medium_class']
+    }
     
-    return response.json()
+    return transfor_html_id.json()
 
 @main_bp.route('/util/aws_db_api', methods=['POST'])
 def db_move():
@@ -384,8 +398,9 @@ def db_move():
 
 @main_bp.route('/util/data_api', methods=['POST'])
 def data_api():
+    data = request.form
     
-    response = requests.post(DATA_API_ADDRESS)
+    response = requests.post(DATA_API_ADDRESS, data=data)
 
     return response.json()
 
@@ -416,56 +431,58 @@ def kg_db():
                            message=render)
 
 
-@main_bp.route('/load_content/chat', methods=['GET', 'POST'])
-def chating():
-    return render_template('chat.html')
-
-@socketio.on('message')
-def handle_message(data):
-    username = data['username']
-    message = data['message']
-    # 메시지와 사용자 이름을 함께 방송합니다.
-    socketio.emit('message', {'username': username, 'message': message})
 
 
-@main_bp.route('/load_content/crawl', methods=['GET', 'POST'])
-def crawling():
-    return render_template('crawl.html')
+# @main_bp.route('/load_content/chat', methods=['GET', 'POST'])
+# def chating():
+#     return render_template('chat.html')
 
-def scrape_loop():
-    next_page = 1
-    while next_page != -1:
-        np, time_list, title_list, url_list = url_scrap(next_page)
-        socketio.emit('scraped_data', {'np': np, 'data': list(zip(time_list, title_list, url_list))})
-        next_page = np
-        if np == -1:
-            socketio.emit('scraping_finished', {'message': '수집이 완료되었습니다'})
-            break
-        sleep(1)
-
-@socketio.on('start_scraping')
-def handle_start_scraping():
-    threading.Thread(target=scrape_loop, daemon=True).start()
+# @socketio.on('message')
+# def handle_message(data):
+#     username = data['username']
+#     message = data['message']
+#     # 메시지와 사용자 이름을 함께 방송합니다.
+#     socketio.emit('message', {'username': username, 'message': message})
 
 
-@main_bp.route('/test', methods=['GET', 'POST'])
-def test_index():
-    return render_template('test_index.html')
+# @main_bp.route('/load_content/crawl', methods=['GET', 'POST'])
+# def crawling():
+#     return render_template('crawl.html')
 
-@socketio.on('connect', namespace='/test')
-def test_connect(auth):
-    # send(auth, namespace='/test')
-    print(auth)
-    # emit('test_message', {'name':'알림', 'text':auth}, namespace='/test')
+# def scrape_loop():
+#     next_page = 1
+#     while next_page != -1:
+#         np, time_list, title_list, url_list = url_scrap(next_page)
+#         socketio.emit('scraped_data', {'np': np, 'data': list(zip(time_list, title_list, url_list))})
+#         next_page = np
+#         if np == -1:
+#             socketio.emit('scraping_finished', {'message': '수집이 완료되었습니다'})
+#             break
+#         sleep(1)
 
-@socketio.on('test_message', namespace='/test')
-def test_message(data):
-    print(f'\n{data}\n')
-    name = data['name']
-    text = data['text']
-    emit('output_message', {'name':name, 'text':text}, namespace='/test')
-    # send(message=data, namespace='/test')
-    # emit('some_event', '아니시에이트!!')
+# @socketio.on('start_scraping')
+# def handle_start_scraping():
+#     threading.Thread(target=scrape_loop, daemon=True).start()
+
+
+# @main_bp.route('/test', methods=['GET', 'POST'])
+# def test_index():
+#     return render_template('test_index.html')
+
+# @socketio.on('connect', namespace='/test')
+# def test_connect(auth):
+#     # send(auth, namespace='/test')
+#     print(auth)
+#     # emit('test_message', {'name':'알림', 'text':auth}, namespace='/test')
+
+# @socketio.on('test_message', namespace='/test')
+# def test_message(data):
+#     print(f'\n{data}\n')
+#     name = data['name']
+#     text = data['text']
+#     emit('output_message', {'name':name, 'text':text}, namespace='/test')
+#     # send(message=data, namespace='/test')
+#     # emit('some_event', '아니시에이트!!')
 
 
 # DB 저장 페이지
