@@ -348,7 +348,7 @@ def model_api():
     data = request.form
     
     response = requests.post(MODEL_API_ADDRESS, data=data)
-
+    response = response.json()
     transfor_html_id = {
         "modelSummaryCount" : response['summary_count'],
         "modelTitle" : response['summary_title'],
@@ -363,7 +363,7 @@ def model_api():
                         + response['medium_class']
     }
     
-    return transfor_html_id.json()
+    return jsonify(transfor_html_id)
 
 @main_bp.route('/util/aws_db_api', methods=['POST'])
 def db_move():

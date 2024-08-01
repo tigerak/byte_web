@@ -26,19 +26,20 @@ $(document).ready(function() {
                 // 서버로부터 받은 데이터를 해당하는 div에 출력합니다.
                 $('#getDataAPIDiv').empty();
                 $.each(response, function(index, item) {
+                    var index = $('<span>').addClass('index').text(String(item.index).padStart(4, '0') + '번');
                     var checkbox = $('<input>').attr('type', 'checkbox').addClass('checkbox');
-                    var set_num = $('<span>').addClass('set_num').text(item.set_num + '번 Set >> ');
+                    var set_num = $('<span>').addClass('set_num').text('Set' + item.set_num + ' >> ');
                     var article_date = $('<span>').addClass('article_date').text(item.article_date + ' - ');
                     var title = $('<span>').addClass('title').text(item.title + ' ');
                     var viewArticleButton = $('<button>').addClass('view-article').text('기사 보기').click(function() {
                         $('#dbIdDiv').text(item.id); // #dbIdDiv에 id 넣기
-                        fetchArticleData(item.url);
+                        fetchArticleData(item.id);
                     });
                     var url = $('<button>').addClass('url').text('원문 보기').click(function() {
                         window.open(item.url, '_blank');
                     });
 
-                    var itemDiv = $('<div>').addClass('item').append(checkbox, set_num, article_date, title, viewArticleButton, url);
+                    var itemDiv = $('<div>').addClass('item').append(index, checkbox, set_num, article_date, title, viewArticleButton, url);
                     
                     // 아무데나 클릭 시 체크박스 선택
                     itemDiv.click(function(e) {
@@ -58,7 +59,7 @@ $(document).ready(function() {
                 hideLoading();
             },
             error: function(xhr, status, error) {
-                $('#getDataAPIButton').html('페이지를 불러오는 중 오류가 발생했습니다.\n', error);
+                $('#getDataAPIDiv').html('페이지를 불러오는 중 오류가 발생했습니다.\n', error);
                 hideLoading();
             }
         });
@@ -66,23 +67,66 @@ $(document).ready(function() {
 
 
     // '기사 보기' AJAX 요청을 보내는 함수
-    function fetchArticleData(url) {
+    function fetchArticleData(id) {
         showLoading();
         $.ajax({
-            url: '/util/url_scraping',
+            url: '/util/data_api',
             type: 'POST',
-            data: { urlDiv: url },
+            data: { showIdData: id },
             success: function(response) {
+                // contentDiv class를 가진 div를 깨끗하게 지움
+                $('.contentDiv').empty();
                 $.each(response, function(key, value) {
                     if (value == null) {
+                        // value가 null인 경우 빈 문자열 설정
+                        $('#' + key).text('');
                         return true; // continue와 같은 역할을 함. 다음 반복으로 넘어감
                     } else {
-                        // 제일 앞의 개행 문자 제거
-                        if (value.startsWith('\n')) {
+                        // value가 문자열인지 확인한 후 처리
+                        if (typeof value === 'string' && value.startsWith('\n')) {
                             value = value.substring(1);
                         }
-                        // 해당 id를 가진 div에 값 설정
-                        $('#' + key).text(value)
+                        
+                        // key가 similarityDiv인 경우
+                        if (key === 'similarityDiv') {
+                            // value가 null 또는 undefined인 경우 빈 문자열 설정
+                            if (value == null) {
+                                $('#' + key).text('');
+                            } else if (Array.isArray(value)) {
+                                // value가 배열인 경우 항목을 추가
+                                // value가 2차원 배열로 들어오므로, 각 배열의 항목을 처리
+                                $.each(value, function(index, item) {
+                                    // item이 배열로 들어오는 경우
+                                    var indexSpan = $('<span>').addClass('index').text(String(item[0]).padStart(4, '0') + '번');
+                                    var checkbox = $('<input>').attr('type', 'checkbox').addClass('checkbox');
+                                    var setNumSpan = $('<span>').addClass('set_num').text('Set' + item[1] + ' >> ');
+                                    var scoreSpan = $('<span>').addClass('score').text('Score: ' + item[2]);
+
+                                    var itemDiv = $('<div>').addClass('item').append(indexSpan, checkbox, setNumSpan, scoreSpan);
+
+                                    // 아무데나 클릭 시 체크박스 선택
+                                    itemDiv.click(function(e) {
+                                        if (e.target.type !== 'checkbox') {
+                                            checkbox.prop('checked', !checkbox.prop('checked'));
+                                            itemDiv.toggleClass('checked', checkbox.prop('checked'));
+                                        }
+                                    });
+
+                                    // 체크박스 선택 시 배경색 변경
+                                    checkbox.change(function() {
+                                        itemDiv.toggleClass('checked', $(this).prop('checked'));
+                                    });
+                                    
+                                    // 만들어진 div를 similarityDiv에 추가
+                                    $('#' + key).append(itemDiv);
+                                });
+                            } else {
+                                console.error('Expected array for similarityDiv, but received:', value);
+                            }
+                        } else {
+                            // 해당 id를 가진 div에 값 설정
+                            $('#' + key).text(value);
+                        }
                     }
                 });
                 hideLoading();
@@ -93,6 +137,7 @@ $(document).ready(function() {
             }
         });
     }
+
 
     // 삭제 버튼 
     $('#delButton').click(function() {
