@@ -131,8 +131,12 @@ $(document).ready(function() {
                                 console.error('Expected array for similarityDiv, but received:', value);
                             }
                         } else {
+                            // 줄바꿈 문자를 <br> 태그로 변환
+                            if (typeof value === 'string') {
+                                value = value.replace(/\n/g, '<br>');
+                            }
                             // 해당 id를 가진 div에 값 설정
-                            $('#' + key).text(value);
+                            $('#' + key).html(value);
                         }
                     }
                 });
