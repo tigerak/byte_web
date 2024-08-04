@@ -16,12 +16,17 @@ $(document).ready(function() {
     });
 
 
+    // 전역 변수를 선언하여 클릭된 collection_name 버튼ID를 저장합니다.
+    var selectedBase = null;
+
     // DB 데이터 가져오기 버튼
-    $('#getDataAPIButton').click(function() {
+    $('.getDataAPIButton').click(function() {
         showLoading();
+        selectedBase = $(this).attr('id');
         $.ajax({
             url: '/util/data_api',
             type: 'POST',
+            data: {getDataAPI: selectedBase},
             success: function(response) {
                 // 서버로부터 받은 데이터를 해당하는 div에 출력합니다.
                 $('#getDataAPIDiv').empty();
@@ -72,7 +77,9 @@ $(document).ready(function() {
         $.ajax({
             url: '/util/data_api',
             type: 'POST',
-            data: { showIdData: id },
+            data: { showIdData: id,
+                getDataAPI: selectedBase
+             },
             success: function(response) {
                 // contentDiv class를 가진 div를 깨끗하게 지움
                 $('.contentDiv').empty();
@@ -170,7 +177,7 @@ $(document).ready(function() {
             var divContent = $('#' + divId).text();
             formData.append(divId, divContent);
         });
-
+        formData.append('getDataAPI', selectedBase);
         return formData;
     }
 

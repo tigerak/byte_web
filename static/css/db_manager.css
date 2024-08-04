@@ -79,7 +79,7 @@
     display: flex;                /* Flexbox 레이아웃 사용 */
     flex-wrap: wrap; /* 요소들을 다음 줄로 넘기기 위해 wrap 설정 */
     gap: 5px;                    /* 자식 요소 간의 간격 설정 */
-    width: 750px;
+    width: 710px;
     float: left;
     margin: 2px;
     padding: 5px;
@@ -87,9 +87,10 @@
 }
 .box7 {
     display: flex; /* Flexbox 레이아웃 적용 */
-    align-items: center; /* 버튼과 div를 수직 방향의 중앙에 정렬 */
+    flex-wrap: wrap; /* 요소들을 다음 줄로 넘기기 위해 wrap 설정 */
+    /* align-items: center; 버튼과 div를 수직 방향의 중앙에 정렬 */
     gap: 5px; /* 버튼과 div 사이의 간격 설정 */
-    width: 420px;
+    width: 460px;
     float: left;
     margin: 2px;
     padding: 4px;
@@ -177,14 +178,28 @@
     white-space: nowrap;
 }
 #articleDiv {
-    height: 310px;
-    width: 740px;
+    height: 550px;
+    width: 700px;
     overflow: auto;
 }
 
 /* box7 */
 #similarityDiv {
-    height: 310px;
+    height: 100px;
+    width: 450px;
+    overflow: auto;
+}
+#modelTitle {
+    width: 450px;
+    overflow: auto;
+}
+#modelSummary {
+    height: 200px;
+    width: 450px;
+    overflow: auto;
+}
+#modelReason {
+    height: 300px;
     width: 450px;
     overflow: auto;
 }
