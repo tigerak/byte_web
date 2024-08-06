@@ -178,7 +178,12 @@
     white-space: nowrap;
 }
 #articleDiv {
-    height: 550px;
+    height: 400px;
+    width: 700px;
+    overflow: auto;
+}
+#tagDiv {
+    height: 150px;
     width: 700px;
     overflow: auto;
 }
