@@ -144,7 +144,7 @@
 }
 
 .contentDiv {
-    height: 20px;
+    height: 22px;
     min-width: 50px;
     border: 1px solid #ccc;
     padding: 1px 2px;
@@ -177,14 +177,21 @@
     overflow: hidden; 
     white-space: nowrap;
 }
+#statusDiv {
+    float: right;
+    width: 300px;
+}
+#saveButton {
+    float: right;
+    width: 200px;
+}
 #articleDiv {
     height: 400px;
     width: 700px;
     overflow: auto;
 }
-#tagDiv {
-    height: 150px;
-    width: 700px;
+#mainTagDiv, #subTagDiv, #majorTagDiv, #mediumTagDiv {
+    width: 620px;
     overflow: auto;
 }
 

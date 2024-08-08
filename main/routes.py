@@ -399,10 +399,47 @@ def db_move():
 @main_bp.route('/util/data_api', methods=['POST'])
 def data_api():
     data = request.form
-    
-    response = requests.post(DATA_API_ADDRESS, data=data)
+    print(data)
+    print(data.keys())
 
-    return response.json()
+    if 'buttonId' in data.keys():
+        if data['buttonId'] == 'view-article':
+            response = requests.post(DATA_API_ADDRESS, data=data)
+            response = response.json()
+            
+            transfor_html_id = {
+                'titleDiv': response['title'],
+                'mediaDiv': response['media'],
+                'dateDiv': response['article_date'],
+                'dbIdDiv': response['id'],
+                'articleDiv': response['document'],
+                'similarityDiv': response['similarity_list'],
+                'modelTitle': response['summary_title'],
+                'modelSummary': response['summary'],
+                'modelReason': response['summary_reason'],
+                'mainTagDiv': response['main'],
+                'subTagDiv': response['sub'],
+                'majorTagDiv': response['major_class'],
+                'mediumTagDiv': response['medium_class']
+            }
+            return transfor_html_id
+        
+        elif data['buttonId'] == 'delButton':
+            response = requests.post(DATA_API_ADDRESS, data=data)
+            response = response.json()
+            return_message = {'statusDiv': response}
+            return return_message
+
+        elif data['buttonId'] == 'get_data':
+            response = requests.post(DATA_API_ADDRESS, data=data)
+            return response.json()
+        
+        elif data['buttonId'] == 'saveButton':
+            response = requests.post(DATA_API_ADDRESS, data=data)
+            response = response.json()
+            print(response)
+            return_message = {'statusDiv': response}
+            return return_message
 
     
 @main_bp.route('/load_content/kg_db', methods=['GET', 'POST'])

@@ -26,7 +26,9 @@ $(document).ready(function() {
         $.ajax({
             url: '/util/data_api',
             type: 'POST',
-            data: {getDataAPI: selectedBase},
+            data: {getDataAPI: selectedBase,
+                   buttonId: 'get_data'
+            },
             success: function(response) {
                 // 서버로부터 받은 데이터를 해당하는 div에 출력합니다.
                 $('#getDataAPIDiv').empty();
@@ -38,7 +40,7 @@ $(document).ready(function() {
                     var title = $('<span>').addClass('title').text(item.title + ' ');
                     var viewArticleButton = $('<button>').addClass('view-article').text('기사 보기').click(function() {
                         $('#dbIdDiv').text(item.id); // #dbIdDiv에 id 넣기
-                        fetchArticleData(item.id);
+                        fetchArticleData(item.id, 'view-article');
                     });
                     var url = $('<button>').addClass('url').text('원문 보기').click(function() {
                         window.open(item.url, '_blank');
@@ -72,13 +74,14 @@ $(document).ready(function() {
 
 
     // '기사 보기' AJAX 요청을 보내는 함수
-    function fetchArticleData(id) {
+    function fetchArticleData(id, buttonClass) {
         showLoading();
         $.ajax({
             url: '/util/data_api',
             type: 'POST',
             data: { showIdData: id,
-                getDataAPI: selectedBase
+                getDataAPI: selectedBase,
+                buttonId: buttonClass
              },
             success: function(response) {
                 // contentDiv class를 가진 div를 깨끗하게 지움
@@ -149,20 +152,34 @@ $(document).ready(function() {
         });
     }
 
-
-    // 삭제 버튼 
-    $('#delButton').click(function() {
-        var divIds = $(this).data('divs').split(',');
-        var formData = createFormData(divIds);
+    // 저장 버튼 
+    $('#saveButton').click(function() {
         showLoading();
+    
+        var buttonId = $(this).attr('id'); 
+        var divs = $(this).data('divs').split(',');
+    
+        // 각 div에서 값을 추출하여 데이터를 구성
+        var dataToSend = {};
+        divs.forEach(function(divId) {
+            var value = $('#' + divId).text(); // text()를 사용하여 div의 텍스트 내용 가져오기
+            dataToSend[divId] = value;
+        });
+
+        // selectedBase 값을 추가
+        dataToSend['getDataAPI'] = selectedBase;
+        dataToSend['buttonId'] = buttonId;
+    
+        // AJAX POST 요청 보내기
         $.ajax({
             url: '/util/data_api',
             type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
+            data: dataToSend,
             success: function(response) {
-                $('#articleDiv').text(response.articleDiv);
+                // $('.contentDiv').empty();
+                $.each(response, function(key, value) {
+                    $('#' + key).html(value);
+                });
                 hideLoading();
             },
             error: function(xhr, status, error) {
@@ -172,7 +189,35 @@ $(document).ready(function() {
         });
     });
 
-    function createFormData(divIds) {
+
+
+    // 삭제 버튼 
+    $('#delButton').click(function() {
+        var buttonId = $(this).attr('id'); 
+        var divIds = $(this).data('divs').split(',');
+        var formData = createFormData(divIds, buttonId);
+        showLoading();
+        $.ajax({
+            url: '/util/data_api',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                // $('.contentDiv').empty();
+                $.each(response, function(key, value) {
+                    $('#' + key).html(value);
+                });
+                hideLoading();
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+                hideLoading();
+            }
+        });
+    });
+
+    function createFormData(divIds, buttonId) {
         // FormData 객체를 만듭니다.
         var formData = new FormData();
 
@@ -182,6 +227,7 @@ $(document).ready(function() {
             formData.append(divId, divContent);
         });
         formData.append('getDataAPI', selectedBase);
+        formData.append('buttonId', buttonId);
         return formData;
     }
 
