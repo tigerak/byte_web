@@ -399,47 +399,54 @@ def db_move():
 @main_bp.route('/util/data_api', methods=['POST'])
 def data_api():
     data = request.form
-    print(data)
-    print(data.keys())
-
-    if 'buttonId' in data.keys():
-        if data['buttonId'] == 'view-article':
-            response = requests.post(DATA_API_ADDRESS, data=data)
-            response = response.json()
-            
-            transfor_html_id = {
-                'titleDiv': response['title'],
-                'mediaDiv': response['media'],
-                'dateDiv': response['article_date'],
-                'dbIdDiv': response['id'],
-                'articleDiv': response['document'],
-                'similarityDiv': response['similarity_list'],
-                'modelTitle': response['summary_title'],
-                'modelSummary': response['summary'],
-                'modelReason': response['summary_reason'],
-                'mainTagDiv': response['main'],
-                'subTagDiv': response['sub'],
-                'majorTagDiv': response['major_class'],
-                'mediumTagDiv': response['medium_class']
-            }
-            return transfor_html_id
+    
+    # 기사 보기 버튼
+    if data['buttonId'] == 'view-article':
+        response = requests.post(DATA_API_ADDRESS, data=data)
+        response = response.json()
         
-        elif data['buttonId'] == 'delButton':
-            response = requests.post(DATA_API_ADDRESS, data=data)
-            response = response.json()
-            return_message = {'statusDiv': response}
-            return return_message
+        transfor_html_id = {
+            'titleDiv': response['title'],
+            'mediaDiv': response['media'],
+            'dateDiv': response['article_date'],
+            'dbIdDiv': response['id'],
+            'articleDiv': response['document'],
+            'similarityDiv': response['similarity_list'],
+            'modelTitle': response['summary_title'],
+            'modelSummary': response['summary'],
+            'modelReason': response['summary_reason'],
+            'mainTagDiv': response['main'],
+            'subTagDiv': response['sub'],
+            'majorTagDiv': response['major_class'],
+            'mediumTagDiv': response['medium_class']
+        }
+        return transfor_html_id
+    
+    # 삭제 버튼
+    elif data['buttonId'] == 'delButton':
+        response = requests.post(DATA_API_ADDRESS, data=data)
+        response = response.json()
 
-        elif data['buttonId'] == 'get_data':
-            response = requests.post(DATA_API_ADDRESS, data=data)
-            return response.json()
-        
-        elif data['buttonId'] == 'saveButton':
-            response = requests.post(DATA_API_ADDRESS, data=data)
-            response = response.json()
-            print(response)
-            return_message = {'statusDiv': response}
-            return return_message
+        return_message = {'statusDiv': response}
+        return return_message
+
+    # DB 가져오기 버튼
+    elif data['buttonId'] == 'get_data':
+        response = requests.post(DATA_API_ADDRESS, data=data)
+        return response.json()
+    
+    # 저장 버튼
+    elif data['buttonId'] == 'saveButton':
+        response = requests.post(DATA_API_ADDRESS, data=data)
+        response = response.json()
+
+        return_message = {'statusDiv': response}
+        return return_message
+    
+    # API 테스트 버튼
+    elif data['buttonId'] == 'getSearchDataButton':
+        response = requests.post(DATA_API_ADDRESS, data=data)
+        return response.json()
 
     
 @main_bp.route('/load_content/kg_db', methods=['GET', 'POST'])

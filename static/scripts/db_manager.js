@@ -5,8 +5,8 @@ $(document).ready(function() {
         if (event.key === 'Enter') {
             event.preventDefault(); // Prevent the 엔터의 default behavior (new line)
             var divId = $(this).attr('id');
-            if (divId === 'urlDiv') {
-                $('#scrapButton').click();
+            if (divId === 'searchTag') {
+                $('#getSearchDataButton').click();
             } else if (divId === 'inputIdDiv') {
                 $('#searchButton').click();
             } else if (divId === 'div3') {
@@ -230,6 +230,63 @@ $(document).ready(function() {
         formData.append('buttonId', buttonId);
         return formData;
     }
+
+    
+    // API 테스트 버튼
+    $('#getSearchDataButton').click(function() {
+        showLoading();
+        
+        var buttonId = $(this).attr('id'); 
+        var divs = $(this).data('divs').split(',');
+
+        // 각 div에서 값을 추출하여 데이터를 구성
+        var dataToSend = {};
+        divs.forEach(function(divId) {
+            var value = $('#' + divId).text(); // text()를 사용하여 div의 텍스트 내용 가져오기
+            dataToSend[divId] = value;
+        });
+        
+        // selectedBase 값을 추가
+        dataToSend['getDataAPI'] = selectedBase;
+        dataToSend['buttonId'] = buttonId;
+
+        $.ajax({
+            url: '/util/data_api',
+            type: 'POST',
+            data: dataToSend,
+            success: function(response) {
+                $('#getSearchDataDiv').empty();
+                $.each(response, function(index, item) {
+                    console.log(item)
+                    var index = $('<span>').addClass('index').text(String(item.index).padStart(4, '0') + '번');
+                    var set_num = $('<span>').addClass('set_num').text('Set' + item.set_num + ' >> ');
+                    var article_date = $('<span>').addClass('article_date').text(item.article_date + ' - ');
+                    var title = $('<span>').addClass('title').text(item.title + ' ');
+                    var viewArticleButton = $('<button>').addClass('view-article').text('기사 보기').click(function() {
+                        $('#dbIdDiv').text(item.id); // #dbIdDiv에 id 넣기
+                        fetchArticleData(item.id, 'view-article');
+                    });
+    
+                    var itemDiv = $('<div>').addClass('item').append(index, set_num, article_date, title, viewArticleButton);
+                    
+                    // 아무데나 클릭 시 배경색 변경
+                    itemDiv.click(function(e) {
+                        if (!$(e.target).hasClass('view-article')) {
+                            itemDiv.toggleClass('selected');
+                        }
+                    });
+    
+                    // 담기
+                    $('#getSearchDataDiv').append(itemDiv);
+                });
+                hideLoading();
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+                hideLoading();
+            }
+        });
+    });
 
 
     // 서버 응답을 받을 때 Loading 메시지를 표시

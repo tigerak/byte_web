@@ -9,6 +9,7 @@
         <div class="box1">
             <button class="getDataAPIButton" id="ArticleBase">기사 Base DB 가져오기</button>
             <button class="getDataAPIButton" id="SummaryBase">요약문 Base DB 가져오기</button>
+            <button class="getDataAPIButton" id="YtnBase">마켓+산업 DB 가져오기</button>
             <div contenteditable="false" id="getDataAPIDiv"></div>
         </div>
     
@@ -56,8 +57,14 @@
     </div>
     
     <div class="box-wrap-under">
-        <!-- <div class="box3">
-        </div> -->
+        <div class="box3">
+            날짜:
+            <div contenteditable="true" class="searchDiv" id="searchDate"></div>
+            태그:
+            <div contenteditable="true" class="serachDiv" id="searchTag"></div>
+            <button id="getSearchDataButton" data-divs="searchDate,searchTag">API 테스트</button>
+            <div contenteditable="false" id="getSearchDataDiv"></div>
+        </div>
     
         <!-- <div class="box5">
      
