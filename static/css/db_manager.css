@@ -108,7 +108,7 @@
     display: flex; /* Flexbox 레이아웃 적용 */
     flex-wrap: wrap; /* 요소들을 다음 줄로 넘기기 위해 wrap 설정 */
     gap: 5px; /* 버튼과 div 사이의 간격 설정 */ 
-    width: 860px;
+    width: 1020px;
     float: left;
     margin: 2px;
     padding: 4px;
@@ -259,7 +259,7 @@
 }
 
 /* box3 */
-#searchDate, #searchTag, #getSearchDataButton {
+#searchDate, #searchTag, #searchCategory, #getSearchDataButton {
     height: 22px;
     width: 150px;
     overflow: auto;
@@ -268,7 +268,7 @@
 }
 #getSearchDataDiv {
     height: 300px;
-    width: 840px;
+    width: 1000px;
     overflow: auto;
     border: 1px solid #ccc;
     padding: 1px 2px;

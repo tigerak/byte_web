@@ -7,8 +7,8 @@ $(document).ready(function() {
             var divId = $(this).attr('id');
             if (divId === 'searchTag') {
                 $('#getSearchDataButton').click();
-            } else if (divId === 'inputIdDiv') {
-                $('#searchButton').click();
+            } else if (divId === 'searchCategory') {
+                $('#getSearchDataButton').click();
             } else if (divId === 'div3') {
                 $('#button3').click();
             }
@@ -257,7 +257,6 @@ $(document).ready(function() {
             success: function(response) {
                 $('#getSearchDataDiv').empty();
                 $.each(response, function(index, item) {
-                    console.log(item)
                     var index = $('<span>').addClass('index').text(String(item.index).padStart(4, '0') + '번');
                     var set_num = $('<span>').addClass('set_num').text('Set' + item.set_num + ' >> ');
                     var article_date = $('<span>').addClass('article_date').text(item.article_date + ' - ');

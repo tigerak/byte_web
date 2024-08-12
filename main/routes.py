@@ -445,6 +445,7 @@ def data_api():
     
     # API 테스트 버튼
     elif data['buttonId'] == 'getSearchDataButton':
+        print(data)
         response = requests.post(DATA_API_ADDRESS, data=data)
         return response.json()
 
