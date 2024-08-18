@@ -13,7 +13,7 @@ import threading
 
 # module
 from main import main_bp, socketio
-from config import MODEL_API_ADDRESS, DATA_API_ADDRESS
+from config import *
 from models import Article
 # from utils import (GPT, Scraping, Vertex,  
 from utils import (GPT, Scraping, importent_sentence, remove_mac_specialsymbol, count_summary_char)
@@ -343,27 +343,44 @@ def url_scraping():
     
     return jsonify(response)
     
-@main_bp.route('/util/model_api', methods=['POST'])
-def model_api():
+@main_bp.route('/util/broker_q', methods=['POST'])
+def broker_q():
     data = request.form
+    # response = requests.post(MODEL_API_ADDRESS, data=data)
+    response = requests.post(BROKER_API_ADDRESS, data=data)
+    return response.json()
+
     
-    response = requests.post(MODEL_API_ADDRESS, data=data)
+@main_bp.route('/util/job_status', methods=['POST'])
+def job_status():
+    data = request.form
+    # response = requests.post(MODEL_API_ADDRESS, data=data)
+    response = requests.post(JOB_API_ADDRESS + data['task_id'])
     response = response.json()
-    transfor_html_id = {
-        "modelSummaryCount" : response['summary_count'],
-        "modelTitle" : response['summary_title'],
-        "modelSummary" : response['summary'],
-        "modelReason" : response['summary_reason'] + "\n" \
-                        + "기업 태그(Company Tag):\n" \
-                        + "Main:" + response['main'] + "\n" \
-                        + "Sub:" + response['sub'] + "\n" \
-                        + "대분류(Major Classification):\n" \
-                        + response['major_class'] + "\n" \
-                        + "중분류(Medium Classification):\n" \
-                        + response['medium_class']
-    }
-    
-    return jsonify(transfor_html_id)
+    if response["status"] == "success":
+        result = response['result']
+        result = json.loads(result) # str -> json
+        
+        transfor_html_id = {
+            "status": "success",
+            "result": {
+                "modelSummaryCount" : result['summary_count'],
+                "modelTitle" : result['summary_title'],
+                "modelSummary" : result['summary'],
+                "modelReason" : result['summary_reason'] + "\n" \
+                                + "기업 태그(Company Tag):\n" \
+                                + "Main:" + result['main'] + "\n" \
+                                + "Sub:" + result['sub'] + "\n" \
+                                + "대분류(Major Classification):\n" \
+                                + result['major_class'] + "\n" \
+                                + "중분류(Medium Classification):\n" \
+                                + result['medium_class']
+            }
+        }
+        return transfor_html_id
+    else:
+        return response
+
 
 @main_bp.route('/util/aws_db_api', methods=['POST'])
 def db_move():
@@ -411,6 +428,7 @@ def data_api():
             'dateDiv': response['article_date'],
             'dbIdDiv': response['id'],
             'articleDiv': response['document'],
+            'setNumDiv': response['set_num'],
             'similarityDiv': response['similarity_list'],
             'modelTitle': response['summary_title'],
             'modelSummary': response['summary'],
@@ -418,7 +436,8 @@ def data_api():
             'mainTagDiv': response['main'],
             'subTagDiv': response['sub'],
             'majorTagDiv': response['major_class'],
-            'mediumTagDiv': response['medium_class']
+            'mediumTagDiv': response['medium_class'],
+            'keywordDiv': response['keyword']
         }
         return transfor_html_id
     
@@ -439,13 +458,11 @@ def data_api():
     elif data['buttonId'] == 'saveButton':
         response = requests.post(DATA_API_ADDRESS, data=data)
         response = response.json()
-
         return_message = {'statusDiv': response}
         return return_message
     
     # API 테스트 버튼
     elif data['buttonId'] == 'getSearchDataButton':
-        print(data)
         response = requests.post(DATA_API_ADDRESS, data=data)
         return response.json()
 

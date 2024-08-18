@@ -247,13 +247,21 @@
     width: 450px;
     overflow: auto;
 }
+#keywordDiv {
+    width: 380px;
+    overflow: auto;
+}
+#setNumDiv {
+    width: 50px;
+    overflow: auto;
+}
 #modelSummary {
     height: 200px;
     width: 450px;
     overflow: auto;
 }
 #modelReason {
-    height: 300px;
+    height: 270px;
     width: 450px;
     overflow: auto;
 }

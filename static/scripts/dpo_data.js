@@ -77,13 +77,80 @@ $(document).ready(function() {
         sendData('/util/aws_db_api', formData);
     });
 
-    // Model API로 연결되는 버튼
+    // Model Broker로 연결되는 버튼
     $('#summaryButton').click(function() {
+        showLoading();
         var divIds = $(this).data('divs').split(',');
         var formData = createFormData(divIds);
-
-        sendData('/util/model_api', formData);
+        // 서버에 작업 요청을 보내고, task_id를 받아옴
+        $.ajax({
+            url: '/util/broker_q',
+            method: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                if (response.status === 'success') {
+                    const task_id = response.task_id;
+                    const q_len = response.q_len;
+                    updateProgress(`작업이 대기열에 추가되었습니다. 현재 대기 중인 작업 수: ${q_len}`);
+                    checkJobStatus(task_id);  // 작업 상태 확인 시작
+                } else {
+                    alert('Failed to start job: ' + response.status);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert('Error: ' + error);
+            }
+        });
     });
+
+    function checkJobStatus(task_id) {
+        // 5초마다 서버에 상태를 요청하는 함수
+        const intervalId = setInterval(function() {
+            $.ajax({
+                url: '/util/job_status',
+                method: 'POST',
+                data: { 'task_id': task_id },
+                success: function(response) {
+                    
+                    if (response.status === 'success') {
+                        // 작업이 완료된 경우 결과를 처리하고 폴링 중지
+                        clearInterval(intervalId);
+                        updatePageWithResult(response.result);
+                        hideLoading();
+                    } else if (response.status === 'error') {
+                        // 작업이 실패한 경우 오류 메시지를 표시하고 폴링 중지
+                        clearInterval(intervalId);
+                        alert('Job failed: ' + response.message);
+                        hideLoading();
+                    } else {
+                        // 작업이 아직 진행 중인 경우 상태를 표시
+                        updateProgress(response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // 요청 중 에러 발생 시 폴링 중지
+                    clearInterval(intervalId);
+                    alert('Error: ' + error);
+                    hideLoading();
+                }
+            });
+        }, 5000); // 5초마다 서버에 요청
+    }
+
+    function updateProgress(message) {
+        // 페이지에서 작업 진행 상태를 표시하는 함수
+        $('#modelSummary').text(message);
+    }
+
+    function updatePageWithResult(result) {
+        // 작업이 완료된 후 결과를 페이지에 표시하는 함수
+        $.each(result, function(key, value) {
+            // 해당 id를 가진 div에 값 설정
+            $('#' + key).text(value).css('white-space', 'pre-wrap');
+        });
+    }
 
     function createFormData(divIds) {
         // FormData 객체를 만듭니다.

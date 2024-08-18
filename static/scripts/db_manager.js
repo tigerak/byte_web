@@ -1,20 +1,44 @@
 $(document).ready(function() {
+    
+    // // 커서 위치마다 엔터 기능 변경 
+    // $('.searchDiv, .contentDiv').on('keypress', function(event) { 
+    //     event.preventDefault(); // Prevent the 엔터의 default behavior (new line)
+        
+    //     if (event.key === 'Enter') {
+            
+    //         var divId = $(this).attr('id');
+            
+    //         if (divId === 'searchTag') {
+    //             $('#getSearchDataButton').click();
+    //         } else if (divId === 'searchCategory') {
+    //             $('#getSearchDataButton').click();
+    //         } else if (divId === 'modelSummary') {
+    //             // 현재 커서 위치에 \n을 삽입
+    //             insertTextAtCursor('\n');
+    //         }
+    //     }
+    // });
 
-    // 커서 위치마다 엔터 기능 변경 
-    $('.contentDiv').on('keydown', function(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault(); // Prevent the 엔터의 default behavior (new line)
-            var divId = $(this).attr('id');
-            if (divId === 'searchTag') {
-                $('#getSearchDataButton').click();
-            } else if (divId === 'searchCategory') {
-                $('#getSearchDataButton').click();
-            } else if (divId === 'div3') {
-                $('#button3').click();
-            }
-        }
-    });
+    // // 커서 위치에 텍스트 삽입 함수
+    // function insertTextAtCursor(text) {
+    //     var sel, range;
+    //     if (window.getSelection) {
+    //         sel = window.getSelection();
+    //         if (sel.getRangeAt && sel.rangeCount) {
+    //             range = sel.getRangeAt(0);
+    //             range.deleteContents();
+                
+    //             var textNode = document.createTextNode(text);
+    //             range.insertNode(textNode);
 
+    //             // 커서를 텍스트 끝에 위치시키기
+    //             range.setStartAfter(textNode);
+    //             range.setEndAfter(textNode);
+    //             sel.removeAllRanges();
+    //             sel.addRange(range);
+    //         }
+    //     }
+    // }
 
     // 전역 변수를 선언하여 클릭된 collection_name 버튼ID를 저장합니다.
     var selectedBase = null;
@@ -155,17 +179,23 @@ $(document).ready(function() {
     // 저장 버튼 
     $('#saveButton').click(function() {
         showLoading();
-    
+        
         var buttonId = $(this).attr('id'); 
         var divs = $(this).data('divs').split(',');
-    
+        
         // 각 div에서 값을 추출하여 데이터를 구성
         var dataToSend = {};
         divs.forEach(function(divId) {
-            var value = $('#' + divId).text(); // text()를 사용하여 div의 텍스트 내용 가져오기
-            dataToSend[divId] = value;
-        });
+            var htmlContent = $('#' + divId).html(); 
+            var textWithNewlines = htmlContent
+            .replace(/<div>/gi, '\n')                // <div> 태그를 줄바꿈으로 변환
+            .replace(/<\/div>/gi, '')               // </div> 태그를 제거
+            .replace(/<br\s*\/?>/gi, '\n')          // <br> 태그를 줄바꿈으로 변환
+            .replace(/&nbsp;/gi, ' ')               // &nbsp;를 공백으로 변환
+            .replace(/<\/?[^>]+(>|$)/g, "");        // 남은 HTML 태그 제거
 
+            dataToSend[divId] = textWithNewlines.trim(); // 양 끝의 공백 제거
+        });
         // selectedBase 값을 추가
         dataToSend['getDataAPI'] = selectedBase;
         dataToSend['buttonId'] = buttonId;
