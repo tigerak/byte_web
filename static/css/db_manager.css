@@ -243,6 +243,11 @@
     width: 450px;
     overflow: auto;
 }
+#descriptionDiv {
+    width: 450px;
+    height: 50px;
+    overflow: auto;
+}
 #modelTitle {
     width: 450px;
     overflow: auto;
@@ -261,7 +266,7 @@
     overflow: auto;
 }
 #modelReason {
-    height: 270px;
+    height: 230px;
     width: 450px;
     overflow: auto;
 }

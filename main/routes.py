@@ -437,7 +437,8 @@ def data_api():
             'subTagDiv': response['sub'],
             'majorTagDiv': response['major_class'],
             'mediumTagDiv': response['medium_class'],
-            'keywordDiv': response['keyword']
+            'keywordDiv': response['keyword'],
+            'descriptionDiv': response['description']
         }
         return transfor_html_id
     
@@ -493,6 +494,79 @@ def kg_db():
                            message=render)
 
 
+@main_bp.route('/load_content/save_content', methods=['GET', 'POST'])
+def save_content():
+
+    return render_template('save_content.html',
+                            message=message)
+
+@main_bp.route('/utile/reference_api', methods=['GET', 'POST'])
+def reference_api():
+    data = request.get_json()
+
+    response = requests.post(CONTENT_DB_ADDRESS, json=data) 
+    
+    return jsonify(response.json())
+
+
+@main_bp.route('/load_content/mod_content', methods=['GET', 'POST'])
+def mod_content():
+    
+    return render_template('mod_content.html',
+                            message=message)
+
+@main_bp.route('/utile/reference_db', methods=['GET', 'POST'])
+def reference_db():
+    data = request.get_json()
+    
+    id = data['dbNumber']
+    action = data['action']
+
+    if action == 'search':
+        response = requests.get(CONTENT_DB_ADDRESS + f"/{id}") 
+        result = response.json()
+    elif action == 'save':
+        response = requests.put(CONTENT_DB_ADDRESS + f"/{id}", json=data)
+        result = response.json()
+        if result['modified'] == True:
+            response = requests.get(CONTENT_DB_ADDRESS + f"/{id}") 
+            result = response.json()
+        else:
+            result['code'] = 'ERROR'
+    elif action == 'prev':
+        response = requests.get(CONTENT_DB_ADDRESS + f"/neighbor/{id}")
+        result = response.json()
+        move_id = result['result']['prevId']
+        response = requests.get(CONTENT_DB_ADDRESS + f"/{move_id}") 
+        result = response.json()
+    elif action == 'next':
+        response = requests.get(CONTENT_DB_ADDRESS + f"/neighbor/{id}")
+        result = response.json()
+        move_id = result['result']['nextId']
+        response = requests.get(CONTENT_DB_ADDRESS + f"/{move_id}") 
+        result = response.json()
+    elif action == 'last':
+        # last DB number를 따로 받지 못하므로 1번 데이터 고정.
+        response = requests.get(CONTENT_DB_ADDRESS + f"/neighbor/1")
+        result = response.json()
+        move_id = result['result']['lastId']
+        response = requests.get(CONTENT_DB_ADDRESS + f"/{move_id}") 
+        result = response.json()
+    elif action == 'delete_content':
+        # 이전 DB ID 수집
+        response = requests.get(CONTENT_DB_ADDRESS + f"/neighbor/{id}")
+        result = response.json()
+        move_id = result['result']['prevId']
+        # 삭제
+        response = requests.delete(CONTENT_DB_ADDRESS + f"/{id}")
+        result = response.json()
+        if result['deleted'] == True:
+            response = requests.get(CONTENT_DB_ADDRESS + f"/{move_id}") 
+            result = response.json()
+        else:
+            result['code'] = 'ERROR'
+
+    return result
 
 
 # @main_bp.route('/load_content/chat', methods=['GET', 'POST'])

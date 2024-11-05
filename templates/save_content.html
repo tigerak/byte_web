@@ -1,0 +1,42 @@
+<div class="total">
+
+    <div class="box-top">
+        <h3>- Content 저장 페이지 -</h3>
+    </div>
+    
+    <div class="box-wrap-upper">
+
+        <div class="box1">
+            <div class="sign"><b>글 제목</b></div>
+            <div contenteditable="true" class="contentDiv" id="titleDiv"></div>
+            
+            <div class="sign" id="textSign"><b>핵심만 콕콕</b></div>
+            <div contenteditable="true" class="contentDiv" id="coreDiv"></div>
+
+            <button id="subTitleButton">중간 제목 추가</button>
+            <div id="total-char-count" class="total-char-count">총 글자 수: 0</div>
+        </div>
+    
+        <!-- <div class="box2">
+            
+        </div> -->
+    </div>
+
+    <div class="box-wrap-mid">
+        <div class="box6">
+            <button id="copyButton">웹 업로드용 복사하기</button>
+            <button id="saveButton">DB에 저장하기</button>
+        </div>
+        
+    </div>
+    
+    <div id="loading" style="display:none;">
+        <br/><br/>
+        <p>Winter Loading...</p>
+    </div>
+    
+</div>
+
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/save_content.css') }}">
+<script src="{{ url_for('static', filename='scripts/save_content.js') }}"></script>
